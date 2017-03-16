@@ -1,7 +1,7 @@
 <?php
 require 'ClassTypePraticien.php';
 
-class Practicien
+class Praticien
 {
      private $num;
      private $nom;

@@ -31,8 +31,8 @@ class Visiteur
     {
         $bdd = new BDD();
         $bdd->query('SELECT * FROM visiteur 
-                      INNER JOIN secteur ON visiteur.SEC_CODE = secteur.SEC_CODE
-                      INNER JOIN labo ON visiteur.LAB_CODE = labo.LAB_CODE');
+                       LEFT OUTER JOIN secteur ON visiteur.SEC_CODE = secteur.SEC_CODE
+                       JOIN labo ON visiteur.LAB_CODE = labo.LAB_CODE WHERE VIS_MATRICULE != "zzz"');
         $row = $bdd->resultset();
 
         $visiteurs = [];

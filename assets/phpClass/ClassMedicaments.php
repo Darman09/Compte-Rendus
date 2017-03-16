@@ -24,7 +24,7 @@ class Medicaments
     static function getAllMedicaments()
     {
         $bdd = new BDD();
-        $bdd->query('SELECT * FROM medicament INNER JOIN famille ON medicament.FAM_CODE = famille.FAM_CODE');
+        $bdd->query('SELECT * FROM medicament JOIN famille ON medicament.FAM_CODE = famille.FAM_CODE');
         $row = $bdd->resultset();
 
         $medicaments = [];

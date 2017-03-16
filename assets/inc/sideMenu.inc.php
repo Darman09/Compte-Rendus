@@ -4,7 +4,7 @@
     <li><img src="../img/logoDefault.png" class="responsive-img center-block" width="150" alt=""></li>
     <li class="boldPoppins semiApadding">Comptes rendus</li>
     <li><a href="nouveauCR.php">Nouveaux</a></li>
-    <li><a href="#">Consulter</a></li>
+    <li><a href="consulterCR.php">Consulter</a></li>
     <hr>
     <li class="boldPoppins semiApadding">Consulter</li>
     <li><a href="medicament.php">Médicaments</a></li>

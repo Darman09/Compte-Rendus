@@ -13,7 +13,6 @@
 <body>
 <?php include '../inc/sideMenu.inc.php';?>
 
-
 <main>
 <form name="formRAPPORT_VISITE" method="post" action="#">
 <div class="row">
@@ -21,22 +20,16 @@
         <div class="col m11">
           <h3 class="cyan-text darken-1">Rapport de visite</h3>
         </div>
-          <div class="input-field col s12">
-            <input id="icon_prefix" type="text" class="validate">
+          <div class="input-field col s12 m5 l4">
+            <input id="icon_prefix" type="text" disabled value="<?php echo uniqid(); ?>">
             <label for="icon_prefix">Numéro</label>
           </div>
-          <div class="col s12">
+          <div class="col s12 m5 l4">
             <label>Sélectionner la date de la visite</label>
             <input type="date" class="datepicker">
           </div>
           <div class="input-field col s11">
-            <select>
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-            </select>
-            <label>Sélectionner un praticien</label>
+              <a class="waves-effect waves-light btn btn-large"><i class="material-icons left fa fa-user-md"></i>Praticien</a>
           </div>
           <div class="input-field col s12">
             <input id="icon_prefix" type="text" class="validate">
