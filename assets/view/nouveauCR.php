@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <?php
 require '../phpScript/ScriptBDD.php';
+require '../phpClass/ClassMedicaments.php';
 ?>
 <html>
 <head>
@@ -80,39 +81,15 @@ require '../phpScript/ScriptBDD.php';
                     <div class="row">
                         <div class="col s10">
                             <h5 class="col s10 cyan-text darken-1">Eléments présentés</h5>
-                            <div class="col s1">
-                                <a id="newPresente"
-                                   class="btn-floating btn-large waves-effect waves-light btn tooltipped blue accent-1"
-                                   data-position="left" data-delay="50" data-tooltip="Ajoute un nouvel élément">
-                                    <i class="material-icons">add</i>
-                                </a>
-                            </div>
+
                         </div>
                     </div>
+                    <!-- #################################################################################   -->
                     <div id="listElement">
-                        <div class="row">
-                            <div class="input-field col m4">
-                                <select>
-                                    <option value="" disabled selected>Produits</option>
-                                    <?php
-                                    require '../inc/listProduit.inc.php';
-                                    foreach ($row as $value):
-                                        ?>
-                                        <option value="<?php echo $value['MED_DEPOTLEGAL'];?>">
-                                            <?php echo $value['MED_DEPOTLEGAL'] . ' : ' . $value['MED_NOMCOMMERCIAL']; ?>
-                                        </option>
-                                        <?php
-                                    endforeach;
-                                    ?>
-                                </select>
-                                <label>Sélectionner un produit</label>
-                            </div>
-                            <div class="col s3">
-                                <input type="checkbox" id="Documentation"/>
-                                <label for="Documentation">Documentation Offerte</label>
-                            </div>
-                        </div>
+                        <?php require '../inc/listProduit.inc.php'; ?>
+
                     </div>
+                    <!-- #################################################################################   -->
                     <div class="col s10">
                         <h5 class="col s10 cyan-text darken-1">Echantillons</h5>
                         <div class="col s2">
@@ -168,12 +145,12 @@ require '../phpScript/ScriptBDD.php';
 <script src="../js/main.js"></script>
 <script src="../js/recherche.js"></script>
 <script>
-
+    // copier l'html du modal avec la liste des praticiens dans la page
     $('.praSelectable').on('click', function () {
         let praInfo = $(this).html();
         $('#praInfo').html(praInfo);
     });
-
+    // afficher le formulaire pour ajouter un praticien si le visité est remplacé
     $('#remplace').on('click', function () {
         if ($(this).is(':checked')) {
             $('#remplacant')
@@ -196,6 +173,10 @@ require '../phpScript/ScriptBDD.php';
         } else {
             $('#remplacant').html('');
         }
+    });
+    let listProduit = $('preElement1').html();
+    $('#addPresente').on('click', function () {
+        $('#listElement').append(listProduit);
     });
 </script>
 </body>

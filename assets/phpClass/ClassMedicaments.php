@@ -41,6 +41,14 @@ class Medicaments
         return $medicaments;
     }
 
+    static function getAllDepotAndName()
+    {
+        $bdd = new BDD();
+        $bdd->query('SELECT MED_DEPOTLEGAL, MED_NOMCOMMERCIAL FROM medicament');
+        $row = $bdd->resultset();
+        return $row;
+    }
+
     public function setFamille($familleCode, $familleLib)
     {
         $this->famille = new Famille($familleCode, $familleLib);
