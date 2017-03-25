@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1da299e4-1f45-43cc-b652-0a081aaf3ccc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/inc/listProduit.inc.php" afterPath="$PROJECT_DIR$/assets/inc/listProduit.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/phpClass/ClassMedicaments.php" afterPath="$PROJECT_DIR$/assets/phpClass/ClassMedicaments.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/view/nouveauCR.php" afterPath="$PROJECT_DIR$/assets/view/nouveauCR.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -491,7 +488,7 @@
       <workItem from="1489693062098" duration="6533000" />
       <workItem from="1490212933698" duration="5659000" />
       <workItem from="1490383039986" duration="6663000" />
-      <workItem from="1490455075511" duration="14980000" />
+      <workItem from="1490455075511" duration="14990000" />
     </task>
     <task id="LOCAL-00001" summary="Consultation 80%">
       <created>1489701265890</created>
@@ -507,11 +504,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490464012677</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=".">
+      <created>1490479877193</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1490479877193</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96168000" />
+    <option name="totallyTimeSpent" value="96178000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -576,7 +580,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Consultation 80%" />
     <MESSAGE value="Comptes rendus &amp;&amp; form view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comptes rendus &amp;&amp; form view" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
