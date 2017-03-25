@@ -6,7 +6,7 @@ $(function ()
             closeOnClick: true
         }
     );
-
+    $('#listPraticien').modal();
     $('select').material_select();
     $('.datepicker').pickadate(
         {

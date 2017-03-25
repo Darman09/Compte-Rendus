@@ -11,84 +11,24 @@
 </head>
 
 <body>
-    <?php include '../inc/sideMenu.inc.php';?>
-    <main>
-        <div class="row">
-            <div class="col l10  offset-l1">
-                <h5>Praticiens</h5>
-                <div class="col l4 m12 s11 offset-s1">
-                    <input id="recherche" placeholder="Rechercher un practiciens"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col l7 offset-l1 offset-m0 s12">
-                    <?php
-                    require '../phpScript/ScriptBDD.php';
-                    require '../phpClass/ClassPraticien.php';
-                    ?>
-                    <?php foreach(Practicien::getAllPraticiens() as $value):?>
-                    <ul class="collection with-header">
-                        <li class="collection-header">
-                            <h4 class="nom">
-                                <?php echo mb_strtoupper($value->getNom(),'UTF-8')." ".$value->getPrenom(); ?>
-                            </h4>
-                        </li>
-                        <li class="collection-item">
-                            <h6 class="boldPoppins">
-                                Numéro :
-                                <span class="softPoppins">
-                                <?php echo $value->getNum(); ?>
-                            </span>
-                            </h6>
-                        </li>
-                        <li class="collection-item">
-                            <h6 class="boldPoppins">
-                                Adresse :
-                                <span class="softPoppins">
-                                <?php echo $value->getAdresse(); ?>
-                            </span>
-                            </h6>
-                        </li>
-                        <li class="collection-item">
-                            <h6 class="boldPoppins">
-                                Ville :
-                                <span class="softPoppins">
-                               <?php echo $value->getCp()." ".$value->getVille(); ?>
-                            </span>
-                            </h6>
-                        </li>
-                        <li class="collection-item">
-                            <h6 class="boldPoppins">
-                                Coeff. notoriété :
-                                <span class="softPoppins">
-                                <?php echo $value->getCoef(); ?>
-                            </span>
-                            </h6>
-                        </li>
-                        <li class="collection-item">
-                            <h6 class="boldPoppins">
-                               Type :
-                                <span class="softPoppins">
-                                <?php echo $value->getTypePraticien()->getTypeCode().
-                                    " : "
-                                    .$value->getTypePraticien()->getTypeLibelle(); ?>
-                            </span>
-                            </h6>
-                        </li>
-                        <li class="collection-item">
-                            <h6 class="boldPoppins">
-                                Lieu d'exercice :
-                                <span class="softPoppins">
-                                <?php echo $value->getTypePraticien()->getTypeLieu(); ?>
-                            </span>
-                            </h6>
-                        </li>
-                    </ul>
-                    <?php endforeach;?>
-                </div>
+<?php include '../inc/sideMenu.inc.php'; ?>
+<main>
+    <div class="row">
+        <div class="col l10  offset-l1">
+            <h5>Praticiens</h5>
+            <div class="col l4 m12 s11 offset-s1">
+                <input id="recherche" placeholder="Rechercher un practiciens"/>
             </div>
         </div>
-    </main>
+        <div class="row">
+            <div class="col l7 offset-l1 offset-m0 s12">
+                <?php
+                  require '../inc/getAllPraticien.inc.php';
+                ?>
+                </div>
+        </div>
+    </div>
+</main>
 
 
 <script src="../js/jquery.min.js"></script>

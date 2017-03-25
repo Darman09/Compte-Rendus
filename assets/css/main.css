@@ -50,7 +50,14 @@ header, main, footer {
 {
     padding: 0 16px;
 }
-
+.praSelectable:hover
+{
+    cursor: hand;
+}
+.select-wrapper
+{
+    z-index: 64889744;
+}
 /* label color */
 .input-field label {
     color: #000;

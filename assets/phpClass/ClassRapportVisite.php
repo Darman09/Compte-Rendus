@@ -26,38 +26,47 @@ class RapportVisite
     static function getAllRapports()
     {
         $bdd = new BDD();
+        $bdd->query('SELECT * FROM offrir UNION SELECT * FROM presenter
+        ');
+        $ext = $bdd->resultset();
+        $ext = $bdd->resultset();
+        return $ext;
         $bdd->query('SELECT * FROM rapport_visite
-                       JOIN visiteur ON rapport_visite.VIS_MATRICULE = visiteur.VIS_MATRICULE
-                       JOIN praticien ON rapport_visite.PRA_NUM = praticien.PRA_NUM
-                       ORDER BY RAP_NUM');
-        $row = $bdd->resultset();
+                       JOIN visiteur  ON 
+                                      rapport_visite.VIS_MATRICULE = visiteur.VIS_MATRICULE
+                       JOIN praticien ON
+                                      rapport_visite.PRA_NUM = praticien.PRA_NUM 
+                       ');
 
-        $rapports = [];
-        foreach ($row as $value)
-        {
-            $rapport = new RapportVisite(
-                $value['RAP_NUM'],
-                $value['RAP_DATE'],
-                $value['RAP_BILAN'],
-                $value['RAP_MOTIF']);
-            $rapport->setVisiteur(
-                $value['VIS_NOM'],
-                $value['VIS_PRENOM'],
-                $value['VIS_VILLE'],
-                $value['VIS_ADRESSE'],
-                $value['VIS_CP'],
-                $value['VIS_DATEEMBAUCHE']);
-            $rapport->setPraticien(
-                $value['PRA_NUM'],
-                $value['PRA_NOM'],
-                $value['PRA_PRENOM'],
-                $value['PRA_ADRESSE'],
-                $value['PRA_CP'],
-                $value['PRA_VILLE'],
-                $value['PRA_COEFNOTORIETE']);
-            $rapports[] = $rapport;
-        }
-        return $rapports;
+
+//        $rapports = [];
+//        foreach ($row as $value)
+//        {
+//            $rapport = new RapportVisite(
+//                $value['RAP_NUM'],
+//                $value['RAP_DATE'],
+//                $value['RAP_BILAN'],
+//                $value['RAP_MOTIF']);
+//            $rapport->setVisiteur(
+//                $value['VIS_NOM'],
+//                $value['VIS_PRENOM'],
+//                $value['VIS_VILLE'],
+//                $value['VIS_ADRESSE'],
+//                $value['VIS_CP'],
+//                $value['VIS_DATEEMBAUCHE']);
+//            $rapport->setPraticien(
+//                $value['PRA_NUM'],
+//                $value['PRA_NOM'],
+//                $value['PRA_PRENOM'],
+//                $value['PRA_ADRESSE'],
+//                $value['PRA_CP'],
+//                $value['PRA_VILLE'],
+//                $value['PRA_COEFNOTORIETE']);
+//            $rapports[] = $rapport;
+//
+//        }
+//
+//        return $rapports;
     }
 
 

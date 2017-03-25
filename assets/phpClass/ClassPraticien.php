@@ -34,7 +34,7 @@ class Praticien
 
         $praticiens = [];
         foreach ($row as $value) {
-            $praticien = new Practicien(
+            $praticien = new Praticien(
                 $value['PRA_NUM'],
                 $value['PRA_NOM'],
                 $value['PRA_PRENOM'],

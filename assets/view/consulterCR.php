@@ -26,7 +26,12 @@
             require '../phpClass/ClassRapportVisite.php';
             require '../phpClass/ClassDateManager.php';
             ?>
-            <?php foreach(RapportVisite::getAllRapports() as $value):?>
+            <?php foreach(RapportVisite::getAllRapports() as $value):
+                echo "<pre>";
+                print_r(RapportVisite::getAllRapports());
+                echo "</pre>";
+                ?>
+
             <ul class="collection with-header">
                 <li class="collection-header">
                     <h5 class="nom"> Rapport n°
@@ -58,6 +63,12 @@
                 <li class="collection-item">
                     <h6>
                         <span class="boldPoppins">Motif :</span>
+                        <?php echo $value->getMotifRapport(); ?>
+                    </h6>
+                </li>
+                <li class="collection-item">
+                    <h6>
+                        <span class="boldPoppins">Offre :</span>
                         <?php echo $value->getMotifRapport(); ?>
                     </h6>
                 </li>

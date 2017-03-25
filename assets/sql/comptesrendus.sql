@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 02 Mars 2017 à 22:25
+-- Généré le :  Ven 24 Mars 2017 à 20:26
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -409,6 +409,27 @@ CREATE TABLE IF NOT EXISTS `presentation` (
   `PRE_LIBELLE` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`PRE_CODE`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `presenter`
+--
+
+CREATE TABLE IF NOT EXISTS `presenter` (
+  `VIS_MATRICULE` varchar(10) NOT NULL,
+  `RAP_NUM` int(11) NOT NULL,
+  `MED_DEPOTLEGAL` varchar(10) NOT NULL,
+  `DOCUMENTATION` tinyint(1) NOT NULL,
+  PRIMARY KEY (`VIS_MATRICULE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `presenter`
+--
+
+INSERT INTO `presenter` (`VIS_MATRICULE`, `RAP_NUM`, `MED_DEPOTLEGAL`, `DOCUMENTATION`) VALUES
+('a17', 4, 'BITALV', 1);
 
 -- --------------------------------------------------------
 
