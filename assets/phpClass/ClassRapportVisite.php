@@ -1,6 +1,8 @@
 <?php
 require 'ClassPraticien.php';
 require 'ClassVisiteur.php';
+require 'ClassOffrir.php';
+require 'ClassPresenter.php';
 
 
 class RapportVisite
@@ -12,7 +14,8 @@ class RapportVisite
 
     private $praticien = null;
     private $visiteur = null;
-
+    private $offrir = [];
+    private $presenter = [];
 
     public function __construct($numeroRapport, $dateRapport, $bilanRapport, $motifRapport)
     {
@@ -22,53 +25,98 @@ class RapportVisite
         $this->motifRapport = $motifRapport;
     }
 
-
     static function getAllRapports()
     {
         $bdd = new BDD();
-        $bdd->query('SELECT * FROM offrir UNION SELECT * FROM presenter
-        ');
-        $ext = $bdd->resultset();
-        $ext = $bdd->resultset();
-        return $ext;
-        $bdd->query('SELECT * FROM rapport_visite
-                       JOIN visiteur  ON 
-                                      rapport_visite.VIS_MATRICULE = visiteur.VIS_MATRICULE
-                       JOIN praticien ON
-                                      rapport_visite.PRA_NUM = praticien.PRA_NUM 
+        $bdd->query('SELECT DISTINCT RAP.*, OFF.MED_DEPOTLEGAL, OFF.OFF_QTE, PRE.MED_DEPOTLEGAL, PRE.DOCUMENTATION, VIS.*, PRA.*
+                      FROM rapport_visite RAP
+                      JOIN visiteur VIS ON (RAP.VIS_MATRICULE = VIS.VIS_MATRICULE)
+                      JOIN praticien PRA ON (RAP.PRA_NUM = PRA.PRA_NUM)
+                      LEFT JOIN offrir OFF ON (RAP.RAP_NUM = OFF.RAP_NUM)
+                      LEFT JOIN presenter PRE ON (RAP.RAP_NUM = PRE.RAP_NUM)
                        ');
+        $row = $bdd->resultset();
 
+        $rapports = [];
+        foreach ($row as $value)
+        {
+            $RapportExiste = false;
 
-//        $rapports = [];
-//        foreach ($row as $value)
-//        {
-//            $rapport = new RapportVisite(
-//                $value['RAP_NUM'],
-//                $value['RAP_DATE'],
-//                $value['RAP_BILAN'],
-//                $value['RAP_MOTIF']);
-//            $rapport->setVisiteur(
-//                $value['VIS_NOM'],
-//                $value['VIS_PRENOM'],
-//                $value['VIS_VILLE'],
-//                $value['VIS_ADRESSE'],
-//                $value['VIS_CP'],
-//                $value['VIS_DATEEMBAUCHE']);
-//            $rapport->setPraticien(
-//                $value['PRA_NUM'],
-//                $value['PRA_NOM'],
-//                $value['PRA_PRENOM'],
-//                $value['PRA_ADRESSE'],
-//                $value['PRA_CP'],
-//                $value['PRA_VILLE'],
-//                $value['PRA_COEFNOTORIETE']);
-//            $rapports[] = $rapport;
-//
-//        }
-//
-//        return $rapports;
+            foreach ($rapports as $listeRapport)
+            {
+                if ($listeRapport->getNumeroRapport() === $value['RAP_NUM'])
+                {
+                    $RapportExiste = true;
+                    if ($value['MED_DEPOTLEGAL'] !== null && $value['OFF_QTE'] !== null)
+                    {
+                        $listeRapport->setOffrir(
+                            $value['MED_DEPOTLEGAL'],
+                            $value['OFF_QTE']
+                        );
+                    }
+
+                    if ($value['MED_DEPOTLEGAL'] !== null && $value['DOCUMENTATION'] !== null)
+                    {
+                        $listeRapport->setPresenter(
+                            $value['MED_DEPOTLEGAL'],
+                            $value['DOCUMENTATION']
+                        );
+                    }
+
+                    break;
+                }
+            }
+
+            if (!$RapportExiste)
+            {
+                $rapport = new RapportVisite(
+                    $value['RAP_NUM'],
+                    $value['RAP_DATE'],
+                    $value['RAP_BILAN'],
+                    $value['RAP_MOTIF']
+                );
+
+                $rapport->setVisiteur(
+                    $value['VIS_MATRICULE'],
+                    $value['VIS_NOM'],
+                    $value['VIS_PRENOM'],
+                    $value['VIS_VILLE'],
+                    $value['VIS_ADRESSE'],
+                    $value['VIS_CP'],
+                    $value['VIS_DATEEMBAUCHE']
+                );
+
+                $rapport->setPraticien(
+                    $value['PRA_NUM'],
+                    $value['PRA_NOM'],
+                    $value['PRA_PRENOM'],
+                    $value['PRA_ADRESSE'],
+                    $value['PRA_CP'],
+                    $value['PRA_VILLE'],
+                    $value['PRA_COEFNOTORIETE']
+                );
+
+                if ($value['MED_DEPOTLEGAL'] !== null && $value['OFF_QTE'] !== null)
+                {
+                    $rapport->setOffrir(
+                        $value['MED_DEPOTLEGAL'],
+                        $value['OFF_QTE']
+                    );
+                }
+
+                if ($value['MED_DEPOTLEGAL'] !== null && $value['DOCUMENTATION'] !== null)
+                {
+                    $rapport->setPresenter(
+                        $value['MED_DEPOTLEGAL'],
+                        $value['DOCUMENTATION']
+                    );
+                }
+                $rapports[] = $rapport;
+            }
+        }
+
+        return $rapports;
     }
-
 
     public function setPraticien($num, $nom, $prenom, $adresse, $cp, $ville, $coef)
     {
@@ -80,9 +128,9 @@ class RapportVisite
         return $this->praticien;
     }
 
-    public function setVisiteur($nom, $prenom, $ville, $adresse, $cp, $dateEmbauche)
+    public function setVisiteur($matricule, $nom, $prenom, $ville, $adresse, $cp, $dateEmbauche)
     {
-        $this->visiteur = new Visiteur($nom, $prenom, $ville, $adresse, $cp, $dateEmbauche);
+        $this->visiteur = new Visiteur($matricule, $nom, $prenom, $ville, $adresse, $cp, $dateEmbauche);
     }
 
     public function getVisiteur()
@@ -90,10 +138,25 @@ class RapportVisite
         return $this->visiteur;
     }
 
+    public function setOffrir($medDepotlegal, $offrirQte)
+    {
+        $this->offrir[] = new Offrir($medDepotlegal, $offrirQte);
+    }
 
+    public function getOffrir()
+    {
+        return $this->offrir;
+    }
 
+    public function setPresenter($medDepotlegal, $documentation)
+    {
+        $this->presenter[] = new Presenter($medDepotlegal, $documentation);
+    }
 
-
+    public function getPresenter()
+    {
+        return $this->presenter;
+    }
 
     public function getNumeroRapport()
     {
@@ -121,7 +184,6 @@ class RapportVisite
         return $this->bilanRapport;
     }
 
-
     public function setBilanRapport($bilanRapport)
     {
         $this->bilanRapport = $bilanRapport;
@@ -136,6 +198,5 @@ class RapportVisite
     {
         $this->motifRapport = $motifRapport;
     }
-
 
 }

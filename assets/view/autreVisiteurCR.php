@@ -33,7 +33,15 @@
                                 <?php echo mb_strtoupper($value->getNom(),'UTF-8')." ".$value->getPrenom(); ?>
                             </h4>
                         </li>
-                        <li class="collection-item">
+						<li class="collection-item">
+							<h6 class="boldPoppins">
+								Matricule :
+								<span class="softPoppins">
+                                <?php echo $value->getMatricule(); ?>
+                            </span>
+							</h6>
+						</li>
+						<li class="collection-item">
                             <h6 class="boldPoppins">
                                 Adresse :
                                 <span class="softPoppins">

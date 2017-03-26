@@ -28,7 +28,8 @@ class Medicaments
         $row = $bdd->resultset();
 
         $medicaments = [];
-        foreach ($row as $value) {
+        foreach ($row as $value)
+        {
             $medicament = new Medicaments(
                 $value['MED_NOMCOMMERCIAL'],
                 $value['MED_DEPOTLEGAL'],

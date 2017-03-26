@@ -8,7 +8,7 @@
     <hr>
     <li class="boldPoppins semiApadding">Consulter</li>
     <li><a href="medicament.php">Médicaments</a></li>
-    <li><a href="praticienCR.php">Practiciens</a></li>
+    <li><a href="praticienCR.php">Praticiens</a></li>
     <li><a href="autreVisiteurCR.php">Autres visiteurs</a></li>
     <hr>
 

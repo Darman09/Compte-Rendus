@@ -5,6 +5,7 @@ require 'ClassLabo.php';
 
 class Visiteur
 {
+    private $matricule;
     private $nom;
     private $prenom;
     private $ville;
@@ -15,8 +16,9 @@ class Visiteur
     private $secteur = null;
     private $labo = null;
 
-    public function __construct($nom,$prenom,$ville,$adresse,$cp,$dateEmbauche)
+    public function __construct($matricule, $nom, $prenom, $ville, $adresse, $cp, $dateEmbauche)
     {
+        $this->matricule = $matricule;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->ville = $ville;
@@ -24,7 +26,6 @@ class Visiteur
         $this->cp = $cp;
         $this->dateEmbauche = $dateEmbauche;
     }
-
 
 
     static function getAllVisiteurs()
@@ -36,8 +37,10 @@ class Visiteur
         $row = $bdd->resultset();
 
         $visiteurs = [];
-        foreach ($row as $value) {
+        foreach ($row as $value)
+        {
             $visiteur = new Visiteur(
+                $value['VIS_MATRICULE'],
                 $value['VIS_NOM'],
                 $value['VIS_PRENOM'],
                 $value['VIS_VILLE'],
@@ -45,16 +48,16 @@ class Visiteur
                 $value['VIS_CP'],
                 $value['VIS_DATEEMBAUCHE']);
             $visiteur->setSecteur($value['SEC_CODE'], $value['SEC_LIBELLE']);
-            $visiteur->setLabo($value['LAB_CODE'],$value['LAB_NOM'],$value['LAB_CHEFVENTE']);
+            $visiteur->setLabo($value['LAB_CODE'], $value['LAB_NOM'], $value['LAB_CHEFVENTE']);
             $visiteurs[] = $visiteur;
         }
         return $visiteurs;
     }
 
 
-    public function setSecteur($secCode,$secLibelle)
+    public function setSecteur($secCode, $secLibelle)
     {
-        $this->secteur = new Secteur($secCode,$secLibelle);
+        $this->secteur = new Secteur($secCode, $secLibelle);
     }
 
     public function getSecteur()
@@ -62,9 +65,9 @@ class Visiteur
         return $this->secteur;
     }
 
-    public function setLabo($labCode,$labNom,$labChef)
+    public function setLabo($labCode, $labNom, $labChef)
     {
-        $this->labo = new Labo($labCode,$labNom,$labChef);
+        $this->labo = new Labo($labCode, $labNom, $labChef);
     }
 
     public function getLabo()
@@ -72,7 +75,10 @@ class Visiteur
         return $this->labo;
     }
 
-
+    public function getMatricule()
+    {
+        return $this->matricule;
+    }
 
     public function getNom()
     {
@@ -104,9 +110,6 @@ class Visiteur
         $this->dateEmbauche = substr($this->dateEmbauche, 0, strpos($this->dateEmbauche, " "));
         return $this->dateEmbauche;
     }
-
-
-
 
 
 }
