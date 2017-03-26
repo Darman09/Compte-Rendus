@@ -133,7 +133,7 @@ require '../phpClass/ClassMedicaments.php';
 								<label>Sélectionner un produit</label>
 							</div>
 							<div class="col m4">
-								<input type="checkbox" id="documentation0"/>
+								<input type="checkbox" id="documentation0" name="documentation0"/>
 								<label for="documentation0">Documentation offerte</label>
 							</div>
 							<div class="col m4">
@@ -175,7 +175,7 @@ require '../phpClass/ClassMedicaments.php';
 								<label>Sélectionner un produit</label>
 							</div>
 							<div class="col m4">
-								<input type="checkbox" id="saisieDef0"/>
+								<input type="checkbox" id="saisieDef0" name="saisieDef0"/>
 								<label for="saisieDef0">Saisie définitive</label>
 							</div>
 							<div class="col m4">
@@ -253,6 +253,7 @@ require '../phpClass/ClassMedicaments.php';
             //select
             $(this).find('.selectElem').attr('name', 'selectElem' + i);
             i++;
+            if(i>=10) { $('#addPresente').hide(); }
         });
     });
     $(document).on('click', '.removeElem', function ()
@@ -267,6 +268,7 @@ require '../phpClass/ClassMedicaments.php';
             //select
             $(this).find('.selectElem').attr('name', 'selectElem' + i);
             i++;
+            if(i<10) {$('#addPresente').show();}
         });
         $(this).parent().parent().remove();
     });
@@ -291,6 +293,7 @@ require '../phpClass/ClassMedicaments.php';
             //select
             $(this).find('.selectEchant').attr('name', 'selectEchant' + i);
             i++;
+            if(i>=10) {$('#addEchant').hide();}
         });
     });
     $(document).on('click', '.removeEchant', function ()
@@ -305,6 +308,7 @@ require '../phpClass/ClassMedicaments.php';
             //select
             $(this).find('.selectEchant').attr('name', 'selectEchant' + i);
             i++;
+            if(i<10) {$('#addEchant').show();}
         });
         $(this).parent().parent().remove();
     });
