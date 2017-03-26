@@ -4,7 +4,7 @@ require '../phpClass/ClassPraticien.php';
 <?php foreach(Praticien::getAllPraticiens() as $value):?>
     <ul class="collection with-header praSelectable">
         <li class="collection-header">
-            <input type="hidden" value="<?php echo $value->getNum(); ?>"/>
+            <input name="rapportPraticien" type="hidden" value="<?php echo $value->getNum(); ?>"/>
             <h4 class="nom">
                 <?php echo mb_strtoupper($value->getNom(),'UTF-8')." ".$value->getPrenom(); ?>
             </h4>

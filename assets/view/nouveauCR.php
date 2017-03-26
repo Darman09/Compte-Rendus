@@ -17,24 +17,21 @@ require '../phpClass/ClassMedicaments.php';
 <body>
 <?php include '../inc/sideMenu.inc.php'; ?>
 <main>
-	<form name="formRAPPORT_VISITE" method="post" action="#">
+	<form method="post" action="../phpScript/ScriptCreerRapport.php">
 		<div class="row">
 			<div class="col l10  offset-l1">
 				<div class="col m11">
 					<h3 class="cyan-text darken-1">Rapport de visite</h3>
 				</div>
-				<div class="input-field col s12 m5 l4">
-					<input id="icon_prefix" type="text" disabled value="<?php echo uniqid(); ?>">
-					<label for="icon_prefix">Numéro</label>
-				</div>
+
 				<div class="col s12 m5 l4">
 					<label>Sélectionner la date de la visite</label>
-					<input type="date" class="datepicker">
+					<input name="rapportDate" type="date" class="datepicker">
 				</div>
 				<div class="input-field col s11">
 					<a class="waves-effect waves-light btn btn-large" href="#listPraticien"><i
 								class="material-icons left fa fa-user-md"></i>Praticien</a>
-					<input type="checkbox" id="remplace"/>
+					<input name="rapportIsRemplace" type="checkbox" id="remplace"/>
 					<label for="remplace">Remplacé</label>
 
 
@@ -53,15 +50,26 @@ require '../phpClass/ClassMedicaments.php';
 						<div class="col l9">
 							<ul class="collection with-header" id="remplacant" style="display: none;">
 								<li class="collection-header"><h4>Remplaçant :</h4></li>
-								<li class="collection-item"><input placeholder="Nom" type="text"></li>
-								<li class="collection-item"><input placeholder="Prénom" type="text"></li>
-								<li class="collection-item"><input placeholder="Adresse" type="text"></li>
-								<li class="collection-item"><input placeholder="Ville" type="text"></li>
-								<li class="collection-item"><input placeholder="Code postal" type="text"></li>
-								<li class="collection-item"><input placeholder="Coéficien de notoriété" type="text">
+								<li class="collection-item">
+									<input name="remplacantNom" placeholder="Nom" type="text">
+								</li>
+								<li class="collection-item">
+									<input name="remplacantPrenom" placeholder="Prénom" type="text">
+								</li>
+								<li class="collection-item">
+									<input name="remplacantAdresse" placeholder="Adresse" type="text">
+								</li>
+								<li class="collection-item">
+									<input name="remplacantVille" placeholder="Ville" type="text">
+								</li>
+								<li class="collection-item">
+									<input name="remplacantCP" placeholder="Code postal" type="text">
+								</li>
+								<li class="collection-item">
+									<input name="remplacantCoef" placeholder="Coéficien de notoriété" type="text">
 								</li>
 								<li class="collection-item" style="padding-bottom: 18em;">
-									<select size="5">
+									<select name="remplacantTypePra" size="5">
 										<option value="MH">Médecin hospitalier</option>
 										<option value="MV">Médecin de ville</option>
 										<option value="PH">Pharmacien hospitalier</option>
@@ -79,7 +87,7 @@ require '../phpClass/ClassMedicaments.php';
 
 					<div class="row">
 						<div class="input-field col s7 l4">
-							<select>
+							<select name="rapportMotif">
 								<option value="1">Périodicité</option>
 								<option value="2">Actualisation</option>
 								<option value="3">Relance</option>
@@ -91,7 +99,7 @@ require '../phpClass/ClassMedicaments.php';
 					</div>
 					<div class="row">
 						<div class="input-field col s10">
-							<textarea id="textarea1" class="materialize-textarea"></textarea>
+							<textarea name="rapportBilan" id="textarea1" class="materialize-textarea"></textarea>
 							<label for="textarea1">Bilan</label>
 						</div>
 					</div>
@@ -101,11 +109,16 @@ require '../phpClass/ClassMedicaments.php';
 
 						</div>
 					</div>
-					<!-- #################################################################################   -->
+
+
+					<!-- #################### ÉLÉMENT PRÉSENTÉS  ####################################################   -->
+
+
 					<div id="listElement">
-						<div class="row element" id="preElement1">
-							<div class="input-field col m4">
-								<select>
+						<input type="hidden" id="compteElem" name="compteElem"/>
+						<div class="row element">
+							<div class="input-field col m4 listMedic">
+								<select class="selectElem" name="selectElem0">
 									<option value="" disabled selected>Produits</option>
                                     <?php
                                     foreach (Medicaments::getAllDepotAndName() as $value):
@@ -120,8 +133,8 @@ require '../phpClass/ClassMedicaments.php';
 								<label>Sélectionner un produit</label>
 							</div>
 							<div class="col m4">
-								<input type="checkbox" id="Documentation"/>
-								<label for="Documentation">Documentation offerte</label>
+								<input type="checkbox" id="documentation0"/>
+								<label for="documentation0">Documentation offerte</label>
 							</div>
 							<div class="col m4">
 								<a id="addPresente"
@@ -132,20 +145,56 @@ require '../phpClass/ClassMedicaments.php';
 							</div>
 						</div>
 					</div>
-					<!-- #################################################################################   -->
+
+
+					<!-- #############ÉCHANTILLONS OFFERTS ############################################   -->
 					<div class="s12">
 						<hr>
 					</div>
+					<div class="row">
+						<div class="col s10">
+							<h5 class="col s10 cyan-text darken-1">Échantillons offerts</h5>
+						</div>
+					</div>
+					<div id="listEchant">
+						<input type="hidden" id="compteEchant" name="compteEchant"/>
+						<div class="row echant">
+							<div class="input-field col m4 listMedic">
+								<select class="selectElem" name="selectEchant0">
+									<option value="" disabled selected>Produits</option>
+                                    <?php
+                                    foreach (Medicaments::getAllDepotAndName() as $value):
+                                        ?>
+										<option value="<?php echo $value['MED_DEPOTLEGAL']; ?>">
+                                            <?php echo $value['MED_DEPOTLEGAL'] . ' : ' . $value['MED_NOMCOMMERCIAL']; ?>
+										</option>
+                                        <?php
+                                    endforeach;
+                                    ?>
+								</select>
+								<label>Sélectionner un produit</label>
+							</div>
+							<div class="col m4">
+								<input type="checkbox" id="saisieDef0"/>
+								<label for="saisieDef0">Saisie définitive</label>
+							</div>
+							<div class="col m4">
+								<a id="addEchant"
+								   class="btn-floating btn-large waves-effect waves-light btn tooltipped blue accent-1"
+								   data-position="left" data-delay="50" data-tooltip="Ajoute un nouvel échantillon">
+									<i class="material-icons">add</i>
+								</a>
+							</div>
+						</div>
+					</div>
 
 					<div class="row">
-						<div class="input-field col l2 m4 s4">
-							<a class="waves-effect waves-light btn cyan darken-1"><i
-										class="material-icons left">done</i>Valide</a>
-						</div>
-						<div class="input-field col l2 m4 s4">
-							<a class="waves-effect waves-light btn cyan darken-1"><i
-										class="material-icons left">loop</i>Annule</a>
-						</div>
+						<button class="btn waves-effect waves-light" type="submit">Envoyer
+							<i class="material-icons right">send</i>
+						</button>
+						<button class="btn waves-effect waves-light" type="reset">Effacer
+							<i class="fa fa-close"></i>
+						</button>
 					</div>
 				</div>
 			</div>
@@ -182,12 +231,84 @@ require '../phpClass/ClassMedicaments.php';
             $('#remplacant').fadeOut();
         }
     });
-    let listProduit = $('#preElement1').html();
+    ////////////////////////////////////
+    /////// elements présentés
+    //////////////////////////////
+    let listProduit = $('.listMedic')[0].outerHTML;
     $('#addPresente').on('click', function ()
     {
-        console.log(listProduit);
-        $('#listElement').append(listProduit);
+        $('#listElement').append('<div class="row element">' + listProduit + '<div class="col m4">' +
+            '<input type="checkbox" class="documentation"/><label class="docuFor">Documentation offerte</label>' +
+            '</div><div class="col m4"><a class="btn-floating btn-large removeElem ' +
+            'waves-effect waves-light btn tooltipped blue accent-1" data-position="left" data-delay="50" data-tooltip="Retire un élément">' +
+            '<i class="fa fa-close"></i></a></div></div>');
+        $('select').material_select();
+        let i = 0;
+        $('.element').each(function ()
+        {
+            $('#compteElem').val(i);
+            //checkbox
+            $(this).find('.documentation').attr("name", "documentation" + i).attr('id', 'documentation' + i);
+            $(this).find('.docuFor').attr("for", "documentation" + i);
+            //select
+            $(this).find('.selectElem').attr('name', 'selectElem' + i);
+            i++;
+        });
     });
+    $(document).on('click', '.removeElem', function ()
+    {
+        let i = 0;
+        $('.element').each(function ()
+        {
+            $('#compteElem').val(i);
+            //checkbox
+            $(this).find('.documentation').attr("name", "documentation" + i).attr('id', 'documentation' + i);
+            $(this).find('.docuFor').attr("for", "documentation" + i);
+            //select
+            $(this).find('.selectElem').attr('name', 'selectElem' + i);
+            i++;
+        });
+        $(this).parent().parent().remove();
+    });
+////////////////////////////////////
+	/////// echantillons
+	//////////////////////////////
+    $('#addEchant').on('click', function ()
+    {
+        $('#listEchant').append('<div class="row echant">' + listProduit + '<div class="col m4">' +
+            '<input type="checkbox" class="saisieDef"/><label class="saisieFor">Saisie définitive</label>' +
+            '</div><div class="col m4"><a class="btn-floating btn-large removeEchant ' +
+            'waves-effect waves-light btn tooltipped blue accent-1" data-position="left" data-delay="50" data-tooltip="Retire un élément">' +
+            '<i class="fa fa-close"></i></a></div></div>');
+        $('select').material_select();
+        let i = 0;
+        $('.echant').each(function ()
+        {
+            $('#compteEchant').val(i);
+            //checkbox
+            $(this).find('.saisieDef').attr("name", "saisieDef" + i).attr('id', 'saisieDef' + i);
+            $(this).find('.saisieFor').attr("for", "saisieDef" + i);
+            //select
+            $(this).find('.selectEchant').attr('name', 'selectEchant' + i);
+            i++;
+        });
+    });
+    $(document).on('click', '.removeEchant', function ()
+    {
+        let i = 0;
+        $('.echant').each(function ()
+        {
+            $('#compteEchant').val(i);
+            //checkbox
+            $(this).find('.saisieDef').attr("name", "saisieDef" + i).attr('id', 'saisieDef' + i);
+            $(this).find('.saisieFor').attr("for", "saisieDef" + i);
+            //select
+            $(this).find('.selectEchant').attr('name', 'selectEchant' + i);
+            i++;
+        });
+        $(this).parent().parent().remove();
+    });
+
 </script>
 </body>
 </html>
