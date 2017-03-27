@@ -31,7 +31,6 @@
                 print_r($value);
                 echo "</pre>";
                 ?>
-
                 <ul class="collection with-header">
                     <li class="collection-header">
                         <h5 class="nom"> Rapport n°

@@ -3,26 +3,26 @@ require 'ClassTypePraticien.php';
 
 class Praticien
 {
-     private $num;
-     private $nom;
-     private $prenom;
-     private $adresse;
-     private $cp;
-     private $ville;
-     private $coef;
+    private $num;
+    private $nom;
+    private $prenom;
+    private $adresse;
+    private $cp;
+    private $ville;
+    private $coef;
 
-     private $typePraticien = null;
+    private $typePraticien = null;
 
-     public function __construct($num,$nom,$prenom,$adresse,$cp,$ville,$coef)
-     {
-         $this->num = $num;
-         $this->nom = $nom;
-         $this->prenom = $prenom;
-         $this->adresse = $adresse;
-         $this->cp = $cp;
-         $this->ville = $ville;
-         $this->coef = $coef;
-     }
+    public function __construct($num, $nom, $prenom, $adresse, $cp, $ville, $coef)
+    {
+        $this->num = $num;
+        $this->nom = $nom;
+        $this->prenom = $prenom;
+        $this->adresse = $adresse;
+        $this->cp = $cp;
+        $this->ville = $ville;
+        $this->coef = $coef;
+    }
 
 
     static function getAllPraticiens()
@@ -33,7 +33,8 @@ class Praticien
         $row = $bdd->resultset();
 
         $praticiens = [];
-        foreach ($row as $value) {
+        foreach ($row as $value)
+        {
             $praticien = new Praticien(
                 $value['PRA_NUM'],
                 $value['PRA_NOM'],
@@ -42,18 +43,33 @@ class Praticien
                 $value['PRA_CP'],
                 $value['PRA_VILLE'],
                 $value['PRA_COEFNOTORIETE']);
-            $praticien->setTypePraticien($value['TYP_CODE'],$value['TYP_LIBELLE'],$value['TYP_LIEU']);
+            $praticien->setTypePraticien($value['TYP_CODE'], $value['TYP_LIBELLE'], $value['TYP_LIEU']);
             $praticiens[] = $praticien;
         }
         return $praticiens;
     }
 
 
-
-
-    public function setTypePraticien($typeCode,$typeLibelle,$typeLieu)
+    static function creerPraticien($nom, $prenom, $adresse, $cp, $ville, $coef, $typeCode)
     {
-        $this->typePraticien = new TypePraticien($typeCode,$typeLibelle,$typeLieu);
+        $bdd = new BDD();
+        $nouveauPraticien = $bdd->query('INSERT INTO praticien(PRA_NOM,PRA_PRENOM,PRA_ADRESSE,PRA_CP,PRA_VILLE,PRA_COEFNOTORIETE,TYP_CODE)
+        VALUE (:nom,:prenom,:adresse,:cp,:ville,:coef,:typeCode)');
+        $bdd->bind(':nom', $nom);
+        $bdd->bind(':prenom', $prenom);
+        $bdd->bind(':adresse', $adresse);
+        $bdd->bind(':cp', $cp);
+        $bdd->bind(':ville', $ville);
+        $bdd->bind(':coef', $coef);
+        $bdd->bind(':typeCode', $typeCode);
+        $nouveauPraticien->execute();
+        return $bdd->lastInsertId();
+    }
+
+
+    public function setTypePraticien($typeCode, $typeLibelle, $typeLieu)
+    {
+        $this->typePraticien = new TypePraticien($typeCode, $typeLibelle, $typeLieu);
     }
 
     public function getTypePraticien()
@@ -62,12 +78,11 @@ class Praticien
     }
 
 
-
-
     public function getNum()
     {
         return $this->num;
     }
+
     public function getNom()
     {
         return $this->nom;
@@ -97,8 +112,6 @@ class Praticien
     {
         return $this->coef;
     }
-
-
 
 
 }

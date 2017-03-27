@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 24 Mars 2017 à 20:26
+-- Généré le :  Lun 27 Mars 2017 à 23:08
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -237,22 +237,22 @@ INSERT INTO `medicament` (`MED_DEPOTLEGAL`, `MED_NOMCOMMERCIAL`, `FAM_CODE`, `ME
 --
 
 CREATE TABLE IF NOT EXISTS `offrir` (
-  `VIS_MATRICULE` varchar(10) NOT NULL,
   `RAP_NUM` int(11) NOT NULL,
   `MED_DEPOTLEGAL` varchar(10) NOT NULL,
   `OFF_QTE` int(11) DEFAULT NULL,
-  PRIMARY KEY (`VIS_MATRICULE`,`RAP_NUM`,`MED_DEPOTLEGAL`),
+  `SAISIE_DEF` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`RAP_NUM`,`MED_DEPOTLEGAL`),
   KEY `MED_DEPOTLEGAL` (`MED_DEPOTLEGAL`),
-  KEY `VIS_MATRICULE` (`VIS_MATRICULE`,`RAP_NUM`)
+  KEY `VIS_MATRICULE` (`RAP_NUM`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `offrir`
 --
 
-INSERT INTO `offrir` (`VIS_MATRICULE`, `RAP_NUM`, `MED_DEPOTLEGAL`, `OFF_QTE`) VALUES
-('a17', 4, '3MYC7', 3),
-('a17', 4, 'AMOX45', 12);
+INSERT INTO `offrir` (`RAP_NUM`, `MED_DEPOTLEGAL`, `OFF_QTE`, `SAISIE_DEF`) VALUES
+(4, '3MYC7', 3, NULL),
+(4, 'AMOX45', 12, NULL);
 
 -- --------------------------------------------------------
 
@@ -277,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `posseder` (
 --
 
 CREATE TABLE IF NOT EXISTS `praticien` (
-  `PRA_NUM` int(11) NOT NULL,
+  `PRA_NUM` int(11) NOT NULL AUTO_INCREMENT,
   `PRA_NOM` varchar(25) DEFAULT NULL,
   `PRA_PRENOM` varchar(30) DEFAULT NULL,
   `PRA_ADRESSE` varchar(50) DEFAULT NULL,
@@ -287,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `praticien` (
   `TYP_CODE` varchar(3) NOT NULL,
   PRIMARY KEY (`PRA_NUM`),
   KEY `TYP_CODE` (`TYP_CODE`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=92 ;
 
 --
 -- Contenu de la table `praticien`
@@ -379,7 +379,8 @@ INSERT INTO `praticien` (`PRA_NUM`, `PRA_NOM`, `PRA_PRENOM`, `PRA_ADRESSE`, `PRA
 (83, 'Gauchet', 'Thierry', '7 r Desmoueux', '38100', 'GRENOBLE', 406.1, 'PS'),
 (84, 'Bobichon', 'Tristan', '219 r Caponière', '9000', 'FOIX', 218.36, 'PH'),
 (85, 'Duchemin-Laniel', 'Véronique', '130 r St Jean', '33000', 'LIBOURNE', 265.61, 'PO'),
-(86, 'Laurent', 'Younès', '34 r Demolombe', '53000', 'MAYENNE', 496.1, 'MH');
+(86, 'Laurent', 'Younès', '34 r Demolombe', '53000', 'MAYENNE', 496.1, 'MH'),
+(91, '', '', '', '', '', 0, 'PH');
 
 -- --------------------------------------------------------
 
@@ -417,19 +418,17 @@ CREATE TABLE IF NOT EXISTS `presentation` (
 --
 
 CREATE TABLE IF NOT EXISTS `presenter` (
-  `VIS_MATRICULE` varchar(10) NOT NULL,
   `RAP_NUM` int(11) NOT NULL,
   `MED_DEPOTLEGAL` varchar(10) NOT NULL,
-  `DOCUMENTATION` tinyint(1) NOT NULL,
-  PRIMARY KEY (`VIS_MATRICULE`)
+  `DOCUMENTATION` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `presenter`
 --
 
-INSERT INTO `presenter` (`VIS_MATRICULE`, `RAP_NUM`, `MED_DEPOTLEGAL`, `DOCUMENTATION`) VALUES
-('a17', 4, 'BITALV', 1);
+INSERT INTO `presenter` (`RAP_NUM`, `MED_DEPOTLEGAL`, `DOCUMENTATION`) VALUES
+(4, 'BITALV', 1);
 
 -- --------------------------------------------------------
 
@@ -441,6 +440,7 @@ CREATE TABLE IF NOT EXISTS `rapport_visite` (
   `VIS_MATRICULE` varchar(10) NOT NULL,
   `RAP_NUM` int(11) NOT NULL AUTO_INCREMENT,
   `PRA_NUM` int(11) NOT NULL,
+  `RAP_REMPLACANT` int(11) DEFAULT NULL,
   `RAP_DATE` datetime DEFAULT NULL,
   `RAP_BILAN` varchar(255) DEFAULT NULL,
   `RAP_MOTIF` varchar(255) DEFAULT NULL,
@@ -453,10 +453,12 @@ CREATE TABLE IF NOT EXISTS `rapport_visite` (
 -- Contenu de la table `rapport_visite`
 --
 
-INSERT INTO `rapport_visite` (`VIS_MATRICULE`, `RAP_NUM`, `PRA_NUM`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`) VALUES
-('a131', 3, 23, '2002-04-18 00:00:00', 'Médecin curieux, à recontacer en décembre pour réunion', 'Actualisation annuelle'),
-('a131', 7, 41, '2003-03-23 00:00:00', 'RAS\r\nChangement de tel : 05 89 89 89 89', 'Rapport Annuel'),
-('a17', 4, 4, '2003-05-21 00:00:00', 'Changement de direction, redéfinition de la politique médicamenteuse, recours au générique', 'Baisse activité');
+INSERT INTO `rapport_visite` (`VIS_MATRICULE`, `RAP_NUM`, `PRA_NUM`, `RAP_REMPLACANT`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`) VALUES
+('a131', 3, 23, NULL, '2002-04-18 00:00:00', 'Médecin curieux, à recontacer en décembre pour réunion', 'Actualisation annuelle'),
+('a131', 7, 41, NULL, '2003-03-23 00:00:00', 'RAS\r\nChangement de tel : 05 89 89 89 89', 'Rapport Annuel'),
+('a17', 4, 4, NULL, '2003-05-21 00:00:00', 'Changement de direction, redéfinition de la politique médicamenteuse, recours au générique', 'Baisse activité'),
+('b13', 1, 83, 91, '0000-00-00 00:00:00', '', 'Périodicité'),
+('b13', 2, 83, NULL, '0000-00-00 00:00:00', 'super bilan de rapport', 'Relance');
 
 -- --------------------------------------------------------
 
