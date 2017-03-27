@@ -28,7 +28,7 @@ class RapportVisite
     static function getAllRapports()
     {
         $bdd = new BDD();
-        $bdd->query('SELECT DISTINCT RAP.*, OFF.MED_DEPOTLEGAL, OFF.OFF_QTE, PRE.MED_DEPOTLEGAL, PRE.DOCUMENTATION, VIS.*, PRA.*
+        $bdd->query('SELECT RAP.*, OFF.MED_DEPOTLEGAL AS OFF_MED_DEPOTLEGAL, OFF.OFF_QTE, PRE.MED_DEPOTLEGAL AS PRE_MED_DEPOTLEGAL, PRE.DOCUMENTATION, VIS.*, PRA.*
                       FROM rapport_visite RAP
                       JOIN visiteur VIS ON (RAP.VIS_MATRICULE = VIS.VIS_MATRICULE)
                       JOIN praticien PRA ON (RAP.PRA_NUM = PRA.PRA_NUM)
@@ -47,20 +47,21 @@ class RapportVisite
                 if ($listeRapport->getNumeroRapport() === $value['RAP_NUM'])
                 {
                     $RapportExiste = true;
-                    if ($value['MED_DEPOTLEGAL'] !== null && $value['OFF_QTE'] !== null)
+                    if ($value['OFF_MED_DEPOTLEGAL'] !== null && $value['OFF_QTE'] !== null)
                     {
-                        $listeRapport->setOffrir(
-                            $value['MED_DEPOTLEGAL'],
-                            $value['OFF_QTE']
-                        );
+                        $offrir = new Offrir( $value['OFF_MED_DEPOTLEGAL'], $value['OFF_QTE']);
+                        if(!in_array($offrir, $listeRapport->getOffrir()))
+                        {
+                            $listeRapport->setOffrir($offrir);
+                        }
                     }
-
-                    if ($value['MED_DEPOTLEGAL'] !== null && $value['DOCUMENTATION'] !== null)
+                    if ($value['PRE_MED_DEPOTLEGAL'] !== null && $value['DOCUMENTATION'] !== null)
                     {
-                        $listeRapport->setPresenter(
-                            $value['MED_DEPOTLEGAL'],
-                            $value['DOCUMENTATION']
-                        );
+                        $presenter = new Presenter( $value['PRE_MED_DEPOTLEGAL'], $value['DOCUMENTATION']);
+                        if(!in_array($presenter, $listeRapport->getPresenter()))
+                        {
+                            $listeRapport->setPresenter($presenter);
+                        }
                     }
 
                     break;
@@ -96,20 +97,22 @@ class RapportVisite
                     $value['PRA_COEFNOTORIETE']
                 );
 
-                if ($value['MED_DEPOTLEGAL'] !== null && $value['OFF_QTE'] !== null)
+                if ($value['OFF_MED_DEPOTLEGAL'] !== null && $value['OFF_QTE'] !== null)
                 {
-                    $rapport->setOffrir(
-                        $value['MED_DEPOTLEGAL'],
-                        $value['OFF_QTE']
-                    );
+                    $offrir = new Offrir( $value['OFF_MED_DEPOTLEGAL'], $value['OFF_QTE']);
+                    if(!in_array($offrir, $rapport->getOffrir()))
+                    {
+                        $rapport->setOffrir($offrir);
+                    }
                 }
 
-                if ($value['MED_DEPOTLEGAL'] !== null && $value['DOCUMENTATION'] !== null)
+                if ($value['PRE_MED_DEPOTLEGAL'] !== null && $value['DOCUMENTATION'] !== null)
                 {
-                    $rapport->setPresenter(
-                        $value['MED_DEPOTLEGAL'],
-                        $value['DOCUMENTATION']
-                    );
+                    $presenter = new Presenter( $value['PRE_MED_DEPOTLEGAL'], $value['DOCUMENTATION']);
+                    if(!in_array($presenter, $rapport->getPresenter()))
+                    {
+                        $rapport->setPresenter($presenter);
+                    }
                 }
                 $rapports[] = $rapport;
             }
@@ -138,9 +141,9 @@ class RapportVisite
         return $this->visiteur;
     }
 
-    public function setOffrir($medDepotlegal, $offrirQte)
+    public function setOffrir($offrir)
     {
-        $this->offrir[] = new Offrir($medDepotlegal, $offrirQte);
+        $this->offrir[] = $offrir;
     }
 
     public function getOffrir()
@@ -148,9 +151,9 @@ class RapportVisite
         return $this->offrir;
     }
 
-    public function setPresenter($medDepotlegal, $documentation)
+    public function setPresenter($presenter)
     {
-        $this->presenter[] = new Presenter($medDepotlegal, $documentation);
+        $this->presenter[] = $presenter;
     }
 
     public function getPresenter()
