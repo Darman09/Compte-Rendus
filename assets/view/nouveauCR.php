@@ -26,7 +26,7 @@ require '../phpClass/ClassMedicaments.php';
 
 				<div class="col s12 m5 l4">
 					<label>Sélectionner la date de la visite</label>
-					<input name="rapportDate" type="date" class="datepicker">
+					<input required name="rapportDate" type="date" class="datepicker">
 				</div>
 				<div class="input-field col s11">
 					<a class="waves-effect waves-light btn btn-large" href="#listPraticien"><i
@@ -115,7 +115,7 @@ require '../phpClass/ClassMedicaments.php';
 
 
 					<div id="listElement">
-						<input type="hidden" id="compteElem" name="compteElem"/>
+						<input type="hidden" id="compteElem" value="0" name="compteElem"/>
 						<div class="row element">
 							<div class="input-field col m4 listMedic">
 								<select class="selectElem" name="selectElem0">
@@ -157,7 +157,7 @@ require '../phpClass/ClassMedicaments.php';
 						</div>
 					</div>
 					<div id="listEchant">
-						<input type="hidden" id="compteEchant" name="compteEchant"/>
+						<input type="hidden" value="0" id="compteEchant" name="compteEchant"/>
 						<div class="row echant">
 							<div class="input-field col m4 listMedic">
 								<select class="selectElem" name="selectEchant0">

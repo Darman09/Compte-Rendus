@@ -1,152 +1,159 @@
 <?php
 require 'ScriptBDD.php';
 require '../phpClass/ClassPraticien.php';
+require '../phpClass/ClassDateManager.php';
 
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
 
-$rapportDate      = $_POST['rapportDate'];
+$rapportDate = DateManager::dateFrancaisVersAnglais($_POST['rapportDate']);
 $rapportPraticien = $_POST['rapportPraticien'];
-$rapportBilan     = $_POST['rapportBilan'];
-$compteElem       = $_POST['compteElem'];
-$compteEchant     = $_POST['compteEchant'];
-if(array_key_exists('rapportIsRemplace',$_POST) && $_POST['rapportIsRemplace'] === 'on')
+$rapportBilan = $_POST['rapportBilan'];
+$compteElem = $_POST['compteElem'];
+$compteEchant = $_POST['compteEchant'];
+$praticienEstRemplace = false;
+
+if (isset($_POST['rapportIsRemplace']))
 {
-    $remplacantNom     = $_POST['remplacantNom'];
-    $remplacantPrenom  = $_POST['remplacantPrenom'];
+    $remplacantNom = $_POST['remplacantNom'];
+    $remplacantPrenom = $_POST['remplacantPrenom'];
     $remplacantAdresse = $_POST['remplacantAdresse'];
-    $remplacantVille   = $_POST['remplacantVille'];
-    $remplacantCP      = $_POST['remplacantCP'];
-    $remplacantCoef    = $_POST['remplacantCoef'];
+    $remplacantVille = $_POST['remplacantVille'];
+    $remplacantCP = $_POST['remplacantCP'];
+    $remplacantCoef = $_POST['remplacantCoef'];
     $remplacantTypePra = $_POST['remplacantTypePra'];
 # /!\
     $praticienEstRemplace = true;
 # /!\
+} else
+{
+    unset($_POST['remplacantNom'],
+        $_POST['remplacantPrenom'],
+        $_POST['remplacantAdresse'],
+        $_POST['remplacantVille'],
+        $_POST['remplacantCP'],
+        $_POST['remplacantCoef'],
+        $_POST['remplacantTypePra']
+    );
 }
 $rapportMotif = $_POST['rapportMotif'];
 switch ($rapportMotif)
 {
-    case '1':$rapportMotif = 'Périodicité';
-    break;
-    case '2':$rapportMotif = 'Actualisation';
-    break;
-    case '3':$rapportMotif = 'Relance';
-    break;
-    case '4':$rapportMotif = 'Solicitation Praticien';
-    break;
-    case '5':$rapportMotif = 'Autre';
+    case '1':
+        $rapportMotif = 'Périodicité';
+        break;
+    case '2':
+        $rapportMotif = 'Actualisation';
+        break;
+    case '3':
+        $rapportMotif = 'Relance';
+        break;
+    case '4':
+        $rapportMotif = 'Solicitation Praticien';
+        break;
+    case '5':
+        $rapportMotif = 'Autre';
 }
-if($rapportMotif === 'Autre')
+if ($rapportMotif === 'Autre')
 {
     $rapportMotif = $_POST['autreMotif'];
 }
 
 #récupération des lignes des éléments présentés :
-$ElementsPresentes = [];
-for($i=$compteElem; $i>=0;$i--)
+$elementExiste = false;
+if (isset($_POST['selectElem0']))
 {
-    $ElementsPresentes['Elem'.$i] =
-        [
-            'MED_DEPOTLEGAL'          =>$_POST['selectElem'.$i],
-            'DOCUMENTATION'       =>$_POST['documentation'.$i]
-        ];
+    $ElementsPresentes = [];
+    for ($i = $compteElem; $i >= 0; $i--)
+    {
+        if (isset($_POST['documentation' . $i]))
+            $_POST['documentation' . $i] = true;
+        else
+            $_POST['documentation' . $i] = false;
+
+        $ElementsPresentes['Elem' . $i] =
+            [
+                'MED_DEPOTLEGAL' => $_POST['selectElem' . $i],
+                'DOCUMENTATION' => $_POST['documentation' . $i]
+            ];
+    }
+    $elementExiste = true;
 }
 #récupération des lignes des échantillons offerts :
-$EchantillonsOfferts = [];
-for($i=$compteEchant;$i>=0;$i--)
+$echantillonExiste = false;
+if (isset($_POST['selectEchant0']))
 {
-    $EchantillonsOfferts['Echant'.$i] =
-        [
-            'MED_DEPOTLEGAL'          =>$_POST['selectEchant'.$i],
-            'saisieDef'           =>$_POST['saisieDef'.$i]
-        ];
+    $EchantillonsOfferts = [];
+    for ($i = $compteEchant; $i >= 0; $i--)
+    {
+        if (isset($_POST['saisieDef' . $i]))
+            $_POST['saisieDef' . $i] = true;
+        else
+            $_POST['saisieDef' . $i] = false;
+
+        $EchantillonsOfferts['Echant' . $i] =
+            [
+                'MED_DEPOTLEGAL' => $_POST['selectEchant' . $i],
+                'SAISIE_DEF' => $_POST['saisieDef' . $i]
+            ];
+    }
+    $echantillonExiste = true;
 }
 
-#transaction du tout :
 
+#transaction du tout :
 $bdd = new BDD();
 #debut
 $bdd->beginTransaction();
-
-if($praticienEstRemplace)
+$remplacantId = null;
+if ($praticienEstRemplace)
 {
-    $remplacantId = Praticien::creerPraticien(
+    $remplacantId =
+        Praticien::creerPraticien(
             $remplacantNom,
             $remplacantPrenom,
             $remplacantAdresse,
             $remplacantCP,
             $remplacantVille,
             $remplacantCoef,
-            $remplacantTypePra);
+            $remplacantTypePra
+        );
 }
 
 #table rapport_visite
 $rapport = $bdd->query('INSERT INTO rapport_visite (VIS_MATRICULE, PRA_NUM,RAP_REMPLACANT, RAP_DATE, RAP_BILAN, RAP_MOTIF)
                 VALUE (:visiteur,:praticien,:remplacant,:rapportDate,:bilan,:motif)');
-$rapport->bindValue(':visiteur','b13');
-$rapport->bindValue(':praticien',$rapportPraticien);
-$rapport->bindValue(':remplacant',$remplacantId);
-$rapport->bindValue(':rapportDate',$rapportDate);
-$rapport->bindValue(':bilan',$rapportBilan);
-$rapport->bindValue(':motif',$rapportMotif);
+$rapport->bindValue(':visiteur', 'b13');
+$rapport->bindValue(':praticien', $rapportPraticien);
+$rapport->bindValue(':remplacant', $remplacantId);
+$rapport->bindValue(':rapportDate', $rapportDate);
+$rapport->bindValue(':bilan', $rapportBilan);
+$rapport->bindValue(':motif', $rapportMotif);
 $rapport->execute();
 $numeroRapport = $bdd->lastInsertId();
 
 #insérer les éléments présentés :
-$presentes = $bdd->query('INSERT INTO presenter (RAP_NUM, MED_DEPOTLEGAL, DOCUMENTATION) 
-              VALUE (:numeroRapport,:MED_DEPOTLEGAL,:DOCUMENTATION)');
-$presentes->bindValue(':numeroRapport',$numeroRapport);
-foreach ($ElementsPresentes as $row)
+if ($elementExiste === true)
 {
-    $presentes->execute($row);
+    $presentes = $bdd->query('INSERT INTO presenter (RAP_NUM, MED_DEPOTLEGAL, DOCUMENTATION) 
+              VALUE (:RAP_NUM,:MED_DEPOTLEGAL,:DOCUMENTATION)');
+    $presentes->bindValue(':RAP_NUM', $numeroRapport);
+    foreach ($ElementsPresentes as $row)
+    {
+        $presentes->execute($row);
+    }
 }
 
 #insérer les échantillons offerts :
-$offerts = $bdd->query('INSERT INTO offrir (RAP_NUM, MED_DEPOTLEGAL, OFF_QTE)
-            VALUE (:numeroRapport,:MED_DEPOTLEGAL,:DOCUMENTATION)');
-$offerts->bindValue(':numeroRapport',$numeroRapport);
-foreach($EchantillonsOfferts as $row)
+if ($echantillonExiste === true)
 {
-    $offerts->execute($row);
+    $offerts = $bdd->query('INSERT INTO offrir (RAP_NUM, MED_DEPOTLEGAL, OFF_QTE)
+            VALUE (:numeroRapport,:MED_DEPOTLEGAL,:SASIE_DEF)');
+    $offerts->bindValue(':numeroRapport', $numeroRapport);
+    foreach ($EchantillonsOfferts as $row)
+    {
+        $offerts->execute($row);
+    }
 }
-
 #fin
 $bdd->endTransaction();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
