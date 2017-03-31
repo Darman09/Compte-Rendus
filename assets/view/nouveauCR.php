@@ -25,7 +25,7 @@ require '../phpClass/ClassMedicaments.php';
 				</div>
 
 				<div class="col s12 m5 l4">
-					<label>Sélectionner la date de la visite</label>
+					<label>Sélectionner la date de la visite <span class="red-text">*</span></label>
 					<input required name="rapportDate" type="date" class="datepicker">
 				</div>
 				<div class="input-field col s11">
@@ -51,22 +51,22 @@ require '../phpClass/ClassMedicaments.php';
 							<ul class="collection with-header" id="remplacant" style="display: none;">
 								<li class="collection-header"><h4>Remplaçant :</h4></li>
 								<li class="collection-item">
-									<input name="remplacantNom" placeholder="Nom" type="text">
+									<input name="remplacantNom" placeholder="Nom *" type="text">
 								</li>
 								<li class="collection-item">
-									<input name="remplacantPrenom" placeholder="Prénom" type="text">
+									<input name="remplacantPrenom" placeholder="Prénom *" type="text">
 								</li>
 								<li class="collection-item">
-									<input name="remplacantAdresse" placeholder="Adresse" type="text">
+									<input name="remplacantAdresse" placeholder="Adresse *" type="text">
 								</li>
 								<li class="collection-item">
-									<input name="remplacantVille" placeholder="Ville" type="text">
+									<input name="remplacantVille" placeholder="Ville *" type="text">
 								</li>
 								<li class="collection-item">
-									<input name="remplacantCP" placeholder="Code postal" type="text">
+									<input name="remplacantCP" placeholder="Code postal *" type="text">
 								</li>
 								<li class="collection-item">
-									<input name="remplacantCoef" placeholder="Coéficien de notoriété" type="text">
+									<input name="remplacantCoef" placeholder="Coéficien de notoriété *" type="text">
 								</li>
 								<li class="collection-item" style="padding-bottom: 18em;">
 									<select name="remplacantTypePra" size="5">
@@ -94,7 +94,7 @@ require '../phpClass/ClassMedicaments.php';
 								<option value="4">Solicitation Praticien</option>
 								<option value="5">Autres</option>
 							</select>
-							<label>Motif de la visite</label>
+							<label>Motif de la visite <span class="red-text">*</span></label>
 						</div>
 					</div>
 					<div class="row">
@@ -189,13 +189,22 @@ require '../phpClass/ClassMedicaments.php';
 					</div>
 
 					<div class="row">
-						<button class="btn waves-effect waves-light" type="submit">Envoyer
-							<i class="material-icons right">send</i>
-						</button>
+						<input class="btn waves-effect waves-light" type="submit"/>
 						<button class="btn waves-effect waves-light" type="reset">Effacer
 							<i class="fa fa-close"></i>
 						</button>
 					</div>
+                    <?php
+                    if (isset($_GET['e']))
+                    {
+                        if ($_GET['e'] === '1')
+                        {
+                            ?>
+							<script>alert('Attention à bien remplir les champs avec * ');</script>
+                            <?php
+                        }
+                    }
+                    ?>
 				</div>
 			</div>
 	</form>
@@ -253,7 +262,10 @@ require '../phpClass/ClassMedicaments.php';
             //select
             $(this).find('.selectElem').attr('name', 'selectElem' + i);
             i++;
-            if(i>=10) { $('#addPresente').hide(); }
+            if (i >= 10)
+            {
+                $('#addPresente').hide();
+            }
         });
     });
     $(document).on('click', '.removeElem', function ()
@@ -268,13 +280,16 @@ require '../phpClass/ClassMedicaments.php';
             //select
             $(this).find('.selectElem').attr('name', 'selectElem' + i);
             i++;
-            if(i<10) {$('#addPresente').show();}
+            if (i < 10)
+            {
+                $('#addPresente').show();
+            }
         });
         $(this).parent().parent().remove();
     });
-////////////////////////////////////
-	/////// echantillons
-	//////////////////////////////
+    ////////////////////////////////////
+    /////// echantillons
+    //////////////////////////////
     $('#addEchant').on('click', function ()
     {
         $('#listEchant').append('<div class="row echant">' + listProduit + '<div class="col m4">' +
@@ -293,7 +308,10 @@ require '../phpClass/ClassMedicaments.php';
             //select
             $(this).find('.selectEchant').attr('name', 'selectEchant' + i);
             i++;
-            if(i>=10) {$('#addEchant').hide();}
+            if (i >= 10)
+            {
+                $('#addEchant').hide();
+            }
         });
     });
     $(document).on('click', '.removeEchant', function ()
@@ -308,7 +326,10 @@ require '../phpClass/ClassMedicaments.php';
             //select
             $(this).find('.selectEchant').attr('name', 'selectEchant' + i);
             i++;
-            if(i<10) {$('#addEchant').show();}
+            if (i < 10)
+            {
+                $('#addEchant').show();
+            }
         });
         $(this).parent().parent().remove();
     });

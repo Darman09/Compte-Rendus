@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 27 Mars 2017 à 23:08
+-- Généré le :  Ven 31 Mars 2017 à 22:01
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -238,21 +238,10 @@ INSERT INTO `medicament` (`MED_DEPOTLEGAL`, `MED_NOMCOMMERCIAL`, `FAM_CODE`, `ME
 
 CREATE TABLE IF NOT EXISTS `offrir` (
   `RAP_NUM` int(11) NOT NULL,
-  `MED_DEPOTLEGAL` varchar(10) NOT NULL,
+  `MED_DEPOTLEGAL` varchar(15) NOT NULL,
   `OFF_QTE` int(11) DEFAULT NULL,
-  `SAISIE_DEF` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`RAP_NUM`,`MED_DEPOTLEGAL`),
-  KEY `MED_DEPOTLEGAL` (`MED_DEPOTLEGAL`),
-  KEY `VIS_MATRICULE` (`RAP_NUM`)
+  `SAISIE_DEF` tinyint(1) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Contenu de la table `offrir`
---
-
-INSERT INTO `offrir` (`RAP_NUM`, `MED_DEPOTLEGAL`, `OFF_QTE`, `SAISIE_DEF`) VALUES
-(4, '3MYC7', 3, NULL),
-(4, 'AMOX45', 12, NULL);
 
 -- --------------------------------------------------------
 
@@ -287,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `praticien` (
   `TYP_CODE` varchar(3) NOT NULL,
   PRIMARY KEY (`PRA_NUM`),
   KEY `TYP_CODE` (`TYP_CODE`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=92 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=113 ;
 
 --
 -- Contenu de la table `praticien`
@@ -380,7 +369,8 @@ INSERT INTO `praticien` (`PRA_NUM`, `PRA_NOM`, `PRA_PRENOM`, `PRA_ADRESSE`, `PRA
 (84, 'Bobichon', 'Tristan', '219 r Caponière', '9000', 'FOIX', 218.36, 'PH'),
 (85, 'Duchemin-Laniel', 'Véronique', '130 r St Jean', '33000', 'LIBOURNE', 265.61, 'PO'),
 (86, 'Laurent', 'Younès', '34 r Demolombe', '53000', 'MAYENNE', 496.1, 'MH'),
-(91, '', '', '', '', '', 0, 'PH');
+(111, 'Nom remplacant', 'prenom remplacant', 'adresse remplacant', 'cp re', 'ville remplacant', 456, 'PS'),
+(112, 'Nom remplacant', 'prenom remplacant', 'adresse remplacant', 'cp re', 'ville remplacant', 456, 'PS');
 
 -- --------------------------------------------------------
 
@@ -423,13 +413,6 @@ CREATE TABLE IF NOT EXISTS `presenter` (
   `DOCUMENTATION` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Contenu de la table `presenter`
---
-
-INSERT INTO `presenter` (`RAP_NUM`, `MED_DEPOTLEGAL`, `DOCUMENTATION`) VALUES
-(4, 'BITALV', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -441,24 +424,13 @@ CREATE TABLE IF NOT EXISTS `rapport_visite` (
   `RAP_NUM` int(11) NOT NULL AUTO_INCREMENT,
   `PRA_NUM` int(11) NOT NULL,
   `RAP_REMPLACANT` int(11) DEFAULT NULL,
-  `RAP_DATE` datetime DEFAULT NULL,
+  `RAP_DATE` date DEFAULT NULL,
   `RAP_BILAN` varchar(255) DEFAULT NULL,
   `RAP_MOTIF` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`VIS_MATRICULE`,`RAP_NUM`),
   KEY `PRA_NUM` (`PRA_NUM`),
   KEY `VIS_MATRICULE` (`VIS_MATRICULE`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `rapport_visite`
---
-
-INSERT INTO `rapport_visite` (`VIS_MATRICULE`, `RAP_NUM`, `PRA_NUM`, `RAP_REMPLACANT`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`) VALUES
-('a131', 3, 23, NULL, '2002-04-18 00:00:00', 'Médecin curieux, à recontacer en décembre pour réunion', 'Actualisation annuelle'),
-('a131', 7, 41, NULL, '2003-03-23 00:00:00', 'RAS\r\nChangement de tel : 05 89 89 89 89', 'Rapport Annuel'),
-('a17', 4, 4, NULL, '2003-05-21 00:00:00', 'Changement de direction, redéfinition de la politique médicamenteuse, recours au générique', 'Baisse activité'),
-('b13', 1, 83, 91, '0000-00-00 00:00:00', '', 'Périodicité'),
-('b13', 2, 83, NULL, '0000-00-00 00:00:00', 'super bilan de rapport', 'Relance');
 
 -- --------------------------------------------------------
 
@@ -799,73 +771,73 @@ CREATE TABLE IF NOT EXISTS `visiteur` (
 --
 
 INSERT INTO `visiteur` (`VIS_MATRICULE`, `VIS_NOM`, `VIS_PRENOM`, `VIS_MDP`, `VIS_ADRESSE`, `VIS_CP`, `VIS_VILLE`, `VIS_DATEEMBAUCHE`, `SEC_CODE`, `LAB_CODE`) VALUES
-('a131', 'Villechalane', 'Louis', '$2y$10$E1Z0fNnbzHW5m/vfovyp5.NCG3H/NgGfTkoq2yHHU5NOBrmZkhzSu', '8 cours Lafontaine', '29000', 'BREST', '1992-12-11 00:00:00', NULL, 'SW'),
-('a17', 'Andre', 'David', '$2y$10$UmY39FDx0041RXXGpWIF.ukqN9OtqBXWPTo.aZ1IVcLrEWlZ..peu', '1 r Aimon de Chissée', '38100', 'GRENOBLE', '1991-08-26 00:00:00', NULL, 'GY'),
-('a55', 'Bedos', 'Christian', '$2y$10$Y7Sa2HwkZ4hT8.TBSrT7LOalTPd.LgvD30VzCcGbVRS98dg9SEm9m', '1 r Bénédictins', '65000', 'TARBES', '1987-07-17 00:00:00', NULL, 'GY'),
-('a93', 'Tusseau', 'Louis', '$2y$10$vhpM9fk9qxpQEs.Z6zhp1OUcp9U8LDUdoRHKe6YECYwQyfPlwFkl6', '22 r Renou', '86000', 'POITIERS', '1999-01-02 00:00:00', NULL, 'SW'),
-('b13', 'Bentot', 'Pascal', '$2y$10$oK69uoByPI2OqPh5giKz9OLT83GNWwwNxf0YqY./ZQH8yxjsRJuhi', '11 av 6 Juin', '67000', 'STRASBOURG', '1996-03-11 00:00:00', NULL, 'GY'),
-('b16', 'Bioret', 'Luc', '$2y$10$xNiJLn5p8G3vrKo3aOSnvO4V5x6b28vU6POe.9J5jm7GceaVTQ0TW', '1 r Linne', '35000', 'RENNES', '1997-03-21 00:00:00', NULL, 'SW'),
-('b19', 'Bunisset', 'Francis', '$2y$10$Pa9kvJlUwT7C4p6z4UnHUeXbyyD78bNtxBZkp7Vpxwv7CsPu3pI6G', '10 r Nicolas Chorier', '85000', 'LA ROCHE SUR YON', '1999-01-31 00:00:00', NULL, 'GY'),
-('b25', 'Bunisset', 'Denise', '$2y$10$hfwjmaITMSAWqB7s6E5vTeK2yeYPglDo9Fe9JNEDJFJ/9WKaWgRVq', '1 r Lionne', '49100', 'ANGERS', '1994-07-03 00:00:00', NULL, 'SW'),
-('b28', 'Cacheux', 'Bernard', '$2y$10$AjwmB6QxFZ9o4JH9lZaYhOlKOHMAwBBvpiD/cHt3b0ulweyyRcHH6', '114 r Authie', '34000', 'MONTPELLIER', '2000-08-02 00:00:00', NULL, 'GY'),
+('a131', 'Villechalane', 'Louis', '$2y$10$E1Z0fNnbzHW5m/vfovyp5.NCG3H/NgGfTkoq2yHHU5NOBrmZkhzSu', '8 cours Lafontaine', '29000', 'BREST', '1992-12-11 00:00:00', 'O', 'SW'),
+('a17', 'Andre', 'David', '$2y$10$UmY39FDx0041RXXGpWIF.ukqN9OtqBXWPTo.aZ1IVcLrEWlZ..peu', '1 r Aimon de Chissée', '38100', 'GRENOBLE', '1991-08-26 00:00:00', 'E', 'GY'),
+('a55', 'Bedos', 'Christian', '$2y$10$Y7Sa2HwkZ4hT8.TBSrT7LOalTPd.LgvD30VzCcGbVRS98dg9SEm9m', '1 r Bénédictins', '65000', 'TARBES', '1987-07-17 00:00:00', 'S', 'GY'),
+('a93', 'Tusseau', 'Louis', '$2y$10$vhpM9fk9qxpQEs.Z6zhp1OUcp9U8LDUdoRHKe6YECYwQyfPlwFkl6', '22 r Renou', '86000', 'POITIERS', '1999-01-02 00:00:00', 'O', 'SW'),
+('b13', 'Bentot', 'Pascal', '$2y$10$oK69uoByPI2OqPh5giKz9OLT83GNWwwNxf0YqY./ZQH8yxjsRJuhi', '11 av 6 Juin', '67000', 'STRASBOURG', '1996-03-11 00:00:00', 'E', 'GY'),
+('b16', 'Bioret', 'Luc', '$2y$10$xNiJLn5p8G3vrKo3aOSnvO4V5x6b28vU6POe.9J5jm7GceaVTQ0TW', '1 r Linne', '35000', 'RENNES', '1997-03-21 00:00:00', 'O', 'SW'),
+('b19', 'Bunisset', 'Francis', '$2y$10$Pa9kvJlUwT7C4p6z4UnHUeXbyyD78bNtxBZkp7Vpxwv7CsPu3pI6G', '10 r Nicolas Chorier', '85000', 'LA ROCHE SUR YON', '1999-01-31 00:00:00', 'O', 'GY'),
+('b25', 'Bunisset', 'Denise', '$2y$10$hfwjmaITMSAWqB7s6E5vTeK2yeYPglDo9Fe9JNEDJFJ/9WKaWgRVq', '1 r Lionne', '49100', 'ANGERS', '1994-07-03 00:00:00', 'O', 'SW'),
+('b28', 'Cacheux', 'Bernard', '$2y$10$AjwmB6QxFZ9o4JH9lZaYhOlKOHMAwBBvpiD/cHt3b0ulweyyRcHH6', '114 r Authie', '34000', 'MONTPELLIER', '2000-08-02 00:00:00', 'S', 'GY'),
 ('b34', 'Cadic', 'Eric', '$2y$10$XW8j98gYe3ROF0RTmKmjZ.u1.5T2vYm0TlrqV5UQUP2gOOUFCs4za', '123 r Caponière', '41000', 'BLOIS', '1993-12-06 00:00:00', 'P', 'SW'),
-('b4', 'Charoze', 'Catherine', '$2y$10$rZhCYInpE7h4la.z2934H.MW/hE1Um6c4mzT9ScKFeiW2Y1QHjCfG', '100 pl Géants', '33000', 'BORDEAUX', '1997-09-25 00:00:00', NULL, 'SW'),
-('b50', 'Clepkens', 'Christophe', '$2y$10$Y0SHJuLwPcyUv30PvzSbRuheU8.gSsoMafBuq58XI4f4UM6/mtjh6', '12 r Fédérico Garcia Lorca', '13000', 'MARSEILLE', '1998-01-18 00:00:00', NULL, 'SW'),
-('b59', 'Cottin', 'Vincenne', '$2y$10$L7P6qnchOkCR0isn/if0RenKJtA0S5kLzgmC4Nu2wo/G2zw/fcr3q', '36 sq Capucins', '5000', 'GAP', '1995-10-21 00:00:00', NULL, 'GY'),
+('b4', 'Charoze', 'Catherine', '$2y$10$rZhCYInpE7h4la.z2934H.MW/hE1Um6c4mzT9ScKFeiW2Y1QHjCfG', '100 pl Géants', '33000', 'BORDEAUX', '1997-09-25 00:00:00', 'S', 'SW'),
+('b50', 'Clepkens', 'Christophe', '$2y$10$Y0SHJuLwPcyUv30PvzSbRuheU8.gSsoMafBuq58XI4f4UM6/mtjh6', '12 r Fédérico Garcia Lorca', '13000', 'MARSEILLE', '1998-01-18 00:00:00', 'S', 'SW'),
+('b59', 'Cottin', 'Vincenne', '$2y$10$L7P6qnchOkCR0isn/if0RenKJtA0S5kLzgmC4Nu2wo/G2zw/fcr3q', '36 sq Capucins', '5000', 'GAP', '1995-10-21 00:00:00', 'E', 'GY'),
 ('c14', 'Daburon', 'François', '$2y$10$2CpkvBghs3qcKwmhQLZga.tbHi0HR5n7Gdoou3iW.SXxVmyX4vWjq', '13 r Champs Elysées', '6000', 'NICE', '1989-02-01 00:00:00', 'S', 'SW'),
-('c3', 'De', 'Philippe', '$2y$10$aIZXGRXeWDcK7WZWXkMsjOFu.yZBDBTM6RtwBLSLXVRjc27CHIkt.', '13 r Charles Peguy', '10000', 'TROYES', '1992-05-05 00:00:00', NULL, 'SW'),
-('c54', 'Debelle', 'Michel', '$2y$10$9/ZIdFd493FesZD7JbcrDeaD8oQvfbD7fk/SfM/Th8886cV/8nXPu', '181 r Caponière', '88000', 'EPINAL', '1991-04-09 00:00:00', NULL, 'SW'),
-('d13', 'Debelle', 'Jeanne', '$2y$10$WHhT0Y9hI.drptBmUWvGEuTvpCNKzzqIS6PngiSZ3Emj3zMQNCmUW', '134 r Stalingrad', '44000', 'NANTES', '1991-12-05 00:00:00', NULL, 'SW'),
+('c3', 'De', 'Philippe', '$2y$10$aIZXGRXeWDcK7WZWXkMsjOFu.yZBDBTM6RtwBLSLXVRjc27CHIkt.', '13 r Charles Peguy', '10000', 'TROYES', '1992-05-05 00:00:00', 'N', 'SW'),
+('c54', 'Debelle', 'Michel', '$2y$10$9/ZIdFd493FesZD7JbcrDeaD8oQvfbD7fk/SfM/Th8886cV/8nXPu', '181 r Caponière', '88000', 'EPINAL', '1991-04-09 00:00:00', 'E', 'SW'),
+('d13', 'Debelle', 'Jeanne', '$2y$10$WHhT0Y9hI.drptBmUWvGEuTvpCNKzzqIS6PngiSZ3Emj3zMQNCmUW', '134 r Stalingrad', '44000', 'NANTES', '1991-12-05 00:00:00', 'O', 'SW'),
 ('d51', 'Debroise', 'Michel', '$2y$10$mmZX3vEG3xDVVbVZIjOgn.N1Xev.Gm/08TUYmji0WVL16HWdnKz7S', '2 av 6 Juin', '70000', 'VESOUL', '1997-11-18 00:00:00', 'E', 'GY'),
-('e22', 'Desmarquest', 'Nathalie', '$2y$10$cHGrBSk.WSDhZhdkd71WX.JEt8jnMCbA5vqbYIN5NsRbHGjalwauy', '14 r Fédérico Garcia Lorca', '54000', 'NANCY', '1989-03-24 00:00:00', NULL, 'GY'),
+('e22', 'Desmarquest', 'Nathalie', '$2y$10$cHGrBSk.WSDhZhdkd71WX.JEt8jnMCbA5vqbYIN5NsRbHGjalwauy', '14 r Fédérico Garcia Lorca', '54000', 'NANCY', '1989-03-24 00:00:00', 'E', 'GY'),
 ('e24', 'Desnost', 'Pierre', '$2y$10$VsdXn3PeGf6yJp/4W9RKQeb.txYx6QOuBbJ03oQmeMcqgLPJmlWzi', '16 r Barral de Montferrat', '55000', 'VERDUN', '1993-05-17 00:00:00', 'E', 'SW'),
-('e39', 'Dudouit', 'Frédéric', '$2y$10$6rO/IHiU2Cr/8FrlDT1qiuqqJ7LvttHvu2ph/jupjSHxZX5/ykTGS', '18 quai Xavier Jouvin', '75000', 'PARIS', '1988-04-26 00:00:00', NULL, 'GY'),
-('e49', 'Duncombe', 'Claude', '$2y$10$WSFaqgW8gJlFzC5Y2xnLMu2LPJRa.71vwCRPFUBX31OYcmO547tT.', '19 av Alsace Lorraine', '9000', 'FOIX', '1996-02-19 00:00:00', NULL, 'GY'),
+('e39', 'Dudouit', 'Frédéric', '$2y$10$6rO/IHiU2Cr/8FrlDT1qiuqqJ7LvttHvu2ph/jupjSHxZX5/ykTGS', '18 quai Xavier Jouvin', '75000', 'PARIS', '1988-04-26 00:00:00', 'P', 'GY'),
+('e49', 'Duncombe', 'Claude', '$2y$10$WSFaqgW8gJlFzC5Y2xnLMu2LPJRa.71vwCRPFUBX31OYcmO547tT.', '19 av Alsace Lorraine', '9000', 'FOIX', '1996-02-19 00:00:00', 'S', 'GY'),
 ('e5', 'Enault-Pascreau', 'Céline', '$2y$10$pcbjk4ZztgQbt74W737HzOP5sSuKzuazP/GnF8SphejxwO.SP.B/u', '25B r Stalingrad', '40000', 'MONT DE MARSAN', '1990-11-27 00:00:00', 'S', 'GY'),
-('e52', 'Eynde', 'Valérie', '$2y$10$84GHz.jC5k2Zb9vwtUMqn.qg1NyMXODid0jIckRzlIrBkMywmy5cq', '3 r Henri Moissan', '76000', 'ROUEN', '1991-10-31 00:00:00', NULL, 'GY'),
-('f21', 'Finck', 'Jacques', '$2y$10$YLsxh.efVIsFJuwHQfXZuOcQ.hANE4XzlSzcSwDIF8jCspeqv.lOK', 'rte Montreuil Bellay', '74000', 'ANNECY', '1993-06-08 00:00:00', NULL, 'SW'),
-('f39', 'Frémont', 'Fernande', '$2y$10$2qUx5KvK1R.Hqo5PvHCrFeYVqhFWPbqc/EKWLAP95U1au/SGHfi9m', '4 r Jean Giono', '69000', 'LYON', '1997-02-15 00:00:00', NULL, 'GY'),
-('f4', 'Gest', 'Alain', '$2y$10$i9qjPNvfqf2rL0RGGw4Nxud75J3q/M9vuzY5x7zZowtjeQgbasnzm', '30 r Authie', '46000', 'FIGEAC', '1994-05-03 00:00:00', NULL, 'GY'),
-('g19', 'Gheysen', 'Galassus', '$2y$10$IMi1wiJ/v.vSJJe.qPk34.QeBzo5OB3MLq9woYcxDwCZmGFyiKoeu', '32 bd Mar Foch', '75000', 'PARIS', '1996-01-18 00:00:00', NULL, 'SW'),
+('e52', 'Eynde', 'Valérie', '$2y$10$84GHz.jC5k2Zb9vwtUMqn.qg1NyMXODid0jIckRzlIrBkMywmy5cq', '3 r Henri Moissan', '76000', 'ROUEN', '1991-10-31 00:00:00', 'N', 'GY'),
+('f21', 'Finck', 'Jacques', '$2y$10$YLsxh.efVIsFJuwHQfXZuOcQ.hANE4XzlSzcSwDIF8jCspeqv.lOK', 'rte Montreuil Bellay', '74000', 'ANNECY', '1993-06-08 00:00:00', 'E', 'SW'),
+('f39', 'Frémont', 'Fernande', '$2y$10$2qUx5KvK1R.Hqo5PvHCrFeYVqhFWPbqc/EKWLAP95U1au/SGHfi9m', '4 r Jean Giono', '69000', 'LYON', '1997-02-15 00:00:00', 'E', 'GY'),
+('f4', 'Gest', 'Alain', '$2y$10$i9qjPNvfqf2rL0RGGw4Nxud75J3q/M9vuzY5x7zZowtjeQgbasnzm', '30 r Authie', '46000', 'FIGEAC', '1994-05-03 00:00:00', 'S', 'GY'),
+('g19', 'Gheysen', 'Galassus', '$2y$10$IMi1wiJ/v.vSJJe.qPk34.QeBzo5OB3MLq9woYcxDwCZmGFyiKoeu', '32 bd Mar Foch', '75000', 'PARIS', '1996-01-18 00:00:00', 'P', 'SW'),
 ('g30', 'Girard', 'Yvon', '$2y$10$pdl598pqoUXqctGR4baxrOCqezqBfgO.M6KxQUWBJ87tOMdCCo7vm', '31 av 6 Juin', '80000', 'AMIENS', '1999-03-27 00:00:00', 'N', 'GY'),
-('g53', 'Gombert', 'Luc', '$2y$10$u4LTl93bD91GiMAjJcXqMugVz0OmTWhcqQ0mPHRsGPN6dk51M2/Aq', '32 r Emile Gueymard', '56000', 'VANNES', '1985-10-02 00:00:00', NULL, 'GY'),
-('g7', 'Guindon', 'Caroline', '$2y$10$L2CDwQdyR01iOqFEPbhwF.A.70dIctobGwiaN5.7LoTPmWDwaTMyW', '40 r Mar Montgomery', '87000', 'LIMOGES', '1996-01-13 00:00:00', NULL, 'GY'),
-('h13', 'Guindon', 'François', '$2y$10$k/Ha7s7kdNFpfw.sMDA6juujcD6d0dX9RlEYRyPYmby9AwnHannbG', '44 r Picotière', '19000', 'TULLE', '1993-05-08 00:00:00', NULL, 'SW'),
-('h30', 'Igigabel', 'Guy', '$2y$10$Uk6pveewli8IXu/4YTEp.u7SnmqZaiIxVwInElePbX/U6cjnqWY7y', '33 gal Arlequin', '94000', 'CRETEIL', '1998-04-26 00:00:00', NULL, 'SW'),
-('h35', 'Jourdren', 'Pierre', '$2y$10$dydRF2s7.CWHJq5rMGALkOiJdl94CgspkqofpF5VJr0YxgezLD.gK', '34 av Jean Perrot', '15000', 'AURRILLAC', '1993-08-26 00:00:00', NULL, 'GY'),
-('h40', 'Juttard', 'Pierre-Raoul', '$2y$10$TDoz7830KvltaG1jla1o.eXh.h29LQ2Zd4QZWpk9o8qofWrPn8uPe', '34 cours Jean Jaurès', '8000', 'SEDAN', '1992-11-01 00:00:00', NULL, 'GY'),
+('g53', 'Gombert', 'Luc', '$2y$10$u4LTl93bD91GiMAjJcXqMugVz0OmTWhcqQ0mPHRsGPN6dk51M2/Aq', '32 r Emile Gueymard', '56000', 'VANNES', '1985-10-02 00:00:00', 'O', 'GY'),
+('g7', 'Guindon', 'Caroline', '$2y$10$L2CDwQdyR01iOqFEPbhwF.A.70dIctobGwiaN5.7LoTPmWDwaTMyW', '40 r Mar Montgomery', '87000', 'LIMOGES', '1996-01-13 00:00:00', 'P', 'GY'),
+('h13', 'Guindon', 'François', '$2y$10$k/Ha7s7kdNFpfw.sMDA6juujcD6d0dX9RlEYRyPYmby9AwnHannbG', '44 r Picotière', '19000', 'TULLE', '1993-05-08 00:00:00', 'P', 'SW'),
+('h30', 'Igigabel', 'Guy', '$2y$10$Uk6pveewli8IXu/4YTEp.u7SnmqZaiIxVwInElePbX/U6cjnqWY7y', '33 gal Arlequin', '94000', 'CRETEIL', '1998-04-26 00:00:00', 'P', 'SW'),
+('h35', 'Jourdren', 'Pierre', '$2y$10$dydRF2s7.CWHJq5rMGALkOiJdl94CgspkqofpF5VJr0YxgezLD.gK', '34 av Jean Perrot', '15000', 'AURRILLAC', '1993-08-26 00:00:00', 'P', 'GY'),
+('h40', 'Juttard', 'Pierre-Raoul', '$2y$10$TDoz7830KvltaG1jla1o.eXh.h29LQ2Zd4QZWpk9o8qofWrPn8uPe', '34 cours Jean Jaurès', '8000', 'SEDAN', '1992-11-01 00:00:00', 'N', 'GY'),
 ('j45', 'Labouré-Morel', 'Saout', '$2y$10$mu8lDPuRXMHfUHUMTfpQze45Vzd1H3z9YMbiz7i5DbTmZrkLUA4Ky', '38 cours Berriat', '52000', 'CHAUMONT', '1998-02-25 00:00:00', 'N', 'SW'),
-('j50', 'Landré', 'Philippe', '$2y$10$TO2L/dYxbVMw6MGQjuVcw.99I3M3eMw.N7K85faOgGCg6Td7EXwRO', '4 av Gén Laperrine', '59000', 'LILLE', '1992-12-16 00:00:00', NULL, 'GY'),
+('j50', 'Landré', 'Philippe', '$2y$10$TO2L/dYxbVMw6MGQjuVcw.99I3M3eMw.N7K85faOgGCg6Td7EXwRO', '4 av Gén Laperrine', '59000', 'LILLE', '1992-12-16 00:00:00', 'N', 'GY'),
 ('j8', 'Langeard', 'Hugues', '$2y$10$ffEMXgmIPs9xFalkI57wGePEjXitKopr5Jyd1jBYG1vR3EWNDAma.', '39 av Jean Perrot', '93000', 'BAGNOLET', '1998-06-18 00:00:00', 'P', 'GY'),
-('k4', 'Lanne', 'Bernard', '$2y$10$m7uRsGwPJbLKi5flQvHNLuAjkRP29N/HJVk0XyK3GlSUxGN84O4E.', '4 r Bayeux', '30000', 'NIMES', '1996-11-21 00:00:00', NULL, 'SW'),
-('k53', 'Le', 'Noël', '$2y$10$Weo5Cs2nsbhimV8f/79YL.Ubq2dHsKzB9Qx1N49O/1csVLMcDEcQ2', '4 av Beauvert', '68000', 'MULHOUSE', '1983-03-23 00:00:00', NULL, 'SW'),
-('l14', 'Le', 'Jean', '$2y$10$L1EjHsnJJqEAQ8xiRlg9huXrKZwSpgl/X4kqU7mjebZDU4ujknmm.', '39 r Raspail', '53000', 'LAVAL', '1995-02-02 00:00:00', NULL, 'SW'),
-('l23', 'Leclercq', 'Servane', '$2y$10$2uj1H4cwut3vXJbSSzUEKuLR7tMUWDp2Qy9O2B7Si9ZbvADSoMY3m', '11 r Quinconce', '18000', 'BOURGES', '1995-06-05 00:00:00', NULL, 'SW'),
-('l46', 'Lecornu', 'Jean-Bernard', '$2y$10$fylVzB41p.kFDkxK1sbKQuTDJoLwYE3qMsn/Hi3RrI4MCorAvJV1e', '4 bd Mar Foch', '72000', 'LA FERTE BERNARD', '1997-01-24 00:00:00', NULL, 'GY'),
-('l56', 'Lecornu', 'Ludovic', '$2y$10$j6x9aG5NQHu4H3HMQZb4JOZAFX.LDSRHBeTMamWdjQQWHL4yViyAG', '4 r Abel Servien', '25000', 'BESANCON', '1996-02-27 00:00:00', NULL, 'SW'),
-('m35', 'Lejard', 'Agnès', '$2y$10$yHlPV8uLEkvpjqHrxVI2ZuXrZnvUkGRFl8FzSpfVl5rUQzcCIDvGq', '4 r Anthoard', '82000', 'MONTAUBAN', '1987-10-06 00:00:00', NULL, 'SW'),
-('m45', 'Lesaulnier', 'Pascal', '$2y$10$C/E3qTbV.ST1ErOSkqVSH.PlaHbinMzfdb6lnlsmlOo8iiAGaDcIa', '47 r Thiers', '57000', 'METZ', '1990-10-13 00:00:00', NULL, 'SW'),
-('n42', 'Letessier', 'Stéphane', '$2y$10$tNj.hCkoKTr7ZBnxBwtb8OpNFamVxaTT91ZY07TRy7Vh3TD.wd7.a', '5 chem Capuche', '27000', 'EVREUX', '1996-03-06 00:00:00', NULL, 'GY'),
-('n58', 'Loirat', 'Didier', '$2y$10$2SuPSqwfglAbhtnOn5ndpOMYltP3naKTmmubWfDwe9msN8t0YIm62', 'Les Pêchers cité Bourg la Croix', '45000', 'ORLEANS', '1992-08-30 00:00:00', NULL, 'GY'),
-('n59', 'Maffezzoli', 'Thibaud', '$2y$10$Aw/C4WV2y1Z0IZuX/I6/8eOInGqTJE2GTzdzhj9Gpq6Bm0/tzD/Kq', '5 r Chateaubriand', '2000', 'LAON', '1994-12-19 00:00:00', NULL, 'SW'),
-('o26', 'Mancini', 'Anne', '$2y$10$ErVyNCy8EJV5q0pfAKqMF.Jf47H91JWsx350mDN5gVcXxAadk1nCK', '5 r D''Agier', '48000', 'MENDE', '1995-01-05 00:00:00', NULL, 'GY'),
-('p32', 'Marcouiller', 'Gérard', '$2y$10$aZ9fqU99ASCEcHJ/zOCnDeDCf7Vpi4OapT7iH9QNQP1RFrdDOht1.', '7 pl St Gilles', '91000', 'ISSY LES MOULINEAUX', '1992-12-24 00:00:00', NULL, 'GY'),
+('k4', 'Lanne', 'Bernard', '$2y$10$m7uRsGwPJbLKi5flQvHNLuAjkRP29N/HJVk0XyK3GlSUxGN84O4E.', '4 r Bayeux', '30000', 'NIMES', '1996-11-21 00:00:00', 'S', 'SW'),
+('k53', 'Le', 'Noël', '$2y$10$Weo5Cs2nsbhimV8f/79YL.Ubq2dHsKzB9Qx1N49O/1csVLMcDEcQ2', '4 av Beauvert', '68000', 'MULHOUSE', '1983-03-23 00:00:00', 'N', 'SW'),
+('l14', 'Le', 'Jean', '$2y$10$L1EjHsnJJqEAQ8xiRlg9huXrKZwSpgl/X4kqU7mjebZDU4ujknmm.', '39 r Raspail', '53000', 'LAVAL', '1995-02-02 00:00:00', 'O', 'SW'),
+('l23', 'Leclercq', 'Servane', '$2y$10$2uj1H4cwut3vXJbSSzUEKuLR7tMUWDp2Qy9O2B7Si9ZbvADSoMY3m', '11 r Quinconce', '18000', 'BOURGES', '1995-06-05 00:00:00', 'O', 'SW'),
+('l46', 'Lecornu', 'Jean-Bernard', '$2y$10$fylVzB41p.kFDkxK1sbKQuTDJoLwYE3qMsn/Hi3RrI4MCorAvJV1e', '4 bd Mar Foch', '72000', 'LA FERTE BERNARD', '1997-01-24 00:00:00', 'O', 'GY'),
+('l56', 'Lecornu', 'Ludovic', '$2y$10$j6x9aG5NQHu4H3HMQZb4JOZAFX.LDSRHBeTMamWdjQQWHL4yViyAG', '4 r Abel Servien', '25000', 'BESANCON', '1996-02-27 00:00:00', 'E', 'SW'),
+('m35', 'Lejard', 'Agnès', '$2y$10$yHlPV8uLEkvpjqHrxVI2ZuXrZnvUkGRFl8FzSpfVl5rUQzcCIDvGq', '4 r Anthoard', '82000', 'MONTAUBAN', '1987-10-06 00:00:00', 'S', 'SW'),
+('m45', 'Lesaulnier', 'Pascal', '$2y$10$C/E3qTbV.ST1ErOSkqVSH.PlaHbinMzfdb6lnlsmlOo8iiAGaDcIa', '47 r Thiers', '57000', 'METZ', '1990-10-13 00:00:00', 'E', 'SW'),
+('n42', 'Letessier', 'Stéphane', '$2y$10$tNj.hCkoKTr7ZBnxBwtb8OpNFamVxaTT91ZY07TRy7Vh3TD.wd7.a', '5 chem Capuche', '27000', 'EVREUX', '1996-03-06 00:00:00', 'N', 'GY'),
+('n58', 'Loirat', 'Didier', '$2y$10$2SuPSqwfglAbhtnOn5ndpOMYltP3naKTmmubWfDwe9msN8t0YIm62', 'Les Pêchers cité Bourg la Croix', '45000', 'ORLEANS', '1992-08-30 00:00:00', 'P', 'GY'),
+('n59', 'Maffezzoli', 'Thibaud', '$2y$10$Aw/C4WV2y1Z0IZuX/I6/8eOInGqTJE2GTzdzhj9Gpq6Bm0/tzD/Kq', '5 r Chateaubriand', '2000', 'LAON', '1994-12-19 00:00:00', 'N', 'SW'),
+('o26', 'Mancini', 'Anne', '$2y$10$ErVyNCy8EJV5q0pfAKqMF.Jf47H91JWsx350mDN5gVcXxAadk1nCK', '5 r D''Agier', '48000', 'MENDE', '1995-01-05 00:00:00', 'S', 'GY'),
+('p32', 'Marcouiller', 'Gérard', '$2y$10$aZ9fqU99ASCEcHJ/zOCnDeDCf7Vpi4OapT7iH9QNQP1RFrdDOht1.', '7 pl St Gilles', '91000', 'ISSY LES MOULINEAUX', '1992-12-24 00:00:00', 'P', 'GY'),
 ('p40', 'Michel', 'Jean-Claude', '$2y$10$qSX0sxfsM8VaF7d3Y6ZXFewMdJLOM9P/Wnj/0ffJM8FEgy3ruFoMu', '5 r Gabriel Péri', '61000', 'FLERS', '1992-12-14 00:00:00', 'O', 'SW'),
-('p41', 'Montecot', 'Françoise', '$2y$10$xfmzRbqCa.kYpNo5ipHS7e6mPV97MW32CBAjWe.6YF6pEK0IEWMpi', '6 r Paul Valéry', '17000', 'SAINTES', '1998-07-27 00:00:00', NULL, 'GY'),
-('p42', 'Notini', 'Veronique', '$2y$10$3gGA54ljy45hHJafws9/3ux.Pr/1b8wh5fdexrs7ev8wcvTimjGja', '5 r Lieut Chabal', '60000', 'BEAUVAIS', '1994-12-12 00:00:00', NULL, 'SW'),
-('p49', 'Onfroy', 'Den', '$2y$10$7Kphq74z9fWEeX6n6MYT7u2dVKyriWTzUPVPU7mrZkIeiWK7t5GPa', '5 r Sidonie Jacolin', '37000', 'TOURS', '1977-10-03 00:00:00', NULL, 'GY'),
-('p6', 'Pascreau', 'Charles', '$2y$10$YSPiYyi8nvRj2XIGdTDZRObm8bDcDhjM.cWq9ZHE2cTUFbBuvNo2q', '57 bd Mar Foch', '64000', 'PAU', '1997-03-30 00:00:00', NULL, 'SW'),
-('p7', 'Pernot', 'Claude-Noël', '$2y$10$iQ3ymuz10ALw5lbDQCdqk.ZYM6mt9myXQukLrQllVrFvwjGzdVyF.', '6 r Alexandre 1 de Yougoslavie', '11000', 'NARBONNE', '1990-03-01 00:00:00', NULL, 'SW'),
-('p8', 'Perrier', 'Maître', '$2y$10$BzI21lBrzK7xkyzC8BzX0u6YU/mBJVw1BL0SnELz3QuDfmACMq8xm', '6 r Aubert Dubayet', '71000', 'CHALON SUR SAONE', '1991-06-23 00:00:00', NULL, 'GY'),
-('q17', 'Petit', 'Jean-Louis', '$2y$10$/knNwZAq41vAWkL7ThRWdOtFb.Edavd5I/3kbzUzdmHKMl1us1y42', '7 r Ernest Renan', '50000', 'SAINT LO', '1997-09-06 00:00:00', NULL, 'GY'),
+('p41', 'Montecot', 'Françoise', '$2y$10$xfmzRbqCa.kYpNo5ipHS7e6mPV97MW32CBAjWe.6YF6pEK0IEWMpi', '6 r Paul Valéry', '17000', 'SAINTES', '1998-07-27 00:00:00', 'O', 'GY'),
+('p42', 'Notini', 'Veronique', '$2y$10$3gGA54ljy45hHJafws9/3ux.Pr/1b8wh5fdexrs7ev8wcvTimjGja', '5 r Lieut Chabal', '60000', 'BEAUVAIS', '1994-12-12 00:00:00', 'N', 'SW'),
+('p49', 'Onfroy', 'Den', '$2y$10$7Kphq74z9fWEeX6n6MYT7u2dVKyriWTzUPVPU7mrZkIeiWK7t5GPa', '5 r Sidonie Jacolin', '37000', 'TOURS', '1977-10-03 00:00:00', 'P', 'GY'),
+('p6', 'Pascreau', 'Charles', '$2y$10$YSPiYyi8nvRj2XIGdTDZRObm8bDcDhjM.cWq9ZHE2cTUFbBuvNo2q', '57 bd Mar Foch', '64000', 'PAU', '1997-03-30 00:00:00', 'S', 'SW'),
+('p7', 'Pernot', 'Claude-Noël', '$2y$10$iQ3ymuz10ALw5lbDQCdqk.ZYM6mt9myXQukLrQllVrFvwjGzdVyF.', '6 r Alexandre 1 de Yougoslavie', '11000', 'NARBONNE', '1990-03-01 00:00:00', 'S', 'SW'),
+('p8', 'Perrier', 'Maître', '$2y$10$BzI21lBrzK7xkyzC8BzX0u6YU/mBJVw1BL0SnELz3QuDfmACMq8xm', '6 r Aubert Dubayet', '71000', 'CHALON SUR SAONE', '1991-06-23 00:00:00', 'E', 'GY'),
+('q17', 'Petit', 'Jean-Louis', '$2y$10$/knNwZAq41vAWkL7ThRWdOtFb.Edavd5I/3kbzUzdmHKMl1us1y42', '7 r Ernest Renan', '50000', 'SAINT LO', '1997-09-06 00:00:00', 'O', 'GY'),
 ('r24', 'Piquery', 'Patrick', '$2y$10$oC1EGfk/tnT3vcbuORU7m.TLMWmgYDe4gsB9Q9klTfeaf2s5alVzG', '9 r Vaucelles', '14000', 'CAEN', '1984-07-29 00:00:00', 'O', 'GY'),
-('r58', 'Quiquandon', 'Joël', '$2y$10$hyaJweA28esxHSkUjNS2iOz1/zSd8as5s58BFE4j.qALBGaUOItdi', '7 r Ernest Renan', '29000', 'QUIMPER', '1990-06-30 00:00:00', NULL, 'GY'),
-('s10', 'Retailleau', 'Josselin', '$2y$10$rYDwcqGUlGm0CRoxLEvFNO85OKP9LOUPYwUwFYUuAUTDiE5.33p7.', '88Bis r Saumuroise', '39000', 'DOLE', '1995-11-14 00:00:00', NULL, 'SW'),
-('s21', 'Retailleau', 'Pascal', '$2y$10$bnwSp9IFgvagn/CDGLYRPew0XfzDtooofkmThU2YbAVXBixvgleCC', '32 bd Ayrault', '23000', 'MONTLUCON', '1992-09-25 00:00:00', NULL, 'SW'),
-('t43', 'Souron', 'Maryse', '$2y$10$7yRHjJpOCdx0W5J69/aniu2R/t0q5nLaziyzvoeV0m.Uah75h86GK', '7B r Gay Lussac', '21000', 'DIJON', '1995-03-09 00:00:00', NULL, 'SW'),
-('t47', 'Tiphagne', 'Patrick', '$2y$10$1GdWyAdIIKVbf.DajH/6muD5Hy/zm/nYPt0341rGVClrChMwaVz7i', '7B r Gay Lussac', '62000', 'ARRAS', '1997-08-29 00:00:00', NULL, 'SW'),
-('t55', 'Tréhet', 'Alain', '$2y$10$6UV17cgLYXXKhnRzcl45ceRL5NwZ6kWoglBFuCyWH7NeerJ/0Sk5S', '7D chem Barral', '12000', 'RODEZ', '1994-11-29 00:00:00', NULL, 'SW'),
-('t60', 'Tusseau', 'Josselin', '$2y$10$o0mR24/6rykLxPCp258mWejNVpRxeYp7IPgDvy0eZ3T2k2shrYFBW', '63 r Bon Repos', '28000', 'CHARTRES', '1991-03-29 00:00:00', NULL, 'GY'),
+('r58', 'Quiquandon', 'Joël', '$2y$10$hyaJweA28esxHSkUjNS2iOz1/zSd8as5s58BFE4j.qALBGaUOItdi', '7 r Ernest Renan', '29000', 'QUIMPER', '1990-06-30 00:00:00', 'O', 'GY'),
+('s10', 'Retailleau', 'Josselin', '$2y$10$rYDwcqGUlGm0CRoxLEvFNO85OKP9LOUPYwUwFYUuAUTDiE5.33p7.', '88Bis r Saumuroise', '39000', 'DOLE', '1995-11-14 00:00:00', 'E', 'SW'),
+('s21', 'Retailleau', 'Pascal', '$2y$10$bnwSp9IFgvagn/CDGLYRPew0XfzDtooofkmThU2YbAVXBixvgleCC', '32 bd Ayrault', '23000', 'MONTLUCON', '1992-09-25 00:00:00', 'P', 'SW'),
+('t43', 'Souron', 'Maryse', '$2y$10$7yRHjJpOCdx0W5J69/aniu2R/t0q5nLaziyzvoeV0m.Uah75h86GK', '7B r Gay Lussac', '21000', 'DIJON', '1995-03-09 00:00:00', 'E', 'SW'),
+('t47', 'Tiphagne', 'Patrick', '$2y$10$1GdWyAdIIKVbf.DajH/6muD5Hy/zm/nYPt0341rGVClrChMwaVz7i', '7B r Gay Lussac', '62000', 'ARRAS', '1997-08-29 00:00:00', 'N', 'SW'),
+('t55', 'Tréhet', 'Alain', '$2y$10$6UV17cgLYXXKhnRzcl45ceRL5NwZ6kWoglBFuCyWH7NeerJ/0Sk5S', '7D chem Barral', '12000', 'RODEZ', '1994-11-29 00:00:00', 'S', 'SW'),
+('t60', 'Tusseau', 'Josselin', '$2y$10$o0mR24/6rykLxPCp258mWejNVpRxeYp7IPgDvy0eZ3T2k2shrYFBW', '63 r Bon Repos', '28000', 'CHARTRES', '1991-03-29 00:00:00', 'P', 'GY'),
 ('zzz', 'swiss', 'bourdin', '$2y$10$iCiMEmYmVd.tuOzjjBA5keHoIBnpcrKMw9Icu/2VBdu12JAlu4Q/a', NULL, NULL, NULL, '2003-06-18 00:00:00', NULL, 'BC');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
