@@ -28,12 +28,12 @@ class RapportVisite
     static function getAllRapports()
     {
         $bdd = new BDD();
-        $bdd->query('SELECT RAP.*, OFF.MED_DEPOTLEGAL AS OFF_MED_DEPOTLEGAL, OFF.OFF_QTE, PRE.MED_DEPOTLEGAL AS PRE_MED_DEPOTLEGAL, PRE.DOCUMENTATION, VIS.*, PRA.*
+        $bdd->query('SELECT RAP.*, OFF.MED_DEPOTLEGAL AS OFF_MED_DEPOTLEGAL, OFF.OFF_QTE,OFF.SAISIE_DEF, PRE.MED_DEPOTLEGAL AS PRE_MED_DEPOTLEGAL, PRE.DOCUMENTATION, VIS.*, PRA.*
                       FROM rapport_visite RAP
-                      JOIN visiteur VIS ON (RAP.VIS_MATRICULE = VIS.VIS_MATRICULE)
-                      JOIN praticien PRA ON (RAP.PRA_NUM = PRA.PRA_NUM)
-                      LEFT JOIN offrir OFF ON (RAP.RAP_NUM = OFF.RAP_NUM)
-                      LEFT JOIN presenter PRE ON (RAP.RAP_NUM = PRE.RAP_NUM)
+                       JOIN visiteur VIS ON (RAP.VIS_MATRICULE = VIS.VIS_MATRICULE)
+                        JOIN praticien PRA ON (RAP.PRA_NUM = PRA.PRA_NUM)
+                         JOIN offrir OFF ON (RAP.RAP_NUM = OFF.RAP_NUM)
+                          JOIN presenter PRE ON (RAP.RAP_NUM = PRE.RAP_NUM)
                        ');
         $row = $bdd->resultset();
 
@@ -49,16 +49,16 @@ class RapportVisite
                     $RapportExiste = true;
                     if ($value['OFF_MED_DEPOTLEGAL'] !== null && $value['OFF_QTE'] !== null)
                     {
-                        $offrir = new Offrir( $value['OFF_MED_DEPOTLEGAL'], $value['OFF_QTE']);
-                        if(!in_array($offrir, $listeRapport->getOffrir()))
+                        $offrir = new Offrir($value['OFF_MED_DEPOTLEGAL'], $value['OFF_QTE']);
+                        if (!in_array($offrir, $listeRapport->getOffrir()))
                         {
                             $listeRapport->setOffrir($offrir);
                         }
                     }
                     if ($value['PRE_MED_DEPOTLEGAL'] !== null && $value['DOCUMENTATION'] !== null)
                     {
-                        $presenter = new Presenter( $value['PRE_MED_DEPOTLEGAL'], $value['DOCUMENTATION']);
-                        if(!in_array($presenter, $listeRapport->getPresenter()))
+                        $presenter = new Presenter($value['PRE_MED_DEPOTLEGAL'], $value['DOCUMENTATION']);
+                        if (!in_array($presenter, $listeRapport->getPresenter()))
                         {
                             $listeRapport->setPresenter($presenter);
                         }
@@ -99,8 +99,8 @@ class RapportVisite
 
                 if ($value['OFF_MED_DEPOTLEGAL'] !== null && $value['OFF_QTE'] !== null)
                 {
-                    $offrir = new Offrir( $value['OFF_MED_DEPOTLEGAL'], $value['OFF_QTE']);
-                    if(!in_array($offrir, $rapport->getOffrir()))
+                    $offrir = new Offrir($value['OFF_MED_DEPOTLEGAL'], $value['OFF_QTE']);
+                    if (!in_array($offrir, $rapport->getOffrir()))
                     {
                         $rapport->setOffrir($offrir);
                     }
@@ -108,8 +108,8 @@ class RapportVisite
 
                 if ($value['PRE_MED_DEPOTLEGAL'] !== null && $value['DOCUMENTATION'] !== null)
                 {
-                    $presenter = new Presenter( $value['PRE_MED_DEPOTLEGAL'], $value['DOCUMENTATION']);
-                    if(!in_array($presenter, $rapport->getPresenter()))
+                    $presenter = new Presenter($value['PRE_MED_DEPOTLEGAL'], $value['DOCUMENTATION']);
+                    if (!in_array($presenter, $rapport->getPresenter()))
                     {
                         $rapport->setPresenter($presenter);
                     }

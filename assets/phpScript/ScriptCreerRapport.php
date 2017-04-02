@@ -6,17 +6,17 @@ require '../phpClass/ClassDateManager.php';
 
 $rapportDate = DateManager::dateFrancaisVersAnglais($_POST['rapportDate']);
 $rapportPraticien = $_POST['rapportPraticien'];
-$rapportBilan =  filter_input(INPUT_POST,'rapportBilan', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$rapportMotif = filter_input(INPUT_POST,'rapportMotif',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$rapportBilan = filter_input(INPUT_POST, 'rapportBilan', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$rapportMotif = filter_input(INPUT_POST, 'rapportMotif', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $compteElem = $_POST['compteElem'];
 $compteEchant = $_POST['compteEchant'];
 $praticienEstRemplace = false;
 
-
 echo "<pre>";
 print_r($_POST);
 echo "</pre>";
-if($rapportPraticien === null || $rapportBilan === null || $rapportDate === null)
+
+if ($rapportPraticien === null || $rapportBilan === null || $rapportDate === null)
 {
     header('Location: ../view/nouveauCR.php?e=1');
     exit;
@@ -110,6 +110,7 @@ if (isset($_POST['selectEchant0']))
                 [
                     'RAP_NUM' => '',
                     'MED_DEPOTLEGAL' => $_POST['selectEchant' . $i],
+                    'OFF_QTE' => $_POST['offQte' . $i],
                     'SAISIE_DEF' => $_POST['saisieDef' . $i]
                 ];
         }
@@ -126,6 +127,9 @@ $bdd->beginTransaction();
 $remplacantId = null;
 if ($praticienEstRemplace)
 {
+
+    $remplacantVille = strtoupper($remplacantVille);
+
     $remplacantId =
         Praticien::creerPraticien(
             $remplacantNom,
@@ -158,7 +162,7 @@ if ($elementExiste === true)
 
     foreach ($ElementsPresentes as $row)
     {
-       $row['RAP_NUM'] = $numeroRapport;
+        $row['RAP_NUM'] = $numeroRapport;
         $presentes->execute($row);
     }
 }
@@ -166,8 +170,8 @@ if ($elementExiste === true)
 #insérer les échantillons offerts :
 if ($echantillonExiste === true)
 {
-    $offerts = $bdd->query('INSERT INTO offrir (RAP_NUM, MED_DEPOTLEGAL, SAISIE_DEF)
-            VALUE (:RAP_NUM,:MED_DEPOTLEGAL,:SAISIE_DEF)');
+    $offerts = $bdd->query('INSERT INTO offrir (RAP_NUM, MED_DEPOTLEGAL,OFF_QTE, SAISIE_DEF)
+            VALUE (:RAP_NUM,:MED_DEPOTLEGAL,:OFF_QTE,:SAISIE_DEF)');
 
     foreach ($EchantillonsOfferts as $row)
     {
@@ -179,4 +183,4 @@ if ($echantillonExiste === true)
 $bdd->endTransaction();
 
 
-#header('Location: ../view/nouveauCR.php');
+//header('Location: ../view/nouveauCR.php?e=0');

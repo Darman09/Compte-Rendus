@@ -6,7 +6,7 @@ $(function ()
             closeOnClick: true
         }
     );
-    $('#listPraticien').modal();
+
     $('select').material_select();
     $('.datepicker').pickadate(
         {
@@ -20,7 +20,6 @@ $(function ()
         today: 'Aujourd\'hui',
         clear: 'Effacer',
         close: false,
-
         }
     );
 });

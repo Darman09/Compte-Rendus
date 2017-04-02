@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 31 Mars 2017 à 22:01
+-- Généré le :  Dim 02 Avril 2017 à 15:56
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -243,6 +243,13 @@ CREATE TABLE IF NOT EXISTS `offrir` (
   `SAISIE_DEF` tinyint(1) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `offrir`
+--
+
+INSERT INTO `offrir` (`RAP_NUM`, `MED_DEPOTLEGAL`, `OFF_QTE`, `SAISIE_DEF`) VALUES
+(1, 'TXISOL22', NULL, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -276,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `praticien` (
   `TYP_CODE` varchar(3) NOT NULL,
   PRIMARY KEY (`PRA_NUM`),
   KEY `TYP_CODE` (`TYP_CODE`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=113 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=114 ;
 
 --
 -- Contenu de la table `praticien`
@@ -368,9 +375,7 @@ INSERT INTO `praticien` (`PRA_NUM`, `PRA_NOM`, `PRA_PRENOM`, `PRA_ADRESSE`, `PRA
 (83, 'Gauchet', 'Thierry', '7 r Desmoueux', '38100', 'GRENOBLE', 406.1, 'PS'),
 (84, 'Bobichon', 'Tristan', '219 r Caponière', '9000', 'FOIX', 218.36, 'PH'),
 (85, 'Duchemin-Laniel', 'Véronique', '130 r St Jean', '33000', 'LIBOURNE', 265.61, 'PO'),
-(86, 'Laurent', 'Younès', '34 r Demolombe', '53000', 'MAYENNE', 496.1, 'MH'),
-(111, 'Nom remplacant', 'prenom remplacant', 'adresse remplacant', 'cp re', 'ville remplacant', 456, 'PS'),
-(112, 'Nom remplacant', 'prenom remplacant', 'adresse remplacant', 'cp re', 'ville remplacant', 456, 'PS');
+(86, 'Laurent', 'Younès', '34 r Demolombe', '53000', 'MAYENNE', 496.1, 'MH');
 
 -- --------------------------------------------------------
 
@@ -413,6 +418,14 @@ CREATE TABLE IF NOT EXISTS `presenter` (
   `DOCUMENTATION` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `presenter`
+--
+
+INSERT INTO `presenter` (`RAP_NUM`, `MED_DEPOTLEGAL`, `DOCUMENTATION`) VALUES
+(1, 'DOLRIL7', 0),
+(1, 'PIRIZ8', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -431,6 +444,13 @@ CREATE TABLE IF NOT EXISTS `rapport_visite` (
   KEY `PRA_NUM` (`PRA_NUM`),
   KEY `VIS_MATRICULE` (`VIS_MATRICULE`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Contenu de la table `rapport_visite`
+--
+
+INSERT INTO `rapport_visite` (`VIS_MATRICULE`, `RAP_NUM`, `PRA_NUM`, `RAP_REMPLACANT`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`) VALUES
+('b13', 1, 1, NULL, '2017-04-02', 'Bilan concluant !', 'Actualisation');
 
 -- --------------------------------------------------------
 

@@ -29,7 +29,7 @@ require '../phpClass/ClassMedicaments.php';
 					<input required name="rapportDate" type="date" class="datepicker">
 				</div>
 				<div class="input-field col s11">
-					<a class="waves-effect waves-light btn btn-large" href="#listPraticien"><i
+					<a class="waves-effect waves-light btn btn-large" id="praticienTri" href="#"><i
 								class="material-icons left fa fa-user-md"></i>Praticien</a>
 					<input name="rapportIsRemplace" type="checkbox" id="remplace"/>
 					<label for="remplace">Remplacé</label>
@@ -160,7 +160,7 @@ require '../phpClass/ClassMedicaments.php';
 						<input type="hidden" value="0" id="compteEchant" name="compteEchant"/>
 						<div class="row echant">
 							<div class="input-field col m4 listMedic">
-								<select class="selectElem" name="selectEchant0">
+								<select class="selectEchant" name="selectEchant0">
 									<option value="" disabled selected>Produits</option>
                                     <?php
                                     foreach (Medicaments::getAllDepotAndName() as $value):
@@ -174,11 +174,14 @@ require '../phpClass/ClassMedicaments.php';
 								</select>
 								<label>Sélectionner un produit</label>
 							</div>
-							<div class="col m4">
+							<div class="col m2">
 								<input type="checkbox" id="saisieDef0" name="saisieDef0"/>
 								<label for="saisieDef0">Saisie définitive</label>
 							</div>
-							<div class="col m4">
+							<div class="col m2">
+								<input class="offqte" type="number" placeholder="Quantité" name="offQte0" />
+							</div>
+							<div class="col m3">
 								<a id="addEchant"
 								   class="btn-floating btn-large waves-effect waves-light btn tooltipped blue accent-1"
 								   data-position="left" data-delay="50" data-tooltip="Ajoute un nouvel échantillon">
@@ -197,32 +200,47 @@ require '../phpClass/ClassMedicaments.php';
                     <?php
                     if (isset($_GET['e']))
                     {
-                        if ($_GET['e'] === '1')
+                        switch ($_GET['e'])
                         {
+                        case '0':
                             ?>
+							<script>alert('Rapport bien enregistré. ');</script>
+                        <?php
+                        break;
+                        case '1':
+                        ?>
 							<script>alert('Attention à bien remplir les champs avec * ');</script>
                             <?php
+                            break;
+                            case '2':
                         }
                     }
                     ?>
 				</div>
 			</div>
 	</form>
-	<div id="listPraticien" class="modal bottom-sheet">
-		<div class="modal-content">
-			<input id="recherche" placeholder="Rechercher un practiciens"/>
-            <?php
-            require '../inc/getAllPraticien.inc.php';
-            ?>
-		</div>
-	</div>
-</main>
 
+</main>
+<div id="listPraticien" class="modal bottom-sheet">
+	<div class="modal-content">
+		<input id="recherche" placeholder="Rechercher un practiciens"/>
+        <?php
+        require '../inc/getAllPraticien.inc.php';
+        ?>
+	</div>
+</div>
 <script src="../js/jquery.min.js"></script>
 <script src="../js/materialize.min.js"></script>
 <script src="../js/main.js"></script>
 <script src="../js/recherche.js"></script>
 <script>
+    $('#praticienTri').on('click', function (e)
+    {
+        e.preventDefault();
+        $('#listPraticien').modal().modal('open');
+    });
+
+
     // copier l'html du modal avec la liste des praticiens dans la page
     $('.praSelectable').on('click', function ()
     {
@@ -292,9 +310,11 @@ require '../phpClass/ClassMedicaments.php';
     //////////////////////////////
     $('#addEchant').on('click', function ()
     {
-        $('#listEchant').append('<div class="row echant">' + listProduit + '<div class="col m4">' +
+        $('#listEchant').append('<div class="row echant">' + listProduit + '<div class="col m2">' +
             '<input type="checkbox" class="saisieDef"/><label class="saisieFor">Saisie définitive</label>' +
-            '</div><div class="col m4"><a class="btn-floating btn-large removeEchant ' +
+            '</div><div class="col m2">'+
+            '<input class="offqte" required type="number" placeholder="Quantité" name="offQte0" /></div>'+
+			'<div class="col m3"><a class="btn-floating btn-large removeEchant ' +
             'waves-effect waves-light btn tooltipped blue accent-1" data-position="left" data-delay="50" data-tooltip="Retire un élément">' +
             '<i class="fa fa-close"></i></a></div></div>');
         $('select').material_select();
@@ -307,6 +327,8 @@ require '../phpClass/ClassMedicaments.php';
             $(this).find('.saisieFor').attr("for", "saisieDef" + i);
             //select
             $(this).find('.selectEchant').attr('name', 'selectEchant' + i);
+            // off qte
+            $(this).find('.offqte').attr('name', 'offQte' + i);
             i++;
             if (i >= 10)
             {
@@ -325,6 +347,8 @@ require '../phpClass/ClassMedicaments.php';
             $(this).find('.saisieFor').attr("for", "saisieDef" + i);
             //select
             $(this).find('.selectEchant').attr('name', 'selectEchant' + i);
+            // off qte
+            $(this).find('.offqte').attr('name', 'offQte' + i);
             i++;
             if (i < 10)
             {
