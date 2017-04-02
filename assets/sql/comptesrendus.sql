@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 02 Avril 2017 à 15:56
+-- Généré le :  Dim 02 Avril 2017 à 21:05
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -248,7 +248,15 @@ CREATE TABLE IF NOT EXISTS `offrir` (
 --
 
 INSERT INTO `offrir` (`RAP_NUM`, `MED_DEPOTLEGAL`, `OFF_QTE`, `SAISIE_DEF`) VALUES
-(1, 'TXISOL22', NULL, 0);
+(1, 'POMDI20', 477, 0),
+(1, 'DOLRIL7', 41, 1),
+(2, 'POMDI20', 477, 0),
+(2, 'DOLRIL7', 41, 1),
+(3, 'TROXT21', 2, 0),
+(4, 'TROXT21', 2, 0),
+(5, 'TROXT21', 47524, 0),
+(6, 'TROXT21', 47524, 0),
+(7, 'TROXT21', 47524, 0);
 
 -- --------------------------------------------------------
 
@@ -283,7 +291,7 @@ CREATE TABLE IF NOT EXISTS `praticien` (
   `TYP_CODE` varchar(3) NOT NULL,
   PRIMARY KEY (`PRA_NUM`),
   KEY `TYP_CODE` (`TYP_CODE`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=114 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=123 ;
 
 --
 -- Contenu de la table `praticien`
@@ -375,7 +383,14 @@ INSERT INTO `praticien` (`PRA_NUM`, `PRA_NOM`, `PRA_PRENOM`, `PRA_ADRESSE`, `PRA
 (83, 'Gauchet', 'Thierry', '7 r Desmoueux', '38100', 'GRENOBLE', 406.1, 'PS'),
 (84, 'Bobichon', 'Tristan', '219 r Caponière', '9000', 'FOIX', 218.36, 'PH'),
 (85, 'Duchemin-Laniel', 'Véronique', '130 r St Jean', '33000', 'LIBOURNE', 265.61, 'PO'),
-(86, 'Laurent', 'Younès', '34 r Demolombe', '53000', 'MAYENNE', 496.1, 'MH');
+(86, 'Laurent', 'Younès', '34 r Demolombe', '53000', 'MAYENNE', 496.1, 'MH'),
+(116, 'Nom remplacant', 'prenom remplacant', 'adresse remplacant', 'cp re', 'VILLE REMPLACANT', 745, 'PH'),
+(117, 'Nom remplacant', 'prenom remplacant', 'adresse remplacant', 'cp re', 'VILLE REMPLACANT', 745, 'PH'),
+(118, 'Nom remplacant', 'prenom remplacant', 'adresse remplacant', 'cp re', 'VILLE REMPLACANT', 456, 'PH'),
+(119, 'Nom remplacant', 'prenom remplacant', 'adresse remplacant', 'cp re', 'VILLE REMPLACANT', 456, 'PH'),
+(120, 'sfs', 'qsd', 'sdf', 'sdf', 'SD', 0, 'PS'),
+(121, 'sfs', 'qsd', 'sdf', 'sdf', 'SD', 0, 'PS'),
+(122, 'sfs', 'qsd', 'sdf', 'sdf', 'SD', 0, 'PS');
 
 -- --------------------------------------------------------
 
@@ -423,8 +438,16 @@ CREATE TABLE IF NOT EXISTS `presenter` (
 --
 
 INSERT INTO `presenter` (`RAP_NUM`, `MED_DEPOTLEGAL`, `DOCUMENTATION`) VALUES
-(1, 'DOLRIL7', 0),
-(1, 'PIRIZ8', 1);
+(1, 'ADIMOL9', 1),
+(2, 'ADIMOL9', 1),
+(3, '3MYC7', 1),
+(4, '3MYC7', 1),
+(5, 'PHYSOI8', 1),
+(5, 'AMOX45', 0),
+(6, 'PHYSOI8', 1),
+(6, 'AMOX45', 0),
+(7, 'PHYSOI8', 1),
+(7, 'AMOX45', 0);
 
 -- --------------------------------------------------------
 
@@ -450,7 +473,13 @@ CREATE TABLE IF NOT EXISTS `rapport_visite` (
 --
 
 INSERT INTO `rapport_visite` (`VIS_MATRICULE`, `RAP_NUM`, `PRA_NUM`, `RAP_REMPLACANT`, `RAP_DATE`, `RAP_BILAN`, `RAP_MOTIF`) VALUES
-('b13', 1, 1, NULL, '2017-04-02', 'Bilan concluant !', 'Actualisation');
+('b13', 1, 31, 116, '2017-04-02', 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', 'Relance'),
+('b13', 2, 31, 117, '2017-04-02', 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', 'Relance'),
+('b13', 3, 1, 118, '2017-04-02', 'sdqsdqsdqsdqsd', 'Relance'),
+('b13', 4, 1, 119, '2017-04-02', 'sdqsdqsdqsdqsd', 'Relance'),
+('b13', 5, 1, 120, '2017-04-02', 'dsfsqdfsdfsdfsd', 'Relance'),
+('b13', 6, 1, 121, '2017-04-02', 'dsfsqdfsdfsdfsd', 'Relance'),
+('b13', 7, 1, 122, '2017-04-02', 'dsfsqdfsdfsdfsd', 'Relance');
 
 -- --------------------------------------------------------
 

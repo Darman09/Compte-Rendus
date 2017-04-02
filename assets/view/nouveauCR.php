@@ -117,7 +117,7 @@ require '../phpClass/ClassMedicaments.php';
 					<div id="listElement">
 						<input type="hidden" id="compteElem" value="0" name="compteElem"/>
 						<div class="row element">
-							<div class="input-field col m4 listMedic">
+							<div class="input-field col m4 listMedicElem">
 								<select class="selectElem" name="selectElem0">
 									<option value="" disabled selected>Produits</option>
                                     <?php
@@ -159,7 +159,7 @@ require '../phpClass/ClassMedicaments.php';
 					<div id="listEchant">
 						<input type="hidden" value="0" id="compteEchant" name="compteEchant"/>
 						<div class="row echant">
-							<div class="input-field col m4 listMedic">
+							<div class="input-field col m4 listMedicEchant">
 								<select class="selectEchant" name="selectEchant0">
 									<option value="" disabled selected>Produits</option>
                                     <?php
@@ -213,6 +213,9 @@ require '../phpClass/ClassMedicaments.php';
                             <?php
                             break;
                             case '2':
+                            ?>
+							<script>alert('Erreur lors de l\'enregistrement, recommencez');</script>
+                            <?php
                         }
                     }
                     ?>
@@ -261,10 +264,11 @@ require '../phpClass/ClassMedicaments.php';
     ////////////////////////////////////
     /////// elements présentés
     //////////////////////////////
-    let listProduit = $('.listMedic')[0].outerHTML;
+    let listProduitElem = $('.listMedicElem')[0].outerHTML;
+    let listProduitEchant = $('.listMedicEchant')[0].outerHTML;
     $('#addPresente').on('click', function ()
     {
-        $('#listElement').append('<div class="row element">' + listProduit + '<div class="col m4">' +
+        $('#listElement').append('<div class="row element">' + listProduitElem + '<div class="col m4">' +
             '<input type="checkbox" class="documentation"/><label class="docuFor">Documentation offerte</label>' +
             '</div><div class="col m4"><a class="btn-floating btn-large removeElem ' +
             'waves-effect waves-light btn tooltipped blue accent-1" data-position="left" data-delay="50" data-tooltip="Retire un élément">' +
@@ -310,7 +314,7 @@ require '../phpClass/ClassMedicaments.php';
     //////////////////////////////
     $('#addEchant').on('click', function ()
     {
-        $('#listEchant').append('<div class="row echant">' + listProduit + '<div class="col m2">' +
+        $('#listEchant').append('<div class="row echant">' + listProduitEchant + '<div class="col m2">' +
             '<input type="checkbox" class="saisieDef"/><label class="saisieFor">Saisie définitive</label>' +
             '</div><div class="col m2">'+
             '<input class="offqte" required type="number" placeholder="Quantité" name="offQte0" /></div>'+

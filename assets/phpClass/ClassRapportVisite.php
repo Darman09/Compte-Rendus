@@ -49,7 +49,7 @@ class RapportVisite
                     $RapportExiste = true;
                     if ($value['OFF_MED_DEPOTLEGAL'] !== null && $value['OFF_QTE'] !== null)
                     {
-                        $offrir = new Offrir($value['OFF_MED_DEPOTLEGAL'], $value['OFF_QTE']);
+                        $offrir = new Offrir($value['OFF_MED_DEPOTLEGAL'], $value['OFF_QTE'],$value['SAISIE_DEF']);
                         if (!in_array($offrir, $listeRapport->getOffrir()))
                         {
                             $listeRapport->setOffrir($offrir);
@@ -99,7 +99,7 @@ class RapportVisite
 
                 if ($value['OFF_MED_DEPOTLEGAL'] !== null && $value['OFF_QTE'] !== null)
                 {
-                    $offrir = new Offrir($value['OFF_MED_DEPOTLEGAL'], $value['OFF_QTE']);
+                    $offrir = new Offrir($value['OFF_MED_DEPOTLEGAL'], $value['OFF_QTE'],$value['SAISIE_DEF']);
                     if (!in_array($offrir, $rapport->getOffrir()))
                     {
                         $rapport->setOffrir($offrir);

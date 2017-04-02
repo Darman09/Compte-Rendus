@@ -12,9 +12,6 @@ $compteElem = $_POST['compteElem'];
 $compteEchant = $_POST['compteEchant'];
 $praticienEstRemplace = false;
 
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
 
 if ($rapportPraticien === null || $rapportBilan === null || $rapportDate === null)
 {
@@ -120,67 +117,79 @@ if (isset($_POST['selectEchant0']))
 
 
 #transaction du tout :
-$bdd = new BDD();
-#debut
-$bdd->beginTransaction();
-
-$remplacantId = null;
-if ($praticienEstRemplace)
+try
 {
+#debut
+    $bdd = new BDD();
+    $bdd->beginTransaction();
 
-    $remplacantVille = strtoupper($remplacantVille);
 
-    $remplacantId =
-        Praticien::creerPraticien(
-            $remplacantNom,
-            $remplacantPrenom,
-            $remplacantAdresse,
-            $remplacantCP,
-            $remplacantVille,
-            $remplacantCoef,
-            $remplacantTypePra
-        );
-}
+
+    $remplacantId = null;
+    if ($praticienEstRemplace)
+    {
+
+        $remplacantVille = strtoupper($remplacantVille);
+
+        $remplacantId =
+            Praticien::creerPraticien(
+                $remplacantNom,
+                $remplacantPrenom,
+                $remplacantAdresse,
+                $remplacantCP,
+                $remplacantVille,
+                $remplacantCoef,
+                $remplacantTypePra
+            );
+    }
 
 #table rapport_visite
-$rapport = $bdd->query('INSERT INTO rapport_visite (VIS_MATRICULE, PRA_NUM,RAP_REMPLACANT, RAP_DATE, RAP_BILAN, RAP_MOTIF)
+    $rapport = $bdd->query('INSERT INTO rapport_visite (VIS_MATRICULE, PRA_NUM,RAP_REMPLACANT, RAP_DATE, RAP_BILAN, RAP_MOTIF)
                 VALUE (:visiteur,:praticien,:remplacant,:rapportDate,:bilan,:motif)');
-$rapport->bindValue(':visiteur', 'b13');
-$rapport->bindValue(':praticien', $rapportPraticien);
-$rapport->bindValue(':remplacant', $remplacantId);
-$rapport->bindValue(':rapportDate', $rapportDate);
-$rapport->bindValue(':bilan', $rapportBilan);
-$rapport->bindValue(':motif', $rapportMotif);
-$rapport->execute();
-$numeroRapport = $bdd->lastInsertId();
+    $rapport->bindValue(':visiteur', 'b13');
+    $rapport->bindValue(':praticien', $rapportPraticien);
+    $rapport->bindValue(':remplacant', $remplacantId);
+    $rapport->bindValue(':rapportDate', $rapportDate);
+    $rapport->bindValue(':bilan', $rapportBilan);
+    $rapport->bindValue(':motif', $rapportMotif);
+    $rapport->execute();
+    $numeroRapport = $bdd->lastInsertId();
 
 #insérer les éléments présentés :
-if ($elementExiste === true)
-{
-    $presentes = $bdd->query('INSERT INTO presenter (RAP_NUM, MED_DEPOTLEGAL, DOCUMENTATION) 
+    if ($elementExiste === true)
+    {
+        $presentes = $bdd->query('INSERT INTO presenter (RAP_NUM, MED_DEPOTLEGAL, DOCUMENTATION) 
               VALUE (:RAP_NUM,:MED_DEPOTLEGAL,:DOCUMENTATION)');
 
-    foreach ($ElementsPresentes as $row)
-    {
-        $row['RAP_NUM'] = $numeroRapport;
-        $presentes->execute($row);
+        foreach ($ElementsPresentes as $row)
+        {
+            $row['RAP_NUM'] = $numeroRapport;
+            $presentes->execute($row);
+        }
     }
-}
 
 #insérer les échantillons offerts :
-if ($echantillonExiste === true)
-{
-    $offerts = $bdd->query('INSERT INTO offrir (RAP_NUM, MED_DEPOTLEGAL,OFF_QTE, SAISIE_DEF)
+    if ($echantillonExiste === true)
+    {
+        $offerts = $bdd->query('INSERT INTO offrir (RAP_NUM, MED_DEPOTLEGAL,OFF_QTE, SAISIE_DEF)
             VALUE (:RAP_NUM,:MED_DEPOTLEGAL,:OFF_QTE,:SAISIE_DEF)');
 
-    foreach ($EchantillonsOfferts as $row)
-    {
-        $row['RAP_NUM'] = $numeroRapport;
-        $offerts->execute($row);
+        foreach ($EchantillonsOfferts as $row)
+        {
+            $row['RAP_NUM'] = $numeroRapport;
+            $offerts->execute($row);
+        }
     }
-}
 #fin
-$bdd->endTransaction();
+    $bdd->endTransaction();
 
+    header('Location: ../view/nouveauCR.php?e=0');
+}
+catch (PDOException $e)
+{
+    echo "<pre>".$e->getMessage()."</pre>";
+}
+finally
+{
 
-//header('Location: ../view/nouveauCR.php?e=0');
+}

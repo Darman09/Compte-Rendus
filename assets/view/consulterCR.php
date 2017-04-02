@@ -27,117 +27,126 @@
             require '../phpClass/ClassDateManager.php';
             ?>
             <?php foreach (RapportVisite::getAllRapports() as $value):
-            echo "<pre>";
-            print_r($value);
-            echo "</pre>";
-            ?>
-			<ul class="collection with-header">
-				<li class="collection-header">
-					<h5 class="nom"> Rapport n°
-                        <?php echo $value->getNumeroRapport(); ?>
-					</h5>
-				</li>
-				<li class="collection-item">
-					<h6>
-						<span class="boldPoppins">Date :</span>
-                        <?php
-                        $dateRapport = $value->getDateRapport();
-                        echo DateManager::dateAnglaisVersFrancais($dateRapport);
-                        ?>
-					</h6>
-				</li>
-				<li class="collection-item">
-					<ul class="collection">
-						<li class="collection-item">
-							<h5 class="boldPoppins">Praticien :</h5>
-							<h6>
-                                <?php echo strtoupper($value->getPraticien()->getNom()) . " " . $value->getPraticien()->getPrenom(); ?>
-							</h6>
-							<h6>
-                                <?php echo $value->getPraticien()->getTypePraticien(); ?>
-							</h6>
-							<h6>
-                                <?php echo $value->getPraticien()->getAdresse() . ', ' . $value->getPraticien()->getVille() . ', ' . $value->getPraticien()->getCP(); ?>
-							</h6>
-							<h6>
-								<span class="boldPoppins">Coéficien de notoriété :</span>
-                                <?php echo $value->getPraticien()->getCoef(); ?>
-							</h6>
-						</li>
-					</ul>
-				</li>
-				<li class="collection-item">
-					<h6>
-						<span class="boldPoppins">Visiteur :</span>
-                        <?php echo strtoupper($value->getVisiteur()->getNom()) . " " . $value->getVisiteur()->getPrenom(); ?>
-					</h6>
-				</li>
-				<li class="collection-item">
-					<h6>
-						<span class="boldPoppins">Motif :</span>
-                        <?php echo $value->getMotifRapport(); ?>
-					</h6>
-				</li>
-				<?php if(!empty($value->getPresenter())): ?>
-				<li class="collection-item">
-					<h6>
-						<span class="boldPoppins">Élément(s) présenté(s) :</span>
-					</h6>
-                    <?php
-                    $presenterObjectList = $value->getPresenter();
-                    foreach ($presenterObjectList as $item):
-                    $doc = '';
-                    switch ($item->getDocumentation()):
-                    case '1':
-                        $doc = "avec documentation";
-                        break;
-                    case '0':
-                    $doc = "sans documentation";
-                    break;
-                    endswitch;
-                    ?>
-					<h6>
-                        <?php echo $item->getMedDepotLegal().' '.$doc; ?>
-					</h6>
-                    <?php endforeach;
-                    ?>
-				</li>
-				<?php endif;?>
-                <?php if(!empty($value->getOffrir())): ?>
+
+                ?>
+				<ul class="collection with-header">
+					<li class="collection-header">
+						<h5 class="nom"> Rapport n°
+                            <?php echo $value->getNumeroRapport(); ?>
+						</h5>
+					</li>
 					<li class="collection-item">
 						<h6>
-							<span class="boldPoppins">Échantillon(s) offert(s):</span>
-						</h6>
-                        <?php
-                        $offrirObjectList = $value->getOffrir();
-                        foreach ($offrirObjectList as $item):
-                            $saisie = '';
-                            switch ($item->getDocumentation()):
-                                case '1':
-                                    $saisie = "définitive";
-                                    break;
-                                case '0':
-                                    $saisie = "peut changer";
-                                    break;
-                            endswitch;
+							<span class="boldPoppins">Date :</span>
+                            <?php
+                            $dateRapport = $value->getDateRapport();
+                            echo DateManager::dateAnglaisVersFrancais($dateRapport);
                             ?>
-							<h6>
-                                <?php echo $item->getMedDepotLegal().' saisie '.$saisie; ?>
-							</h6>
-                        <?php endforeach;
-                        ?>
+						</h6>
 					</li>
-                <?php endif;?>
-				<li class="collection-item">
-					<h5>
-						<span class="boldPoppins">Bilan :</span>
-					</h5>
-					<h6>
-                        <?php echo $value->getBilanRapport(); ?>
-					</h6>
-				</li>
-			</ul>
-            <?php
+					<li class="collection-item">
+						<ul class="collection">
+							<li class="collection-item">
+								<h5 class="boldPoppins">Praticien :</h5>
+								<h6>
+                                    <?php echo strtoupper($value->getPraticien()->getNom()) . " " . $value->getPraticien()->getPrenom(); ?>
+								</h6>
+								<h6>
+                                    <?php echo $value->getPraticien()->getTypePraticien(); ?>
+								</h6>
+								<h6>
+                                    <?php echo $value->getPraticien()->getAdresse() . ', ' . $value->getPraticien()->getVille() . ', ' . $value->getPraticien()->getCP(); ?>
+								</h6>
+								<h6>
+									<span class="boldPoppins">Coefficient de notoriété :</span>
+                                    <?php echo $value->getPraticien()->getCoef(); ?>
+								</h6>
+							</li>
+						</ul>
+					</li>
+					<li class="collection-item">
+						<ul class="collection">
+							<li class="collection-item">
+								<h5 class="boldPoppins">Visiteur :</h5>
+								<h6>
+                                    <?php echo strtoupper($value->getVisiteur()->getNom()) . " " . $value->getVisiteur()->getPrenom(); ?>
+								</h6>
+								<h6>
+									<?php echo $value->getVisiteur()->getAdresse().', '.$value->getVisiteur()->getVille().', '.$value->getVisiteur()->getCP(); ?>
+								</h6>
+								<h6>
+									<?php echo "Visiteur depuis le : ".DateManager::dateAnglaisVersFrancais($value->getVisiteur()->getDateEmbauche());?>
+								</h6>
+							</li>
+						</ul>
+
+					</li>
+					<li class="collection-item">
+						<h6>
+							<span class="boldPoppins">Motif :</span>
+                            <?php echo $value->getMotifRapport(); ?>
+						</h6>
+					</li>
+                    <?php if (!empty($value->getPresenter())): ?>
+						<li class="collection-item">
+							<h6>
+								<span class="boldPoppins">Élément(s) présenté(s) :</span>
+							</h6>
+                            <?php
+                            $presenterObjectList = $value->getPresenter();
+                            foreach ($presenterObjectList as $item):
+                                $doc = '';
+                                switch ($item->getDocumentation()):
+                                    case '1':
+                                        $doc = "avec documentation";
+                                        break;
+                                    case '0':
+                                        $doc = "sans documentation";
+                                        break;
+                                endswitch;
+                                ?>
+								<h6>
+                                    <?php echo $item->getMedDepotLegal() . ' ' . $doc; ?>
+								</h6>
+                            <?php endforeach;
+                            ?>
+						</li>
+                    <?php endif; ?>
+                    <?php if (!empty($value->getOffrir())): ?>
+						<li class="collection-item">
+							<h6>
+								<span class="boldPoppins">Échantillon(s) offert(s):</span>
+							</h6>
+                            <?php
+                            $offrirObjectList = $value->getOffrir();
+                            foreach ($offrirObjectList as $item):
+                                $saisie = '';
+                                switch ($item->getSaisieDef()):
+                                    case '1':
+                                        $saisie = "définitive";
+                                        break;
+                                    case '0':
+                                        $saisie = "peut changer";
+                                        break;
+                                endswitch;
+                                ?>
+								<h6>
+                                    <?php echo $item->getMedDepotLegal() . ' saisie ' . $saisie; ?>
+								</h6>
+                            <?php endforeach;
+                            ?>
+						</li>
+                    <?php endif; ?>
+					<li class="collection-item">
+						<h5>
+							<span class="boldPoppins">Bilan :</span>
+						</h5>
+						<h6>
+                            <?php echo $value->getBilanRapport(); ?>
+						</h6>
+					</li>
+				</ul>
+                <?php
             endforeach;
             ?>
 		</div>
