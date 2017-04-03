@@ -4,7 +4,7 @@
     <list default="true" id="1da299e4-1f45-43cc-b652-0a081aaf3ccc" name="Default" comment="sdfsdf">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/phpClass/ClassPraticien.php" afterPath="$PROJECT_DIR$/assets/phpClass/ClassPraticien.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/phpScript/ScriptCreerRapport.php" afterPath="$PROJECT_DIR$/assets/phpScript/ScriptCreerRapport.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/view/nouveauCR.php" afterPath="$PROJECT_DIR$/assets/view/nouveauCR.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -93,13 +93,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClassPraticien.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ClassPraticien.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/phpClass/ClassPraticien.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="280">
-              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+              <caret line="52" column="1" lean-forward="false" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
               <folding>
-                <marker date="1491246175522" expanded="true" signature="627:745" ph="SELECT * FRO... praticien" />
+                <marker date="1491246246998" expanded="true" signature="627:745" ph="SELECT * FRO... praticien" />
               </folding>
             </state>
           </provider>
@@ -108,12 +108,11 @@
       <file leaf-file-name="nouveauCR.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/view/nouveauCR.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="69" column="37" lean-forward="false" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+            <state relative-caret-position="271">
+              <caret line="61" column="25" lean-forward="false" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
               <folding>
-                <marker date="1491246047778" expanded="true" signature="13739:13750" ph="{...}" />
-                <marker date="1491246047778" expanded="true" signature="13739:13802" ph="{...}" />
-                <marker date="1491246047778" expanded="true" signature="13739:13814" ph="..." />
+                <element signature="n#style#0;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#form#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#7;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#form#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -131,17 +130,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScriptCreerRapport.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ScriptCreerRapport.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/phpScript/ScriptCreerRapport.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="184" column="5" lean-forward="false" selection-start-line="184" selection-start-column="5" selection-end-line="184" selection-end-column="5" />
+            <state relative-caret-position="375">
+              <caret line="183" column="5" lean-forward="false" selection-start-line="183" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
               <folding>
-                <marker date="1491246175565" expanded="true" signature="539:699" ph="..." />
-                <marker date="1491246175565" expanded="true" signature="3579:3741" ph="INSERT INTO praticien... " />
-                <marker date="1491246175565" expanded="true" signature="4350:4532" ph="INSERT INTO rapport_visite... " />
-                <marker date="1491246175565" expanded="true" signature="5025:5150" ph="INSERT INTO presenter... " />
-                <marker date="1491246175565" expanded="true" signature="5423:5553" ph="INSERT INTO offrir... " />
+                <marker date="1491246244429" expanded="true" signature="539:699" ph="..." />
+                <marker date="1491246244429" expanded="true" signature="3579:3741" ph="INSERT INTO praticien... " />
+                <marker date="1491246244429" expanded="true" signature="4350:4532" ph="INSERT INTO rapport_visite... " />
+                <marker date="1491246244429" expanded="true" signature="5025:5150" ph="INSERT INTO presenter... " />
+                <marker date="1491246244429" expanded="true" signature="5423:5553" ph="INSERT INTO offrir... " />
               </folding>
             </state>
           </provider>
@@ -219,11 +218,11 @@
         <option value="$PROJECT_DIR$/assets/js/main.js" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassOffrir.php" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassRapportVisite.php" />
-        <option value="$PROJECT_DIR$/assets/view/nouveauCR.php" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassBDD.php" />
         <option value="$PROJECT_DIR$/assets/view/consulterCR.php" />
-        <option value="$PROJECT_DIR$/assets/phpClass/ClassPraticien.php" />
         <option value="$PROJECT_DIR$/assets/phpScript/ScriptCreerRapport.php" />
+        <option value="$PROJECT_DIR$/assets/view/nouveauCR.php" />
+        <option value="$PROJECT_DIR$/assets/phpClass/ClassPraticien.php" />
       </list>
     </option>
   </component>
@@ -559,7 +558,7 @@
       <workItem from="1490891877591" duration="8628000" />
       <workItem from="1490979883251" duration="11682000" />
       <workItem from="1491125984092" duration="19472000" />
-      <workItem from="1491241055105" duration="4760000" />
+      <workItem from="1491241055105" duration="4826000" />
     </task>
     <task id="LOCAL-00001" summary="Consultation 80%">
       <created>1489701265890</created>
@@ -666,11 +665,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491246031449</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="sdfsdf">
+      <created>1491246187043</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1491246187043</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181733000" />
+    <option name="totallyTimeSpent" value="181799000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -703,6 +709,32 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -1029,18 +1061,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/view/nouveauCR.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="69" column="37" lean-forward="false" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
-          <folding>
-            <marker date="1491246047778" expanded="true" signature="13739:13750" ph="{...}" />
-            <marker date="1491246047778" expanded="true" signature="13739:13802" ph="{...}" />
-            <marker date="1491246047778" expanded="true" signature="13739:13814" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/view/consulterCR.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1071,16 +1091,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/phpClass/ClassPraticien.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <marker date="1491246175522" expanded="true" signature="627:745" ph="SELECT * FRO... praticien" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/phpScript/ScriptBDD.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1091,14 +1101,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/phpScript/ScriptCreerRapport.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="184" column="5" lean-forward="false" selection-start-line="184" selection-start-column="5" selection-end-line="184" selection-end-column="5" />
+        <state relative-caret-position="375">
+          <caret line="183" column="5" lean-forward="false" selection-start-line="183" selection-start-column="5" selection-end-line="183" selection-end-column="5" />
           <folding>
-            <marker date="1491246175565" expanded="true" signature="539:699" ph="..." />
-            <marker date="1491246175565" expanded="true" signature="3579:3741" ph="INSERT INTO praticien... " />
-            <marker date="1491246175565" expanded="true" signature="4350:4532" ph="INSERT INTO rapport_visite... " />
-            <marker date="1491246175565" expanded="true" signature="5025:5150" ph="INSERT INTO presenter... " />
-            <marker date="1491246175565" expanded="true" signature="5423:5553" ph="INSERT INTO offrir... " />
+            <marker date="1491246244429" expanded="true" signature="539:699" ph="..." />
+            <marker date="1491246244429" expanded="true" signature="3579:3741" ph="INSERT INTO praticien... " />
+            <marker date="1491246244429" expanded="true" signature="4350:4532" ph="INSERT INTO rapport_visite... " />
+            <marker date="1491246244429" expanded="true" signature="5025:5150" ph="INSERT INTO presenter... " />
+            <marker date="1491246244429" expanded="true" signature="5423:5553" ph="INSERT INTO offrir... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/view/nouveauCR.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="61" column="25" lean-forward="false" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#form#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#7;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#form#0;n#main#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/phpClass/ClassPraticien.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="52" column="1" lean-forward="false" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+          <folding>
+            <marker date="1491246246998" expanded="true" signature="627:745" ph="SELECT * FRO... praticien" />
           </folding>
         </state>
       </provider>

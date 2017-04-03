@@ -59,7 +59,7 @@ require '../phpClass/ClassMedicaments.php';
 								<li class="collection-item">
 									<input name="remplacantAdresse" placeholder="Adresse *" type="text">
 								</li>
-								<li class="collection-item">
+						 		<li class="collection-item">
 									<input name="remplacantVille" placeholder="Ville *" type="text">
 								</li>
 								<li class="collection-item">
