@@ -63,7 +63,7 @@ require '../phpClass/ClassMedicaments.php';
 									<input name="remplacantVille" placeholder="Ville *" type="text">
 								</li>
 								<li class="collection-item">
-									<input name="remplacantCP" placeholder="Code postal *" type="text">
+									<input name="remplacantCP" placeholder="Code postal *" type="number" maxlength="5">
 								</li>
 								<li class="collection-item">
 									<input name="remplacantCoef" placeholder="Coéficien de notoriété *" type="text">

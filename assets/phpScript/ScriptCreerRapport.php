@@ -124,24 +124,26 @@ try
     $bdd->beginTransaction();
 
 
-
     $remplacantId = null;
     if ($praticienEstRemplace)
     {
-
         $remplacantVille = strtoupper($remplacantVille);
 
-        $remplacantId =
-            Praticien::creerPraticien(
-                $remplacantNom,
-                $remplacantPrenom,
-                $remplacantAdresse,
-                $remplacantCP,
-                $remplacantVille,
-                $remplacantCoef,
-                $remplacantTypePra
-            );
+        $nouveauPraticien = $bdd->query('INSERT INTO praticien(PRA_NOM,PRA_PRENOM,PRA_ADRESSE,PRA_CP,PRA_VILLE,PRA_COEFNOTORIETE,TYP_CODE)
+        VALUE (:nom,:prenom,:adresse,:cp,:ville,:coef,:typeCode)');
+        $nouveauPraticien->bindValue(':nom', $remplacantNom);
+        $nouveauPraticien->bindValue(':prenom', $remplacantPrenom);
+        $nouveauPraticien->bindValue(':adresse', $remplacantAdresse);
+        $nouveauPraticien->bindValue(':cp', $remplacantCP);
+        $nouveauPraticien->bindValue(':ville', $remplacantVille);
+        $nouveauPraticien->bindValue(':coef', $remplacantCoef);
+        $nouveauPraticien->bindValue(':typeCode', $remplacantTypePra);
+        $nouveauPraticien->execute();
+
+
+        $remplacantId = $bdd->lastInsertId();
     }
+
 
 #table rapport_visite
     $rapport = $bdd->query('INSERT INTO rapport_visite (VIS_MATRICULE, PRA_NUM,RAP_REMPLACANT, RAP_DATE, RAP_BILAN, RAP_MOTIF)
@@ -187,9 +189,10 @@ try
 }
 catch (PDOException $e)
 {
-    echo "<pre>".$e->getMessage()."</pre>";
+    $errorM = "<pre>" . $e . "<br/>" . $e->getMessage() . "</pre>";
+    $bdd->cancelTransaction();
 }
 finally
 {
-
+    header('Location: ../view/nouveauCR.php?e=2');
 }

@@ -15,11 +15,12 @@ class BDD
     public function __construct()
     {
         $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbname.';charset=utf8';
-        $options = [
+        $options =
+            [
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_AUTOCOMMIT => false,
-        ];
+            ];
 
       try
       {
