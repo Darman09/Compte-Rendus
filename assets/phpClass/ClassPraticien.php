@@ -50,21 +50,7 @@ class Praticien
     }
 
 
-    static function creerPraticien($nom, $prenom, $adresse, $cp, $ville, $coef, $typeCode)
-    {
-        $bdd = new BDD();
-        $nouveauPraticien = $bdd->query('INSERT INTO praticien(PRA_NOM,PRA_PRENOM,PRA_ADRESSE,PRA_CP,PRA_VILLE,PRA_COEFNOTORIETE,TYP_CODE)
-        VALUE (:nom,:prenom,:adresse,:cp,:ville,:coef,:typeCode)');
-        $bdd->bind(':nom', $nom);
-        $bdd->bind(':prenom', $prenom);
-        $bdd->bind(':adresse', $adresse);
-        $bdd->bind(':cp', $cp);
-        $bdd->bind(':ville', $ville);
-        $bdd->bind(':coef', $coef);
-        $bdd->bind(':typeCode', $typeCode);
-        $nouveauPraticien->execute();
-        return $bdd->lastInsertId();
-    }
+
 
 
     public function setTypePraticien($typeCode, $typeLibelle, $typeLieu)
