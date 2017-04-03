@@ -12,12 +12,11 @@
 
 <body>
 <?php include '../inc/sideMenu.inc.php';?>
-
 <main>
     <div class="row">
-        <div class="col l10  offset-l1">
+        <div class="col l10 m10 s10 offset-l1">
             <h5>Pharmacopee</h5>
-            <div class="col l4 m12 s11 offset-s1">
+            <div class="col l5 m6 s12">
                 <input id="recherche" placeholder="Rechercher un médicament"/>
             </div>
         </div>
