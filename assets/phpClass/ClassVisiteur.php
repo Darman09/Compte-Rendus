@@ -11,12 +11,11 @@ class Visiteur
     private $ville;
     private $adresse;
     private $cp;
-    private $dateEmbauche;
 
     private $secteur = null;
     private $labo = null;
 
-    public function __construct($matricule, $nom, $prenom, $ville, $adresse, $cp, $dateEmbauche)
+    public function __construct($matricule, $nom, $prenom, $ville, $adresse, $cp)
     {
         $this->matricule = $matricule;
         $this->nom = $nom;
@@ -24,7 +23,6 @@ class Visiteur
         $this->ville = $ville;
         $this->adresse = $adresse;
         $this->cp = $cp;
-        $this->dateEmbauche = $dateEmbauche;
     }
 
 
@@ -45,8 +43,7 @@ class Visiteur
                 $value['VIS_PRENOM'],
                 $value['VIS_VILLE'],
                 $value['VIS_ADRESSE'],
-                $value['VIS_CP'],
-                $value['VIS_DATEEMBAUCHE']);
+                $value['VIS_CP']);
             $visiteur->setSecteur($value['SEC_CODE'], $value['SEC_LIBELLE']);
             $visiteur->setLabo($value['LAB_CODE'], $value['LAB_NOM'], $value['LAB_CHEFVENTE']);
             $visiteurs[] = $visiteur;
@@ -103,12 +100,6 @@ class Visiteur
     public function getCp()
     {
         return $this->cp;
-    }
-
-    public function getDateEmbauche()
-    {
-        $this->dateEmbauche = substr($this->dateEmbauche, 0, strpos($this->dateEmbauche, " "));
-        return $this->dateEmbauche;
     }
 
 

@@ -67,14 +67,6 @@
                         </li>
                         <li class="collection-item">
                             <h6 class="boldPoppins">
-                                Date d'embauche :
-                                <span class="softPoppins">
-                                <?php echo $value->getDateEmbauche(); ?>
-                            </span>
-                            </h6>
-                        </li>
-                        <li class="collection-item">
-                            <h6 class="boldPoppins">
                                 Labo :
                                 <span class="softPoppins">
                                 <?php echo $value->getLabo()->getLabNom(); ?>
