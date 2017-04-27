@@ -11,8 +11,8 @@ print $loginStatement->getPassword();
 
 if($loginStatement->connexion($mdpPost,$loginPost))
 {
-    header("Location: ../view/nouveauCR.php");
+    header('Location: ../view/nouveauCR.php');
 } else
 {
-    print("Nope");
+    header('Location: ../../index.php?e=1');
 }

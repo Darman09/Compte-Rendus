@@ -22,53 +22,45 @@
         </div>
         <div class="col l7 offset-l1 offset-m0 s12">
             <?php
-            require '../phpScript/ScriptBDD.php';
+           // require '../phpScript/ScriptBDD.php';
             require '../phpClass/ClassRapportVisite.php';
             require '../phpClass/ClassDateManager.php';
             ?>
-            <?php foreach (RapportVisite::getAllRapports() as $value):
-                echo "<pre>";
-                print_r($value);
-                echo "</pre>";
-                ?>
+            <?php foreach (RapportVisite::getAllRapports() as $value): ?>
                 <ul class="collection with-header">
                     <li class="collection-header">
                         <h5 class="nom"> Rapport n°
-                            <?php echo $value->getNumeroRapport(); ?>
+                            <?= $value->getNumeroRapport(); ?>
                         </h5>
                     </li>
                     <li class="collection-item">
                         <h6>
                             <span class="boldPoppins">Date :</span>
-                            <?php
-                            $dateRapport = $value->getDateRapport();
-                            $dateRapport = substr($dateRapport, 0, strrpos($dateRapport, ' '));
-                            echo DateManager::dateAnglaisVersFrancais($dateRapport);
-                            ?>
+                            <?= DateManager::dateAnglaisVersFrancais($value->getDateRapport()); ?>
                         </h6>
                     </li>
                     <li class="collection-item">
                         <h6>
                             <span class="boldPoppins">Praticien :</span>
-                            <?php echo strtoupper($value->getPraticien()->getNom()) . " " . $value->getPraticien()->getPrenom(); ?>
+                            <?= strtoupper($value->getPraticien()->getNom()) . ' ' . $value->getPraticien()->getPrenom(); ?>
                         </h6>
                     </li>
                     <li class="collection-item">
                         <h6>
                             <span class="boldPoppins">Visiteur :</span>
-                            <?php echo strtoupper($value->getVisiteur()->getNom()) . " " . $value->getVisiteur()->getPrenom(); ?>
+                            <?= strtoupper($value->getVisiteur()->getNom()) . ' ' . $value->getVisiteur()->getPrenom(); ?>
                         </h6>
                     </li>
                     <li class="collection-item">
                         <h6>
                             <span class="boldPoppins">Motif :</span>
-                            <?php echo $value->getMotifRapport(); ?>
+                            <?= $value->getMotifRapport(); ?>
                         </h6>
                     </li>
                     <li class="collection-item">
                         <h6>
                             <span class="boldPoppins">Offre :</span>
-                            <?php echo $value->getMotifRapport(); ?>
+                            <?= $value->getMotifRapport(); ?>
                         </h6>
                     </li>
                     <li class="collection-item">
@@ -76,7 +68,7 @@
                             <span class="boldPoppins">Bilan :</span>
                         </h5>
                         <h6>
-                            <?php echo $value->getBilanRapport(); ?>
+                            <?= $value->getBilanRapport(); ?>
                         </h6>
                     </li>
                 </ul>
@@ -84,7 +76,6 @@
             endforeach;
             ?>
         </div>
-
     </div>
 </main>
 

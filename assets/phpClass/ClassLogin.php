@@ -33,16 +33,8 @@ class Login
             session_start();
             $_SESSION['id'] = $this->matriculeVisiteur;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
+    
 }

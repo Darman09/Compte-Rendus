@@ -190,9 +190,10 @@ try
 catch (PDOException $e)
 {
     $errorM = "<pre>" . $e . "<br/>" . $e->getMessage() . "</pre>";
+    echo $errorM;
     $bdd->cancelTransaction();
 }
 finally
 {
-    header('Location: ../view/nouveauCR.php?e=2');
+   //    header('Location: ../view/nouveauCR.php?e=2');
 }

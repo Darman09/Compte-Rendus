@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col l7 offset-l1 offset-m0 s12">
                 <?php
-                  require '../phpScript/ScriptBDD.php';
+                  //require '../phpScript/ScriptBDD.php';
                   require '../inc/getAllPraticien.inc.php';
                 ?>
                 </div>

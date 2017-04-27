@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <?php
-require '../phpScript/ScriptBDD.php';
+//require '../phpScript/ScriptBDD.php';
 require '../phpClass/ClassMedicaments.php';
 ?>
 <html>
