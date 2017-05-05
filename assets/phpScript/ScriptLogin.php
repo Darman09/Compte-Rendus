@@ -7,7 +7,6 @@ $loginPost = $_POST['login'];
 $mdpPost = $_POST['mdp'];
 
 $loginStatement = new Login($loginPost);
-print $loginStatement->getPassword();
 
 if($loginStatement->connexion($mdpPost,$loginPost))
 {
