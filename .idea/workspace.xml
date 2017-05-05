@@ -2,20 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="1da299e4-1f45-43cc-b652-0a081aaf3ccc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/phpClass/ClassUser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/inc/sideMenu.inc.php" afterPath="$PROJECT_DIR$/assets/inc/sideMenu.inc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/phpClass/ClassLogin.php" afterPath="$PROJECT_DIR$/assets/phpClass/ClassLogin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/inc/listProduit.inc.php" afterPath="$PROJECT_DIR$/assets/inc/listProduit.inc.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/phpClass/ClassBDD.php" afterPath="$PROJECT_DIR$/assets/phpClass/ClassBDD.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/phpScript/ScriptBDD.php" afterPath="$PROJECT_DIR$/assets/phpScript/ScriptBDD.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/phpScript/ScriptCreerRapport.php" afterPath="$PROJECT_DIR$/assets/phpScript/ScriptCreerRapport.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/phpScript/ScriptLogin.php" afterPath="$PROJECT_DIR$/assets/phpScript/ScriptLogin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/sql/comptesrendus.sql" afterPath="$PROJECT_DIR$/assets/sql/comptesrendus.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/view/autreVisiteurCR.php" afterPath="$PROJECT_DIR$/assets/view/autreVisiteurCR.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/view/consulterCR.php" afterPath="$PROJECT_DIR$/assets/view/consulterCR.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/view/medicament.php" afterPath="$PROJECT_DIR$/assets/view/medicament.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/view/nouveauCR.php" afterPath="$PROJECT_DIR$/assets/view/nouveauCR.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/view/praticienCR.php" afterPath="$PROJECT_DIR$/assets/view/praticienCR.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,73 +54,77 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ClassVisiteur.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/phpClass/ClassVisiteur.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding>
-                <marker date="1493330946239" expanded="true" signature="634:843" ph="SELECT * FRO... visiteur" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="consulterCR.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/view/consulterCR.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
+            <state relative-caret-position="768">
               <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScriptCreerRapport.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ScriptCreerRapport.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/phpScript/ScriptCreerRapport.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="197" column="8" lean-forward="false" selection-start-line="197" selection-start-column="8" selection-end-line="197" selection-end-column="8" />
+            <state relative-caret-position="224">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
-                <marker date="1493334298190" expanded="true" signature="3579:3741" ph="INSERT INTO praticien... " />
-                <marker date="1493334298190" expanded="true" signature="4350:4532" ph="INSERT INTO rapport_visite... " />
-                <marker date="1493334298190" expanded="true" signature="5025:5150" ph="INSERT INTO presenter... " />
-                <marker date="1493334298190" expanded="true" signature="5423:5553" ph="INSERT INTO offrir... " />
+                <marker date="1493976895958" expanded="true" signature="3627:3789" ph="INSERT INTO praticien... " />
+                <marker date="1493976895958" expanded="true" signature="4398:4580" ph="INSERT INTO rapport_visite... " />
+                <marker date="1493976895958" expanded="true" signature="5078:5203" ph="INSERT INTO presenter... " />
+                <marker date="1493976895958" expanded="true" signature="5476:5606" ph="INSERT INTO offrir... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClassUser.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/phpClass/ClassUser.php">
+      <file leaf-file-name="ClassBDD.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/phpClass/ClassBDD.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding>
-                <marker date="1493333875077" expanded="true" signature="318:624" ph="SELECT VIS_M... visiteur" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="autreVisiteurCR.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/view/autreVisiteurCR.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+            <state relative-caret-position="256">
+              <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sideMenu.inc.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/inc/sideMenu.inc.php">
+      <file leaf-file-name="c_BDD.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../ppefrais/assets/php.class/c_BDD.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-              <folding>
-                <marker date="1493333875061" expanded="true" signature="182:847" ph="..." />
-              </folding>
+            <state relative-caret-position="576">
+              <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScriptBDD.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/phpScript/ScriptBDD.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listProduit.inc.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/inc/listProduit.inc.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScriptLogin.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/phpScript/ScriptLogin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -134,7 +132,7 @@
       <file leaf-file-name="medicament.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/view/medicament.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
+            <state relative-caret-position="832">
               <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
               <folding />
             </state>
@@ -144,7 +142,7 @@
       <file leaf-file-name="nouveauCR.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/view/nouveauCR.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-608">
+            <state relative-caret-position="64">
               <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
               <folding />
             </state>
@@ -154,7 +152,7 @@
       <file leaf-file-name="praticienCR.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/view/praticienCR.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
+            <state relative-caret-position="800">
               <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
               <folding />
             </state>
@@ -196,6 +194,7 @@
       <find>;</find>
       <find>$value-&gt;getDateRapport()²</find>
       <find>doc</find>
+      <find>b13</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;?=</replace>
@@ -209,7 +208,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assets/phpScript/ScriptBDD.php" />
         <option value="$PROJECT_DIR$/../ppefrais/assets/php.script/s_mdpToHash.php" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/assets/phpScript/ScriptMdpToHash.php" />
@@ -226,7 +224,6 @@
         <option value="$PROJECT_DIR$/assets/phpClass/ClassSecteur.php" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassDateManager.php" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassCompteRendu.php" />
-        <option value="$PROJECT_DIR$/assets/inc/listProduit.inc.php" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassMedicaments.php" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassPresenter.php" />
         <option value="$PROJECT_DIR$/assets/css/main.css" />
@@ -236,10 +233,8 @@
         <option value="$PROJECT_DIR$/assets/js/main.js" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassOffrir.php" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassRapportVisite.php" />
-        <option value="$PROJECT_DIR$/assets/phpClass/ClassBDD.php" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassPraticien.php" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassVisiteur.php" />
-        <option value="$PROJECT_DIR$/assets/phpScript/ScriptLogin.php" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassLogin.php" />
         <option value="$PROJECT_DIR$/assets/view/autreVisiteurCR.php" />
         <option value="$PROJECT_DIR$/assets/phpClass/ClassUser.php" />
@@ -248,8 +243,13 @@
         <option value="$PROJECT_DIR$/assets/view/nouveauCR.php" />
         <option value="$PROJECT_DIR$/assets/view/praticienCR.php" />
         <option value="$PROJECT_DIR$/assets/view/consulterCR.php" />
-        <option value="$PROJECT_DIR$/assets/phpScript/ScriptCreerRapport.php" />
         <option value="$PROJECT_DIR$/assets/sql/comptesrendus.sql" />
+        <option value="$PROJECT_DIR$/assets/inc/listProduit.inc.php" />
+        <option value="$PROJECT_DIR$/assets/phpScript/ScriptLogin.php" />
+        <option value="$PROJECT_DIR$/assets/phpScript/ScriptCreerRapport.php" />
+        <option value="$PROJECT_DIR$/assets/phpScript/ScriptBDD.php" />
+        <option value="$PROJECT_DIR$/../ppefrais/assets/php.class/c_BDD.php" />
+        <option value="$PROJECT_DIR$/assets/phpClass/ClassBDD.php" />
       </list>
     </option>
   </component>
@@ -399,8 +399,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -570,7 +570,9 @@
       <workItem from="1492677130941" duration="60000" />
       <workItem from="1493330918716" duration="208000" />
       <workItem from="1493331148552" duration="79000" />
-      <workItem from="1493331473077" duration="2949000" />
+      <workItem from="1493331473077" duration="3281000" />
+      <workItem from="1493378806261" duration="27000" />
+      <workItem from="1493975830720" duration="2056000" />
     </task>
     <task id="LOCAL-00001" summary="Consultation 80%">
       <created>1489701265890</created>
@@ -691,11 +693,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493330950258</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="user class et fix">
+      <created>1493334449396</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1493334449396</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185095000" />
+    <option name="totallyTimeSpent" value="187510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -712,7 +721,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14756757" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15297297" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19081081" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -774,7 +783,8 @@
     <MESSAGE value="nouveaux CR, partial bug" />
     <MESSAGE value="fix" />
     <MESSAGE value="sdfsdf" />
-    <option name="LAST_COMMIT_MESSAGE" value="sdfsdf" />
+    <MESSAGE value="user class et fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="user class et fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -790,7 +800,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/phpClass/ClassPracticien.php" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -874,13 +883,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/inc/listProduit.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="27" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/materialize.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-16244">
@@ -918,25 +920,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/phpClass/ClassBDD.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="925">
-          <caret line="133" column="7" lean-forward="false" selection-start-line="133" selection-start-column="7" selection-end-line="133" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/PDO/PDO.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="999" column="20" lean-forward="false" selection-start-line="999" selection-start-column="20" selection-end-line="999" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/phpScript/ScriptBDD.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -958,7 +945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -970,12 +956,13 @@
           <nodes />
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="612.0" y="381.5" />
+          <settings layout="Hierarchic Group" zoom="1.0" x="612.0" y="382.0" />
           <SelectedNodes />
           <Categories>
-            <Category>Key columns</Category>
             <Category>Columns</Category>
+            <Category>Key columns</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
@@ -983,9 +970,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3065">
           <caret line="101" column="101" lean-forward="false" selection-start-line="101" selection-start-column="101" selection-end-line="101" selection-end-column="101" />
-          <folding>
-            <marker date="1493330849550" expanded="true" signature="747:1256" ph="SELECT RAP.*... rapport_visite" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -993,9 +977,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <marker date="1493330946239" expanded="true" signature="634:843" ph="SELECT * FRO... visiteur" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1003,7 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="4" column="6" lean-forward="false" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1011,9 +991,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-          <folding>
-            <marker date="1493331215528" expanded="true" signature="414:521" ph="select nom, utilisateur" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1021,7 +998,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
           <caret line="2" column="33" lean-forward="true" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1029,17 +1005,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1056">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1493331215528" expanded="true" signature="318:389" ph="select login... utilisateur" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/phpScript/ScriptLogin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1057,13 +1022,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/phpClass/ClassUser.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
+        <state relative-caret-position="800">
           <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
             <marker date="1493333875077" expanded="true" signature="318:624" ph="SELECT VIS_M... visiteur" />
@@ -1073,7 +1037,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/view/autreVisiteurCR.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
+        <state relative-caret-position="800">
           <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
           <folding />
         </state>
@@ -1083,15 +1047,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="3" column="42" lean-forward="false" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
-          <folding>
-            <marker date="1493333875061" expanded="true" signature="182:847" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/view/medicament.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
+        <state relative-caret-position="832">
           <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
           <folding />
         </state>
@@ -1099,7 +1061,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/view/praticienCR.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="800">
           <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
           <folding />
         </state>
@@ -1107,7 +1069,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/view/nouveauCR.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-608">
+        <state relative-caret-position="64">
           <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
           <folding />
         </state>
@@ -1115,7 +1077,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/view/consulterCR.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
+        <state relative-caret-position="768">
           <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
           <folding />
         </state>
@@ -1125,20 +1087,59 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="432" column="25" lean-forward="false" selection-start-line="432" selection-start-column="25" selection-end-line="432" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/phpScript/ScriptLogin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/inc/listProduit.inc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/phpScript/ScriptCreerRapport.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="197" column="8" lean-forward="false" selection-start-line="197" selection-start-column="8" selection-end-line="197" selection-end-column="8" />
+        <state relative-caret-position="224">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <marker date="1493334298190" expanded="true" signature="3579:3741" ph="INSERT INTO praticien... " />
-            <marker date="1493334298190" expanded="true" signature="4350:4532" ph="INSERT INTO rapport_visite... " />
-            <marker date="1493334298190" expanded="true" signature="5025:5150" ph="INSERT INTO presenter... " />
-            <marker date="1493334298190" expanded="true" signature="5423:5553" ph="INSERT INTO offrir... " />
+            <marker date="1493976895958" expanded="true" signature="3627:3789" ph="INSERT INTO praticien... " />
+            <marker date="1493976895958" expanded="true" signature="4398:4580" ph="INSERT INTO rapport_visite... " />
+            <marker date="1493976895958" expanded="true" signature="5078:5203" ph="INSERT INTO presenter... " />
+            <marker date="1493976895958" expanded="true" signature="5476:5606" ph="INSERT INTO offrir... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/phpScript/ScriptBDD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ppefrais/assets/php.class/c_BDD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/phpClass/ClassBDD.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.5.5.1
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 02 Avril 2017 à 21:05
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
+-- Généré le :  Ven 05 Mai 2017 à 09:57
+-- Version du serveur :  5.7.11
+-- Version de PHP :  5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `comptesrendus`
@@ -26,14 +26,13 @@ SET time_zone = "+00:00";
 -- Structure de la table `activite_compl`
 --
 
-CREATE TABLE IF NOT EXISTS `activite_compl` (
-  `AC_NUM` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `activite_compl` (
+  `AC_NUM` int(11) NOT NULL,
   `AC_DATE` datetime DEFAULT NULL,
   `AC_LIEU` varchar(25) DEFAULT NULL,
   `AC_THEME` varchar(10) DEFAULT NULL,
-  `AC_MOTIF` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`AC_NUM`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `AC_MOTIF` varchar(50) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -41,10 +40,9 @@ CREATE TABLE IF NOT EXISTS `activite_compl` (
 -- Structure de la table `composant`
 --
 
-CREATE TABLE IF NOT EXISTS `composant` (
+CREATE TABLE `composant` (
   `CMP_CODE` varchar(4) NOT NULL,
-  `CMP_LIBELLE` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`CMP_CODE`)
+  `CMP_LIBELLE` varchar(25) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -53,13 +51,10 @@ CREATE TABLE IF NOT EXISTS `composant` (
 -- Structure de la table `constituer`
 --
 
-CREATE TABLE IF NOT EXISTS `constituer` (
+CREATE TABLE `constituer` (
   `MED_DEPOTLEGAL` varchar(10) NOT NULL,
   `CMP_CODE` varchar(4) NOT NULL,
-  `CST_QTE` float DEFAULT NULL,
-  PRIMARY KEY (`MED_DEPOTLEGAL`,`CMP_CODE`),
-  KEY `MED_DEPOTLEGAL` (`MED_DEPOTLEGAL`),
-  KEY `CMP_CODE` (`CMP_CODE`)
+  `CST_QTE` float DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -68,11 +63,10 @@ CREATE TABLE IF NOT EXISTS `constituer` (
 -- Structure de la table `dosage`
 --
 
-CREATE TABLE IF NOT EXISTS `dosage` (
+CREATE TABLE `dosage` (
   `DOS_CODE` varchar(10) NOT NULL,
   `DOS_QUANTITE` varchar(10) DEFAULT NULL,
-  `DOS_UNITE` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`DOS_CODE`)
+  `DOS_UNITE` varchar(10) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -81,10 +75,9 @@ CREATE TABLE IF NOT EXISTS `dosage` (
 -- Structure de la table `famille`
 --
 
-CREATE TABLE IF NOT EXISTS `famille` (
+CREATE TABLE `famille` (
   `FAM_CODE` varchar(3) NOT NULL,
-  `FAM_LIBELLE` varchar(80) DEFAULT NULL,
-  PRIMARY KEY (`FAM_CODE`)
+  `FAM_LIBELLE` varchar(80) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -94,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `famille` (
 INSERT INTO `famille` (`FAM_CODE`, `FAM_LIBELLE`) VALUES
 ('AA', 'Antalgiques en association'),
 ('AAA', 'Antalgiques antipyrétiques en association'),
-('AAC', 'Antidépresseur d''action centrale'),
+('AAC', 'Antidépresseur d\'action centrale'),
 ('AAH', 'Antivertigineux antihistaminique H1'),
 ('ABA', 'Antibiotique antituberculeux'),
 ('ABC', 'Antibiotique antiacnéique local'),
@@ -119,12 +112,9 @@ INSERT INTO `famille` (`FAM_CODE`, `FAM_LIBELLE`) VALUES
 -- Structure de la table `formuler`
 --
 
-CREATE TABLE IF NOT EXISTS `formuler` (
+CREATE TABLE `formuler` (
   `MED_DEPOTLEGAL` varchar(10) NOT NULL,
-  `PRE_CODE` varchar(2) NOT NULL,
-  PRIMARY KEY (`MED_DEPOTLEGAL`,`PRE_CODE`),
-  KEY `MED_DEPOTLEGAL` (`MED_DEPOTLEGAL`),
-  KEY `PRE_CODE` (`PRE_CODE`)
+  `PRE_CODE` varchar(2) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -133,12 +123,9 @@ CREATE TABLE IF NOT EXISTS `formuler` (
 -- Structure de la table `interagir`
 --
 
-CREATE TABLE IF NOT EXISTS `interagir` (
+CREATE TABLE `interagir` (
   `MED_PERTURBATEUR` varchar(10) NOT NULL,
-  `MED_MED_PERTURBE` varchar(10) NOT NULL,
-  PRIMARY KEY (`MED_PERTURBATEUR`,`MED_MED_PERTURBE`),
-  KEY `MED_MED_PERTURBE` (`MED_MED_PERTURBE`),
-  KEY `MED_PERTURBATEUR` (`MED_PERTURBATEUR`)
+  `MED_MED_PERTURBE` varchar(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -147,13 +134,10 @@ CREATE TABLE IF NOT EXISTS `interagir` (
 -- Structure de la table `inviter`
 --
 
-CREATE TABLE IF NOT EXISTS `inviter` (
+CREATE TABLE `inviter` (
   `AC_NUM` int(11) NOT NULL,
   `PRA_NUM` int(11) NOT NULL,
-  `SPECIALISTEON` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`AC_NUM`,`PRA_NUM`),
-  KEY `AC_NUM` (`AC_NUM`),
-  KEY `PRA_NUM` (`PRA_NUM`)
+  `SPECIALISTEON` tinyint(1) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -162,11 +146,10 @@ CREATE TABLE IF NOT EXISTS `inviter` (
 -- Structure de la table `labo`
 --
 
-CREATE TABLE IF NOT EXISTS `labo` (
+CREATE TABLE `labo` (
   `LAB_CODE` varchar(2) NOT NULL,
   `LAB_NOM` varchar(10) DEFAULT NULL,
-  `LAB_CHEFVENTE` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`LAB_CODE`)
+  `LAB_CHEFVENTE` varchar(20) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -184,16 +167,14 @@ INSERT INTO `labo` (`LAB_CODE`, `LAB_NOM`, `LAB_CHEFVENTE`) VALUES
 -- Structure de la table `medicament`
 --
 
-CREATE TABLE IF NOT EXISTS `medicament` (
+CREATE TABLE `medicament` (
   `MED_DEPOTLEGAL` varchar(10) NOT NULL,
   `MED_NOMCOMMERCIAL` varchar(25) DEFAULT NULL,
   `FAM_CODE` varchar(3) NOT NULL,
   `MED_COMPOSITION` varchar(255) DEFAULT NULL,
   `MED_EFFETS` varchar(255) DEFAULT NULL,
   `MED_CONTREINDIC` varchar(255) DEFAULT NULL,
-  `MED_PRIXECHANTILLON` float DEFAULT NULL,
-  PRIMARY KEY (`MED_DEPOTLEGAL`),
-  KEY `FAM_CODE` (`FAM_CODE`)
+  `MED_PRIXECHANTILLON` float DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -201,34 +182,34 @@ CREATE TABLE IF NOT EXISTS `medicament` (
 --
 
 INSERT INTO `medicament` (`MED_DEPOTLEGAL`, `MED_NOMCOMMERCIAL`, `FAM_CODE`, `MED_COMPOSITION`, `MED_EFFETS`, `MED_CONTREINDIC`, `MED_PRIXECHANTILLON`) VALUES
-('3MYC7', 'TRIMYCINE', 'CRT', 'Triamcinolone (acétonide) + Néomycine + Nystatine', 'Ce médicament est un corticoïde à  activité forte ou très forte associé à  un antibiotique et un antifongique, utilisé en application locale dans certaines atteintes cutanées surinfectées.', 'Ce médicament est contre-indiqué en cas d''allergie à  l''un des constituants, d''infections de la peau ou de parasitisme non traités, d''acné. Ne pas appliquer sur une plaie, ni sous un pansement occlusif.', NULL),
-('ADIMOL9', 'ADIMOL', 'ABP', 'Amoxicilline + Acide clavulanique', 'Ce médicament, plus puissant que les pénicillines simples, est utilisé pour traiter des infections bactériennes spécifiques.', 'Ce médicament est contre-indiqué en cas d''allergie aux pénicillines ou aux céphalosporines.', NULL),
-('AMOPIL7', 'AMOPIL', 'ABP', 'Amoxicilline', 'Ce médicament, plus puissant que les pénicillines simples, est utilisé pour traiter des infections bactériennes spécifiques.', 'Ce médicament est contre-indiqué en cas d''allergie aux pénicillines. Il doit être administré avec prudence en cas d''allergie aux céphalosporines.', NULL),
+('3MYC7', 'TRIMYCINE', 'CRT', 'Triamcinolone (acétonide) + Néomycine + Nystatine', 'Ce médicament est un corticoïde à  activité forte ou très forte associé à  un antibiotique et un antifongique, utilisé en application locale dans certaines atteintes cutanées surinfectées.', 'Ce médicament est contre-indiqué en cas d\'allergie à  l\'un des constituants, d\'infections de la peau ou de parasitisme non traités, d\'acné. Ne pas appliquer sur une plaie, ni sous un pansement occlusif.', NULL),
+('ADIMOL9', 'ADIMOL', 'ABP', 'Amoxicilline + Acide clavulanique', 'Ce médicament, plus puissant que les pénicillines simples, est utilisé pour traiter des infections bactériennes spécifiques.', 'Ce médicament est contre-indiqué en cas d\'allergie aux pénicillines ou aux céphalosporines.', NULL),
+('AMOPIL7', 'AMOPIL', 'ABP', 'Amoxicilline', 'Ce médicament, plus puissant que les pénicillines simples, est utilisé pour traiter des infections bactériennes spécifiques.', 'Ce médicament est contre-indiqué en cas d\'allergie aux pénicillines. Il doit être administré avec prudence en cas d\'allergie aux céphalosporines.', NULL),
 ('AMOX45', 'AMOXAR', 'ABP', 'Amoxicilline', 'Ce médicament, plus puissant que les pénicillines simples, est utilisé pour traiter des infections bactériennes spécifiques.', 'La prise de ce médicament peut rendre positifs les tests de dépistage du dopage.', NULL),
-('AMOXIG12', 'AMOXI Gé', 'ABP', 'Amoxicilline', 'Ce médicament, plus puissant que les pénicillines simples, est utilisé pour traiter des infections bactériennes spécifiques.', 'Ce médicament est contre-indiqué en cas d''allergie aux pénicillines. Il doit être administré avec prudence en cas d''allergie aux céphalosporines.', NULL),
-('APATOUX22', 'APATOUX Vitamine C', 'ALO', 'Tyrothricine + Tétracaïne + Acide ascorbique (Vitamine C)', 'Ce médicament est utilisé pour traiter les affections de la bouche et de la gorge.', 'Ce médicament est contre-indiqué en cas d''allergie à  l''un des constituants, en cas de phénylcétonurie et chez l''enfant de moins de 6 ans.', NULL),
-('BACTIG10', 'BACTIGEL', 'ABC', 'Erythromycine', 'Ce médicament est utilisé en application locale pour traiter l''acné et les infections cutanées bactériennes associées.', 'Ce médicament est contre-indiqué en cas d''allergie aux antibiotiques de la famille des macrolides ou des lincosanides.', NULL),
-('BACTIV13', 'BACTIVIL', 'AFM', 'Erythromycine', 'Ce médicament est utilisé pour traiter des infections bactériennes spécifiques.', 'Ce médicament est contre-indiqué en cas d''allergie aux macrolides (dont le chef de file est l''érythromycine).', NULL),
-('BITALV', 'BIVALIC', 'AAA', 'Dextropropoxyphène + Paracétamol', 'Ce médicament est utilisé pour traiter les douleurs d''intensité modérée ou intense.', 'Ce médicament est contre-indiqué en cas d''allergie aux médicaments de cette famille, d''insuffisance hépatique ou d''insuffisance rénale.', NULL),
-('CARTION6', 'CARTION', 'AAA', 'Acide acétylsalicylique (aspirine) + Acide ascorbique (Vitamine C) + Paracétamol', 'Ce médicament est utilisé dans le traitement symptomatique de la douleur ou de la fièvre.', 'Ce médicament est contre-indiqué en cas de troubles de la coagulation (tendances aux hémorragies), d''ulcère gastroduodénal, maladies graves du foie.', NULL),
-('CLAZER6', 'CLAZER', 'AFM', 'Clarithromycine', 'Ce médicament est utilisé pour traiter des infections bactériennes spécifiques. Il est également utilisé dans le traitement de l''ulcère gastro-duodénal, en association avec d''autres médicaments.', 'Ce médicament est contre-indiqué en cas d''allergie aux macrolides (dont le chef de file est l''érythromycine).', NULL),
-('DEPRIL9', 'DEPRAMIL', 'AIM', 'Clomipramine', 'Ce médicament est utilisé pour traiter les épisodes dépressifs sévères, certaines douleurs rebelles, les troubles obsessionnels compulsifs et certaines énurésies chez l''enfant.', 'Ce médicament est contre-indiqué en cas de glaucome ou d''adénome de la prostate, d''infarctus récent, ou si vous avez reà§u un traitement par IMAO durant les 2 semaines précédentes ou en cas d''allergie aux antidépresseurs imipraminiques.', NULL),
-('DIMIRTAM6', 'DIMIRTAM', 'AAC', 'Mirtazapine', 'Ce médicament est utilisé pour traiter les épisodes dépressifs sévères.', 'La prise de ce produit est contre-indiquée en cas de d''allergie à  l''un des constituants.', NULL),
-('DOLRIL7', 'DOLORIL', 'AAA', 'Acide acétylsalicylique (aspirine) + Acide ascorbique (Vitamine C) + Paracétamol', 'Ce médicament est utilisé dans le traitement symptomatique de la douleur ou de la fièvre.', 'Ce médicament est contre-indiqué en cas d''allergie au paracétamol ou aux salicylates.', NULL),
-('DORNOM8', 'NORMADOR', 'HYP', 'Doxylamine', 'Ce médicament est utilisé pour traiter l''insomnie chez l''adulte.', 'Ce médicament est contre-indiqué en cas de glaucome, de certains troubles urinaires (rétention urinaire) et chez l''enfant de moins de 15 ans.', NULL),
-('EQUILARX6', 'EQUILAR', 'AAH', 'Méclozine', 'Ce médicament est utilisé pour traiter les vertiges et pour prévenir le mal des transports.', 'Ce médicament ne doit pas être utilisé en cas d''allergie au produit, en cas de glaucome ou de rétention urinaire.', NULL),
-('EVILR7', 'EVEILLOR', 'PSA', 'Adrafinil', 'Ce médicament est utilisé pour traiter les troubles de la vigilance et certains symptomes neurologiques chez le sujet agé.', 'Ce médicament est contre-indiqué en cas d''allergie à  l''un des constituants.', NULL),
-('INSXT5', 'INSECTIL', 'AH', 'Diphénydramine', 'Ce médicament est utilisé en application locale sur les piqûres d''insecte et l''urticaire.', 'Ce médicament est contre-indiqué en cas d''allergie aux antihistaminiques.', NULL),
-('JOVAI8', 'JOVENIL', 'AFM', 'Josamycine', 'Ce médicament est utilisé pour traiter des infections bactériennes spécifiques.', 'Ce médicament est contre-indiqué en cas d''allergie aux macrolides (dont le chef de file est l''érythromycine).', NULL),
-('LIDOXY23', 'LIDOXYTRACINE', 'AFC', 'Oxytétracycline +Lidocaïne', 'Ce médicament est utilisé en injection intramusculaire pour traiter certaines infections spécifiques.', 'Ce médicament est contre-indiqué en cas d''allergie à  l''un des constituants. Il ne doit pas être associé aux rétinoïdes.', NULL),
-('LITHOR12', 'LITHORINE', 'AP', 'Lithium', 'Ce médicament est indiqué dans la prévention des psychoses maniaco-dépressives ou pour traiter les états maniaques.', 'Ce médicament ne doit pas être utilisé si vous êtes allergique au lithium. Avant de prendre ce traitement, signalez à  votre médecin traitant si vous souffrez d''insuffisance rénale, ou si vous avez un régime sans sel.', NULL),
-('PARMOL16', 'PARMOCODEINE', 'AA', 'Codéine + Paracétamol', 'Ce médicament est utilisé pour le traitement des douleurs lorsque des antalgiques simples ne sont pas assez efficaces.', 'Ce médicament est contre-indiqué en cas d''allergie à  l''un des constituants, chez l''enfant de moins de 15 Kg, en cas d''insuffisance hépatique ou respiratoire, d''asthme, de phénylcétonurie et chez la femme qui allaite.', NULL),
-('PHYSOI8', 'PHYSICOR', 'PSA', 'Sulbutiamine', 'Ce médicament est utilisé pour traiter les baisses d''activité physique ou psychique, souvent dans un contexte de dépression.', 'Ce médicament est contre-indiqué en cas d''allergie à  l''un des constituants.', NULL),
-('PIRIZ8', 'PIRIZAN', 'ABA', 'Pyrazinamide', 'Ce médicament est utilisé, en association à  d''autres antibiotiques, pour traiter la tuberculose.', 'Ce médicament est contre-indiqué en cas d''allergie à  l''un des constituants, d''insuffisance rénale ou hépatique, d''hyperuricémie ou de porphyrie.', NULL),
-('POMDI20', 'POMADINE', 'AO', 'Bacitracine', 'Ce médicament est utilisé pour traiter les infections oculaires de la surface de l''oeil.', 'Ce médicament est contre-indiqué en cas d''allergie aux antibiotiques appliqués localement.', NULL),
-('TROXT21', 'TROXADET', 'AIN', 'Paroxétine', 'Ce médicament est utilisé pour traiter la dépression et les troubles obsessionnels compulsifs. Il peut également être utilisé en prévention des crises de panique avec ou sans agoraphobie.', 'Ce médicament est contre-indiqué en cas d''allergie au produit.', NULL),
-('TXISOL22', 'TOUXISOL Vitamine C', 'ALO', 'Tyrothricine + Acide ascorbique (Vitamine C)', 'Ce médicament est utilisé pour traiter les affections de la bouche et de la gorge.', 'Ce médicament est contre-indiqué en cas d''allergie à  l''un des constituants et chez l''enfant de moins de 6 ans.', NULL),
-('URIEG6', 'URIREGUL', 'AUM', 'Fosfomycine trométamol', 'Ce médicament est utilisé pour traiter les infections urinaires simples chez la femme de moins de 65 ans.', 'La prise de ce médicament est contre-indiquée en cas d''allergie à  l''un des constituants et d''insuffisance rénale.', NULL);
+('AMOXIG12', 'AMOXI Gé', 'ABP', 'Amoxicilline', 'Ce médicament, plus puissant que les pénicillines simples, est utilisé pour traiter des infections bactériennes spécifiques.', 'Ce médicament est contre-indiqué en cas d\'allergie aux pénicillines. Il doit être administré avec prudence en cas d\'allergie aux céphalosporines.', NULL),
+('APATOUX22', 'APATOUX Vitamine C', 'ALO', 'Tyrothricine + Tétracaïne + Acide ascorbique (Vitamine C)', 'Ce médicament est utilisé pour traiter les affections de la bouche et de la gorge.', 'Ce médicament est contre-indiqué en cas d\'allergie à  l\'un des constituants, en cas de phénylcétonurie et chez l\'enfant de moins de 6 ans.', NULL),
+('BACTIG10', 'BACTIGEL', 'ABC', 'Erythromycine', 'Ce médicament est utilisé en application locale pour traiter l\'acné et les infections cutanées bactériennes associées.', 'Ce médicament est contre-indiqué en cas d\'allergie aux antibiotiques de la famille des macrolides ou des lincosanides.', NULL),
+('BACTIV13', 'BACTIVIL', 'AFM', 'Erythromycine', 'Ce médicament est utilisé pour traiter des infections bactériennes spécifiques.', 'Ce médicament est contre-indiqué en cas d\'allergie aux macrolides (dont le chef de file est l\'érythromycine).', NULL),
+('BITALV', 'BIVALIC', 'AAA', 'Dextropropoxyphène + Paracétamol', 'Ce médicament est utilisé pour traiter les douleurs d\'intensité modérée ou intense.', 'Ce médicament est contre-indiqué en cas d\'allergie aux médicaments de cette famille, d\'insuffisance hépatique ou d\'insuffisance rénale.', NULL),
+('CARTION6', 'CARTION', 'AAA', 'Acide acétylsalicylique (aspirine) + Acide ascorbique (Vitamine C) + Paracétamol', 'Ce médicament est utilisé dans le traitement symptomatique de la douleur ou de la fièvre.', 'Ce médicament est contre-indiqué en cas de troubles de la coagulation (tendances aux hémorragies), d\'ulcère gastroduodénal, maladies graves du foie.', NULL),
+('CLAZER6', 'CLAZER', 'AFM', 'Clarithromycine', 'Ce médicament est utilisé pour traiter des infections bactériennes spécifiques. Il est également utilisé dans le traitement de l\'ulcère gastro-duodénal, en association avec d\'autres médicaments.', 'Ce médicament est contre-indiqué en cas d\'allergie aux macrolides (dont le chef de file est l\'érythromycine).', NULL),
+('DEPRIL9', 'DEPRAMIL', 'AIM', 'Clomipramine', 'Ce médicament est utilisé pour traiter les épisodes dépressifs sévères, certaines douleurs rebelles, les troubles obsessionnels compulsifs et certaines énurésies chez l\'enfant.', 'Ce médicament est contre-indiqué en cas de glaucome ou d\'adénome de la prostate, d\'infarctus récent, ou si vous avez reà§u un traitement par IMAO durant les 2 semaines précédentes ou en cas d\'allergie aux antidépresseurs imipraminiques.', NULL),
+('DIMIRTAM6', 'DIMIRTAM', 'AAC', 'Mirtazapine', 'Ce médicament est utilisé pour traiter les épisodes dépressifs sévères.', 'La prise de ce produit est contre-indiquée en cas de d\'allergie à  l\'un des constituants.', NULL),
+('DOLRIL7', 'DOLORIL', 'AAA', 'Acide acétylsalicylique (aspirine) + Acide ascorbique (Vitamine C) + Paracétamol', 'Ce médicament est utilisé dans le traitement symptomatique de la douleur ou de la fièvre.', 'Ce médicament est contre-indiqué en cas d\'allergie au paracétamol ou aux salicylates.', NULL),
+('DORNOM8', 'NORMADOR', 'HYP', 'Doxylamine', 'Ce médicament est utilisé pour traiter l\'insomnie chez l\'adulte.', 'Ce médicament est contre-indiqué en cas de glaucome, de certains troubles urinaires (rétention urinaire) et chez l\'enfant de moins de 15 ans.', NULL),
+('EQUILARX6', 'EQUILAR', 'AAH', 'Méclozine', 'Ce médicament est utilisé pour traiter les vertiges et pour prévenir le mal des transports.', 'Ce médicament ne doit pas être utilisé en cas d\'allergie au produit, en cas de glaucome ou de rétention urinaire.', NULL),
+('EVILR7', 'EVEILLOR', 'PSA', 'Adrafinil', 'Ce médicament est utilisé pour traiter les troubles de la vigilance et certains symptomes neurologiques chez le sujet agé.', 'Ce médicament est contre-indiqué en cas d\'allergie à  l\'un des constituants.', NULL),
+('INSXT5', 'INSECTIL', 'AH', 'Diphénydramine', 'Ce médicament est utilisé en application locale sur les piqûres d\'insecte et l\'urticaire.', 'Ce médicament est contre-indiqué en cas d\'allergie aux antihistaminiques.', NULL),
+('JOVAI8', 'JOVENIL', 'AFM', 'Josamycine', 'Ce médicament est utilisé pour traiter des infections bactériennes spécifiques.', 'Ce médicament est contre-indiqué en cas d\'allergie aux macrolides (dont le chef de file est l\'érythromycine).', NULL),
+('LIDOXY23', 'LIDOXYTRACINE', 'AFC', 'Oxytétracycline +Lidocaïne', 'Ce médicament est utilisé en injection intramusculaire pour traiter certaines infections spécifiques.', 'Ce médicament est contre-indiqué en cas d\'allergie à  l\'un des constituants. Il ne doit pas être associé aux rétinoïdes.', NULL),
+('LITHOR12', 'LITHORINE', 'AP', 'Lithium', 'Ce médicament est indiqué dans la prévention des psychoses maniaco-dépressives ou pour traiter les états maniaques.', 'Ce médicament ne doit pas être utilisé si vous êtes allergique au lithium. Avant de prendre ce traitement, signalez à  votre médecin traitant si vous souffrez d\'insuffisance rénale, ou si vous avez un régime sans sel.', NULL),
+('PARMOL16', 'PARMOCODEINE', 'AA', 'Codéine + Paracétamol', 'Ce médicament est utilisé pour le traitement des douleurs lorsque des antalgiques simples ne sont pas assez efficaces.', 'Ce médicament est contre-indiqué en cas d\'allergie à  l\'un des constituants, chez l\'enfant de moins de 15 Kg, en cas d\'insuffisance hépatique ou respiratoire, d\'asthme, de phénylcétonurie et chez la femme qui allaite.', NULL),
+('PHYSOI8', 'PHYSICOR', 'PSA', 'Sulbutiamine', 'Ce médicament est utilisé pour traiter les baisses d\'activité physique ou psychique, souvent dans un contexte de dépression.', 'Ce médicament est contre-indiqué en cas d\'allergie à  l\'un des constituants.', NULL),
+('PIRIZ8', 'PIRIZAN', 'ABA', 'Pyrazinamide', 'Ce médicament est utilisé, en association à  d\'autres antibiotiques, pour traiter la tuberculose.', 'Ce médicament est contre-indiqué en cas d\'allergie à  l\'un des constituants, d\'insuffisance rénale ou hépatique, d\'hyperuricémie ou de porphyrie.', NULL),
+('POMDI20', 'POMADINE', 'AO', 'Bacitracine', 'Ce médicament est utilisé pour traiter les infections oculaires de la surface de l\'oeil.', 'Ce médicament est contre-indiqué en cas d\'allergie aux antibiotiques appliqués localement.', NULL),
+('TROXT21', 'TROXADET', 'AIN', 'Paroxétine', 'Ce médicament est utilisé pour traiter la dépression et les troubles obsessionnels compulsifs. Il peut également être utilisé en prévention des crises de panique avec ou sans agoraphobie.', 'Ce médicament est contre-indiqué en cas d\'allergie au produit.', NULL),
+('TXISOL22', 'TOUXISOL Vitamine C', 'ALO', 'Tyrothricine + Acide ascorbique (Vitamine C)', 'Ce médicament est utilisé pour traiter les affections de la bouche et de la gorge.', 'Ce médicament est contre-indiqué en cas d\'allergie à  l\'un des constituants et chez l\'enfant de moins de 6 ans.', NULL),
+('URIEG6', 'URIREGUL', 'AUM', 'Fosfomycine trométamol', 'Ce médicament est utilisé pour traiter les infections urinaires simples chez la femme de moins de 65 ans.', 'La prise de ce médicament est contre-indiquée en cas d\'allergie à  l\'un des constituants et d\'insuffisance rénale.', NULL);
 
 -- --------------------------------------------------------
 
@@ -236,11 +217,11 @@ INSERT INTO `medicament` (`MED_DEPOTLEGAL`, `MED_NOMCOMMERCIAL`, `FAM_CODE`, `ME
 -- Structure de la table `offrir`
 --
 
-CREATE TABLE IF NOT EXISTS `offrir` (
+CREATE TABLE `offrir` (
   `RAP_NUM` int(11) NOT NULL,
   `MED_DEPOTLEGAL` varchar(15) NOT NULL,
   `OFF_QTE` int(11) DEFAULT NULL,
-  `SAISIE_DEF` tinyint(1) DEFAULT NULL
+  `SAISIE_DEF` varchar(1) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -248,15 +229,16 @@ CREATE TABLE IF NOT EXISTS `offrir` (
 --
 
 INSERT INTO `offrir` (`RAP_NUM`, `MED_DEPOTLEGAL`, `OFF_QTE`, `SAISIE_DEF`) VALUES
-(1, 'POMDI20', 477, 0),
-(1, 'DOLRIL7', 41, 1),
-(2, 'POMDI20', 477, 0),
-(2, 'DOLRIL7', 41, 1),
-(3, 'TROXT21', 2, 0),
-(4, 'TROXT21', 2, 0),
-(5, 'TROXT21', 47524, 0),
-(6, 'TROXT21', 47524, 0),
-(7, 'TROXT21', 47524, 0);
+(1, 'POMDI20', 477, '0'),
+(1, 'DOLRIL7', 41, '1'),
+(2, 'POMDI20', 477, '0'),
+(2, 'DOLRIL7', 41, '1'),
+(3, 'TROXT21', 2, '0'),
+(4, 'TROXT21', 2, '0'),
+(5, 'TROXT21', 47524, '0'),
+(6, 'TROXT21', 47524, '0'),
+(7, 'TROXT21', 47524, '0'),
+(9, '3MYC7', 232, '1');
 
 -- --------------------------------------------------------
 
@@ -264,14 +246,11 @@ INSERT INTO `offrir` (`RAP_NUM`, `MED_DEPOTLEGAL`, `OFF_QTE`, `SAISIE_DEF`) VALU
 -- Structure de la table `posseder`
 --
 
-CREATE TABLE IF NOT EXISTS `posseder` (
+CREATE TABLE `posseder` (
   `PRA_NUM` int(11) NOT NULL,
   `SPE_CODE` varchar(5) NOT NULL,
   `POS_DIPLOME` varchar(10) DEFAULT NULL,
-  `POS_COEFPRESCRIPTION` float DEFAULT NULL,
-  PRIMARY KEY (`PRA_NUM`,`SPE_CODE`),
-  KEY `PRA_NUM` (`PRA_NUM`),
-  KEY `SPE_CODE` (`SPE_CODE`)
+  `POS_COEFPRESCRIPTION` float DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -280,18 +259,16 @@ CREATE TABLE IF NOT EXISTS `posseder` (
 -- Structure de la table `praticien`
 --
 
-CREATE TABLE IF NOT EXISTS `praticien` (
-  `PRA_NUM` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `praticien` (
+  `PRA_NUM` int(11) NOT NULL,
   `PRA_NOM` varchar(25) DEFAULT NULL,
   `PRA_PRENOM` varchar(30) DEFAULT NULL,
   `PRA_ADRESSE` varchar(50) DEFAULT NULL,
   `PRA_CP` varchar(5) DEFAULT NULL,
   `PRA_VILLE` varchar(25) DEFAULT NULL,
   `PRA_COEFNOTORIETE` float DEFAULT NULL,
-  `TYP_CODE` varchar(3) NOT NULL,
-  PRIMARY KEY (`PRA_NUM`),
-  KEY `TYP_CODE` (`TYP_CODE`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=123 ;
+  `TYP_CODE` varchar(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `praticien`
@@ -398,15 +375,11 @@ INSERT INTO `praticien` (`PRA_NUM`, `PRA_NOM`, `PRA_PRENOM`, `PRA_ADRESSE`, `PRA
 -- Structure de la table `prescrire`
 --
 
-CREATE TABLE IF NOT EXISTS `prescrire` (
+CREATE TABLE `prescrire` (
   `MED_DEPOTLEGAL` varchar(10) NOT NULL,
   `TIN_CODE` varchar(5) NOT NULL,
   `DOS_CODE` varchar(10) NOT NULL,
-  `PRE_POSOLOGIE` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`MED_DEPOTLEGAL`,`TIN_CODE`,`DOS_CODE`),
-  KEY `MED_DEPOTLEGAL` (`MED_DEPOTLEGAL`),
-  KEY `TIN_CODE` (`TIN_CODE`),
-  KEY `DOS_CODE` (`DOS_CODE`)
+  `PRE_POSOLOGIE` varchar(40) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -415,10 +388,9 @@ CREATE TABLE IF NOT EXISTS `prescrire` (
 -- Structure de la table `presentation`
 --
 
-CREATE TABLE IF NOT EXISTS `presentation` (
+CREATE TABLE `presentation` (
   `PRE_CODE` varchar(2) NOT NULL,
-  `PRE_LIBELLE` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`PRE_CODE`)
+  `PRE_LIBELLE` varchar(20) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -427,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `presentation` (
 -- Structure de la table `presenter`
 --
 
-CREATE TABLE IF NOT EXISTS `presenter` (
+CREATE TABLE `presenter` (
   `RAP_NUM` int(11) NOT NULL,
   `MED_DEPOTLEGAL` varchar(10) NOT NULL,
   `DOCUMENTATION` varchar(1) NOT NULL
@@ -438,16 +410,17 @@ CREATE TABLE IF NOT EXISTS `presenter` (
 --
 
 INSERT INTO `presenter` (`RAP_NUM`, `MED_DEPOTLEGAL`, `DOCUMENTATION`) VALUES
-(1, 'ADIMOL9', 1),
-(2, 'ADIMOL9', 1),
-(3, '3MYC7', 1),
-(4, '3MYC7', 1),
-(5, 'PHYSOI8', 1),
-(5, 'AMOX45', 0),
-(6, 'PHYSOI8', 1),
-(6, 'AMOX45', 0),
-(7, 'PHYSOI8', 1),
-(7, 'AMOX45', 0);
+(1, 'ADIMOL9', '1'),
+(2, 'ADIMOL9', '1'),
+(3, '3MYC7', '1'),
+(4, '3MYC7', '1'),
+(5, 'PHYSOI8', '1'),
+(5, 'AMOX45', '0'),
+(6, 'PHYSOI8', '1'),
+(6, 'AMOX45', '0'),
+(7, 'PHYSOI8', '1'),
+(7, 'AMOX45', '0'),
+(9, 'ADIMOL9', '1');
 
 -- --------------------------------------------------------
 
@@ -455,18 +428,15 @@ INSERT INTO `presenter` (`RAP_NUM`, `MED_DEPOTLEGAL`, `DOCUMENTATION`) VALUES
 -- Structure de la table `rapport_visite`
 --
 
-CREATE TABLE IF NOT EXISTS `rapport_visite` (
+CREATE TABLE `rapport_visite` (
   `VIS_MATRICULE` varchar(10) NOT NULL,
-  `RAP_NUM` int(11) NOT NULL AUTO_INCREMENT,
+  `RAP_NUM` int(11) NOT NULL,
   `PRA_NUM` int(11) NOT NULL,
   `RAP_REMPLACANT` int(11) DEFAULT NULL,
   `RAP_DATE` date DEFAULT NULL,
   `RAP_BILAN` varchar(255) DEFAULT NULL,
-  `RAP_MOTIF` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`VIS_MATRICULE`,`RAP_NUM`),
-  KEY `PRA_NUM` (`PRA_NUM`),
-  KEY `VIS_MATRICULE` (`VIS_MATRICULE`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `RAP_MOTIF` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `rapport_visite`
@@ -479,7 +449,11 @@ INSERT INTO `rapport_visite` (`VIS_MATRICULE`, `RAP_NUM`, `PRA_NUM`, `RAP_REMPLA
 ('b13', 4, 1, 119, '2017-04-02', 'sdqsdqsdqsdqsd', 'Relance'),
 ('b13', 5, 1, 120, '2017-04-02', 'dsfsqdfsdfsdfsd', 'Relance'),
 ('b13', 6, 1, 121, '2017-04-02', 'dsfsqdfsdfsdfsd', 'Relance'),
-('b13', 7, 1, 122, '2017-04-02', 'dsfsqdfsdfsdfsd', 'Relance');
+('b13', 7, 1, 122, '2017-04-02', 'dsfsqdfsdfsdfsd', 'Relance'),
+('b13', 8, 1, NULL, '2017-04-03', 'bilain test', 'Périodicité'),
+('b13', 9, 11, NULL, '2017-04-28', 'dfdsssssssssssss', 'Périodicité'),
+('b13', 10, 11, NULL, '2017-04-12', 'cvvvvvvvvvvvvvvv', NULL),
+('a131', 1, 1, NULL, '2017-05-18', 'Super bilan de rapport trop g&eacute;nial', 'Relance');
 
 -- --------------------------------------------------------
 
@@ -487,13 +461,10 @@ INSERT INTO `rapport_visite` (`VIS_MATRICULE`, `RAP_NUM`, `PRA_NUM`, `RAP_REMPLA
 -- Structure de la table `realiser`
 --
 
-CREATE TABLE IF NOT EXISTS `realiser` (
+CREATE TABLE `realiser` (
   `AC_NUM` int(11) NOT NULL,
   `VIS_MATRICULE` varchar(10) NOT NULL,
-  `REA_MTTFRAIS` float DEFAULT NULL,
-  PRIMARY KEY (`AC_NUM`,`VIS_MATRICULE`),
-  KEY `AC_NUM` (`AC_NUM`),
-  KEY `VIS_MATRICULE` (`VIS_MATRICULE`)
+  `REA_MTTFRAIS` float DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -502,12 +473,10 @@ CREATE TABLE IF NOT EXISTS `realiser` (
 -- Structure de la table `region`
 --
 
-CREATE TABLE IF NOT EXISTS `region` (
+CREATE TABLE `region` (
   `REG_CODE` varchar(2) NOT NULL,
   `SEC_CODE` varchar(1) NOT NULL,
-  `REG_NOM` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`REG_CODE`),
-  KEY `SEC_CODE` (`SEC_CODE`)
+  `REG_NOM` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -530,7 +499,7 @@ INSERT INTO `region` (`REG_CODE`, `SEC_CODE`, `REG_NOM`) VALUES
 ('LI', 'P', 'Limousin'),
 ('MP', 'S', 'Midi Pyrénée'),
 ('NP', 'N', 'Nord Pas de Calais'),
-('PA', 'S', 'Provence Alpes Cote d''Azur'),
+('PA', 'S', 'Provence Alpes Cote d\'Azur'),
 ('PC', 'O', 'Poitou Charente'),
 ('PI', 'N', 'Picardie'),
 ('PL', 'O', 'Pays de Loire'),
@@ -544,10 +513,9 @@ INSERT INTO `region` (`REG_CODE`, `SEC_CODE`, `REG_NOM`) VALUES
 -- Structure de la table `secteur`
 --
 
-CREATE TABLE IF NOT EXISTS `secteur` (
+CREATE TABLE `secteur` (
   `SEC_CODE` varchar(1) NOT NULL,
-  `SEC_LIBELLE` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`SEC_CODE`)
+  `SEC_LIBELLE` varchar(15) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -567,10 +535,9 @@ INSERT INTO `secteur` (`SEC_CODE`, `SEC_LIBELLE`) VALUES
 -- Structure de la table `specialite`
 --
 
-CREATE TABLE IF NOT EXISTS `specialite` (
+CREATE TABLE `specialite` (
   `SPE_CODE` varchar(5) NOT NULL,
-  `SPE_LIBELLE` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`SPE_CODE`)
+  `SPE_LIBELLE` varchar(150) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -611,7 +578,7 @@ INSERT INTO `specialite` (`SPE_CODE`, `SPE_LIBELLE`) VALUES
 ('ODM', 'orthopédie dento maxillo-faciale'),
 ('OPH', 'ophtalmologie'),
 ('ORL', 'oto-rhino-laryngologie'),
-('PEA', 'psychiatrie de l''enfant et de l''adolescent'),
+('PEA', 'psychiatrie de l\'enfant et de l\'adolescent'),
 ('PME', 'pédiatrie maladies des enfants'),
 ('PNM', 'pneumologie'),
 ('PSC', 'psychiatrie'),
@@ -629,13 +596,12 @@ INSERT INTO `specialite` (`SPE_CODE`, `SPE_LIBELLE`) VALUES
 -- Structure de la table `switchboard items`
 --
 
-CREATE TABLE IF NOT EXISTS `switchboard items` (
+CREATE TABLE `switchboard items` (
   `SwitchboardID` int(11) NOT NULL,
   `ItemNumber` int(11) NOT NULL DEFAULT '0',
   `ItemText` varchar(255) DEFAULT NULL,
   `Command` int(11) DEFAULT NULL,
-  `Argument` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`SwitchboardID`,`ItemNumber`)
+  `Argument` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -656,14 +622,11 @@ INSERT INTO `switchboard items` (`SwitchboardID`, `ItemNumber`, `ItemText`, `Com
 -- Structure de la table `travailler`
 --
 
-CREATE TABLE IF NOT EXISTS `travailler` (
+CREATE TABLE `travailler` (
   `VIS_MATRICULE` varchar(10) NOT NULL,
   `JJMMAA` datetime NOT NULL,
   `REG_CODE` varchar(2) NOT NULL,
-  `TRA_ROLE` varchar(11) DEFAULT NULL,
-  PRIMARY KEY (`JJMMAA`,`VIS_MATRICULE`,`REG_CODE`),
-  KEY `VIS_MATRICULE` (`VIS_MATRICULE`),
-  KEY `REG_CODE` (`REG_CODE`)
+  `TRA_ROLE` varchar(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -762,11 +725,9 @@ INSERT INTO `travailler` (`VIS_MATRICULE`, `JJMMAA`, `REG_CODE`, `TRA_ROLE`) VAL
 -- Structure de la table `type_individu`
 --
 
-CREATE TABLE IF NOT EXISTS `type_individu` (
+CREATE TABLE `type_individu` (
   `TIN_CODE` varchar(5) NOT NULL,
-  `TIN_LIBELLE` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`TIN_CODE`),
-  KEY `TIN_CODE` (`TIN_CODE`)
+  `TIN_LIBELLE` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -775,11 +736,10 @@ CREATE TABLE IF NOT EXISTS `type_individu` (
 -- Structure de la table `type_praticien`
 --
 
-CREATE TABLE IF NOT EXISTS `type_praticien` (
+CREATE TABLE `type_praticien` (
   `TYP_CODE` varchar(3) NOT NULL,
   `TYP_LIBELLE` varchar(25) DEFAULT NULL,
-  `TYP_LIEU` varchar(35) DEFAULT NULL,
-  PRIMARY KEY (`TYP_CODE`)
+  `TYP_LIEU` varchar(35) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -799,7 +759,7 @@ INSERT INTO `type_praticien` (`TYP_CODE`, `TYP_LIBELLE`, `TYP_LIEU`) VALUES
 -- Structure de la table `visiteur`
 --
 
-CREATE TABLE IF NOT EXISTS `visiteur` (
+CREATE TABLE `visiteur` (
   `VIS_MATRICULE` varchar(10) NOT NULL,
   `VIS_NOM` varchar(25) DEFAULT NULL,
   `VIS_PRENOM` varchar(50) DEFAULT NULL,
@@ -809,10 +769,7 @@ CREATE TABLE IF NOT EXISTS `visiteur` (
   `VIS_VILLE` varchar(30) DEFAULT NULL,
   `VIS_DATEEMBAUCHE` datetime DEFAULT NULL,
   `SEC_CODE` varchar(1) DEFAULT NULL,
-  `LAB_CODE` varchar(2) NOT NULL,
-  PRIMARY KEY (`VIS_MATRICULE`),
-  KEY `LAB_CODE` (`LAB_CODE`),
-  KEY `SEC_CODE` (`SEC_CODE`)
+  `LAB_CODE` varchar(2) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -869,7 +826,7 @@ INSERT INTO `visiteur` (`VIS_MATRICULE`, `VIS_NOM`, `VIS_PRENOM`, `VIS_MDP`, `VI
 ('n42', 'Letessier', 'Stéphane', '$2y$10$tNj.hCkoKTr7ZBnxBwtb8OpNFamVxaTT91ZY07TRy7Vh3TD.wd7.a', '5 chem Capuche', '27000', 'EVREUX', '1996-03-06 00:00:00', 'N', 'GY'),
 ('n58', 'Loirat', 'Didier', '$2y$10$2SuPSqwfglAbhtnOn5ndpOMYltP3naKTmmubWfDwe9msN8t0YIm62', 'Les Pêchers cité Bourg la Croix', '45000', 'ORLEANS', '1992-08-30 00:00:00', 'P', 'GY'),
 ('n59', 'Maffezzoli', 'Thibaud', '$2y$10$Aw/C4WV2y1Z0IZuX/I6/8eOInGqTJE2GTzdzhj9Gpq6Bm0/tzD/Kq', '5 r Chateaubriand', '2000', 'LAON', '1994-12-19 00:00:00', 'N', 'SW'),
-('o26', 'Mancini', 'Anne', '$2y$10$ErVyNCy8EJV5q0pfAKqMF.Jf47H91JWsx350mDN5gVcXxAadk1nCK', '5 r D''Agier', '48000', 'MENDE', '1995-01-05 00:00:00', 'S', 'GY'),
+('o26', 'Mancini', 'Anne', '$2y$10$ErVyNCy8EJV5q0pfAKqMF.Jf47H91JWsx350mDN5gVcXxAadk1nCK', '5 r D\'Agier', '48000', 'MENDE', '1995-01-05 00:00:00', 'S', 'GY'),
 ('p32', 'Marcouiller', 'Gérard', '$2y$10$aZ9fqU99ASCEcHJ/zOCnDeDCf7Vpi4OapT7iH9QNQP1RFrdDOht1.', '7 pl St Gilles', '91000', 'ISSY LES MOULINEAUX', '1992-12-24 00:00:00', 'P', 'GY'),
 ('p40', 'Michel', 'Jean-Claude', '$2y$10$qSX0sxfsM8VaF7d3Y6ZXFewMdJLOM9P/Wnj/0ffJM8FEgy3ruFoMu', '5 r Gabriel Péri', '61000', 'FLERS', '1992-12-14 00:00:00', 'O', 'SW'),
 ('p41', 'Montecot', 'Françoise', '$2y$10$xfmzRbqCa.kYpNo5ipHS7e6mPV97MW32CBAjWe.6YF6pEK0IEWMpi', '6 r Paul Valéry', '17000', 'SAINTES', '1998-07-27 00:00:00', 'O', 'GY'),
@@ -889,6 +846,198 @@ INSERT INTO `visiteur` (`VIS_MATRICULE`, `VIS_NOM`, `VIS_PRENOM`, `VIS_MDP`, `VI
 ('t60', 'Tusseau', 'Josselin', '$2y$10$o0mR24/6rykLxPCp258mWejNVpRxeYp7IPgDvy0eZ3T2k2shrYFBW', '63 r Bon Repos', '28000', 'CHARTRES', '1991-03-29 00:00:00', 'P', 'GY'),
 ('zzz', 'swiss', 'bourdin', '$2y$10$iCiMEmYmVd.tuOzjjBA5keHoIBnpcrKMw9Icu/2VBdu12JAlu4Q/a', NULL, NULL, NULL, '2003-06-18 00:00:00', NULL, 'BC');
 
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `activite_compl`
+--
+ALTER TABLE `activite_compl`
+  ADD PRIMARY KEY (`AC_NUM`);
+
+--
+-- Index pour la table `composant`
+--
+ALTER TABLE `composant`
+  ADD PRIMARY KEY (`CMP_CODE`);
+
+--
+-- Index pour la table `constituer`
+--
+ALTER TABLE `constituer`
+  ADD PRIMARY KEY (`MED_DEPOTLEGAL`,`CMP_CODE`),
+  ADD KEY `MED_DEPOTLEGAL` (`MED_DEPOTLEGAL`),
+  ADD KEY `CMP_CODE` (`CMP_CODE`);
+
+--
+-- Index pour la table `dosage`
+--
+ALTER TABLE `dosage`
+  ADD PRIMARY KEY (`DOS_CODE`);
+
+--
+-- Index pour la table `famille`
+--
+ALTER TABLE `famille`
+  ADD PRIMARY KEY (`FAM_CODE`);
+
+--
+-- Index pour la table `formuler`
+--
+ALTER TABLE `formuler`
+  ADD PRIMARY KEY (`MED_DEPOTLEGAL`,`PRE_CODE`),
+  ADD KEY `MED_DEPOTLEGAL` (`MED_DEPOTLEGAL`),
+  ADD KEY `PRE_CODE` (`PRE_CODE`);
+
+--
+-- Index pour la table `interagir`
+--
+ALTER TABLE `interagir`
+  ADD PRIMARY KEY (`MED_PERTURBATEUR`,`MED_MED_PERTURBE`),
+  ADD KEY `MED_MED_PERTURBE` (`MED_MED_PERTURBE`),
+  ADD KEY `MED_PERTURBATEUR` (`MED_PERTURBATEUR`);
+
+--
+-- Index pour la table `inviter`
+--
+ALTER TABLE `inviter`
+  ADD PRIMARY KEY (`AC_NUM`,`PRA_NUM`),
+  ADD KEY `AC_NUM` (`AC_NUM`),
+  ADD KEY `PRA_NUM` (`PRA_NUM`);
+
+--
+-- Index pour la table `labo`
+--
+ALTER TABLE `labo`
+  ADD PRIMARY KEY (`LAB_CODE`);
+
+--
+-- Index pour la table `medicament`
+--
+ALTER TABLE `medicament`
+  ADD PRIMARY KEY (`MED_DEPOTLEGAL`),
+  ADD KEY `FAM_CODE` (`FAM_CODE`);
+
+--
+-- Index pour la table `posseder`
+--
+ALTER TABLE `posseder`
+  ADD PRIMARY KEY (`PRA_NUM`,`SPE_CODE`),
+  ADD KEY `PRA_NUM` (`PRA_NUM`),
+  ADD KEY `SPE_CODE` (`SPE_CODE`);
+
+--
+-- Index pour la table `praticien`
+--
+ALTER TABLE `praticien`
+  ADD PRIMARY KEY (`PRA_NUM`),
+  ADD KEY `TYP_CODE` (`TYP_CODE`);
+
+--
+-- Index pour la table `prescrire`
+--
+ALTER TABLE `prescrire`
+  ADD PRIMARY KEY (`MED_DEPOTLEGAL`,`TIN_CODE`,`DOS_CODE`),
+  ADD KEY `MED_DEPOTLEGAL` (`MED_DEPOTLEGAL`),
+  ADD KEY `TIN_CODE` (`TIN_CODE`),
+  ADD KEY `DOS_CODE` (`DOS_CODE`);
+
+--
+-- Index pour la table `presentation`
+--
+ALTER TABLE `presentation`
+  ADD PRIMARY KEY (`PRE_CODE`);
+
+--
+-- Index pour la table `rapport_visite`
+--
+ALTER TABLE `rapport_visite`
+  ADD PRIMARY KEY (`VIS_MATRICULE`,`RAP_NUM`),
+  ADD KEY `PRA_NUM` (`PRA_NUM`),
+  ADD KEY `VIS_MATRICULE` (`VIS_MATRICULE`);
+
+--
+-- Index pour la table `realiser`
+--
+ALTER TABLE `realiser`
+  ADD PRIMARY KEY (`AC_NUM`,`VIS_MATRICULE`),
+  ADD KEY `AC_NUM` (`AC_NUM`),
+  ADD KEY `VIS_MATRICULE` (`VIS_MATRICULE`);
+
+--
+-- Index pour la table `region`
+--
+ALTER TABLE `region`
+  ADD PRIMARY KEY (`REG_CODE`),
+  ADD KEY `SEC_CODE` (`SEC_CODE`);
+
+--
+-- Index pour la table `secteur`
+--
+ALTER TABLE `secteur`
+  ADD PRIMARY KEY (`SEC_CODE`);
+
+--
+-- Index pour la table `specialite`
+--
+ALTER TABLE `specialite`
+  ADD PRIMARY KEY (`SPE_CODE`);
+
+--
+-- Index pour la table `switchboard items`
+--
+ALTER TABLE `switchboard items`
+  ADD PRIMARY KEY (`SwitchboardID`,`ItemNumber`);
+
+--
+-- Index pour la table `travailler`
+--
+ALTER TABLE `travailler`
+  ADD PRIMARY KEY (`JJMMAA`,`VIS_MATRICULE`,`REG_CODE`),
+  ADD KEY `VIS_MATRICULE` (`VIS_MATRICULE`),
+  ADD KEY `REG_CODE` (`REG_CODE`);
+
+--
+-- Index pour la table `type_individu`
+--
+ALTER TABLE `type_individu`
+  ADD PRIMARY KEY (`TIN_CODE`),
+  ADD KEY `TIN_CODE` (`TIN_CODE`);
+
+--
+-- Index pour la table `type_praticien`
+--
+ALTER TABLE `type_praticien`
+  ADD PRIMARY KEY (`TYP_CODE`);
+
+--
+-- Index pour la table `visiteur`
+--
+ALTER TABLE `visiteur`
+  ADD PRIMARY KEY (`VIS_MATRICULE`),
+  ADD KEY `LAB_CODE` (`LAB_CODE`),
+  ADD KEY `SEC_CODE` (`SEC_CODE`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `activite_compl`
+--
+ALTER TABLE `activite_compl`
+  MODIFY `AC_NUM` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `praticien`
+--
+ALTER TABLE `praticien`
+  MODIFY `PRA_NUM` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+--
+-- AUTO_INCREMENT pour la table `rapport_visite`
+--
+ALTER TABLE `rapport_visite`
+  MODIFY `RAP_NUM` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

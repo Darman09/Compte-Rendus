@@ -6,7 +6,7 @@
             foreach (Medicaments::getAllDepotAndName() as $value):
                 ?>
                 <option value="<?php echo $value['MED_DEPOTLEGAL']; ?>">
-                    <?php echo $value['MED_DEPOTLEGAL'] . ' : ' . $value['MED_NOMCOMMERCIAL']; ?>
+                    <?= $value['MED_DEPOTLEGAL'] . ' : ' . $value['MED_NOMCOMMERCIAL']; ?>
                 </option>
                 <?php
             endforeach;

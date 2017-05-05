@@ -3,6 +3,9 @@ require 'ScriptBDD.php';
 require '../phpClass/ClassPraticien.php';
 require '../phpClass/ClassDateManager.php';
 
+session_start();
+$sessionId = $_SESSION['id'];
+
 
 $rapportDate = DateManager::dateFrancaisVersAnglais($_POST['rapportDate']);
 $rapportPraticien = $_POST['rapportPraticien'];
@@ -148,7 +151,7 @@ try
 #table rapport_visite
     $rapport = $bdd->query('INSERT INTO rapport_visite (VIS_MATRICULE, PRA_NUM,RAP_REMPLACANT, RAP_DATE, RAP_BILAN, RAP_MOTIF)
                 VALUE (:visiteur,:praticien,:remplacant,:rapportDate,:bilan,:motif)');
-    $rapport->bindValue(':visiteur', 'b13');
+    $rapport->bindValue(':visiteur', $sessionId);
     $rapport->bindValue(':praticien', $rapportPraticien);
     $rapport->bindValue(':remplacant', $remplacantId);
     $rapport->bindValue(':rapportDate', $rapportDate);

@@ -7,12 +7,11 @@ $loginPost = $_POST['login'];
 $mdpPost = $_POST['mdp'];
 
 $loginStatement = new Login($loginPost);
-print $loginStatement->getPassword();
 
 if($loginStatement->connexion($mdpPost,$loginPost))
 {
     header('Location: ../view/nouveauCR.php');
 } else
 {
-    header('Location: ../../index.php?e=1');
+    header('Location: ../../index.html?e=1');
 }
