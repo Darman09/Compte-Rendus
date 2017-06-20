@@ -15,7 +15,7 @@ class BDD
 
     public function __construct()
     {
-        // $dsn = 'mysql:host='.$this->host.';port='.$this->port.';dbname='.$this->dbname.';charset=utf8';
+       // $dsn = 'mysql:host='.$this->host.';port='.$this->port.';dbname='.$this->dbname.';charset=utf8';
         $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbname.';charset=utf8';
         $options =
             [
