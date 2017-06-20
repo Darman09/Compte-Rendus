@@ -17,6 +17,6 @@ $user = new User($_SESSION['id']);
     <li><a href="autreVisiteurCR.php">Autres visiteurs</a></li>
     <hr>
 
-    <li><a href="#">Déconnexion</a></li>
+    <li><a href="../phpScript/logout.php">Déconnexion</a></li>
 </ul>
 <a href="#" data-activates="slide-out" class="button-collapse"><i id="menuButton" class="fa fa-bars"></i></a>
